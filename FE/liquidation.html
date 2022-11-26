@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Liquidation Contract</title>
+	<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+	<link href="assets/css/font-awesome.min.css" rel="stylesheet">
+	<link href="assets/css/datepicker3.css" rel="stylesheet">
+	<link href="assets/css/styles.css" rel="stylesheet">
+	<!-- Favicon -->
+    <link rel="icon" href="assets/faviconOT.webp">
+	<!--Custom Font-->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+	<!--[if lt IE 9]>
+	<script src="js/html5shiv.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span></button>
+				<a class="navbar-brand" href="index.html"><span>One</span>Team</a>
+				<ul class="nav navbar-top-links navbar-right">
+					<li class="dropdown"><a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+						<em class="fa fa-bell"></em><span class="label label-info">1</span>
+					</a>
+						<ul class="dropdown-menu dropdown-alerts">
+							<li><a href="#">
+								<div><em class="fa fa-envelope"></em> 1 New Message
+									<span class="pull-right text-muted small">3 mins ago</span></div>
+							</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div><!-- /.container-fluid -->
+	</nav>
+	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+		<div class="profile-sidebar">
+			<div class="profile-userpic">
+				<img src="https://scontent.fsgn2-7.fna.fbcdn.net/v/t39.30808-1/272199311_3042407815971784_3816958182075697482_n.jpg?stp=c347.185.479.479a_dst-jpg_s200x200&_nc_cat=100&ccb=1-7&_nc_sid=7206a8&_nc_ohc=2LW6GMBx3-4AX_skB3V&_nc_ht=scontent.fsgn2-7.fna&oh=00_AfAK75W_nUhKPih1MCAK_6qKZrYYUFDYmnLy9PKfir120A&oe=6381E1D1" class="img-responsive" alt="">
+			</div>
+			<div class="profile-usertitle">
+				<div class="profile-usertitle-name">Phòng kinh doanh</div>
+				<div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="divider"></div>
+		<form role="search">
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Search">
+			</div>
+		</form>
+		<ul class="nav menu">
+			<li><a href="index.html"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
+			<li><a href="contract.html"><em class="fa fa-sticky-note">&nbsp;</em> Contract</a></li>
+			<li class="active"><a href="liquidation.html"><em class="fa fa-send-o">&nbsp;</em> Liquidation Contract</a></li>
+			<li><a href="login.html"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+		</ul>
+	</div><!--/.sidebar-->
+		
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="index.html">
+					<em class="fa fa-home"></em>
+				</a></li>
+				<li class="active">Liquidation Contract</li>
+			</ol>
+		</div><!--/.row-->
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Liquidation	 Contract</h1>
+			</div>
+		</div><!--/.row-->
+
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-heading" style="font-weight: bold;" >Hợp đồng</div>
+					<div class="panel-body">
+						<div class="col-lg-12">
+								<input style="margin-bottom: 10px;" class="form-control" id="myInput" type="text" placeholder="Search">
+							<table class="table table-bordered" >
+								<thead>
+								  <tr>
+									<th scope="col">Mã Hợp Đồng</th>
+									<th scope="col">Ngày Kí Hợp Đồng</th>
+									<th scope="col">Nơi Giao</th>
+									<th scope="col">Điều Khoản</th>
+									<th scope="col">Phương Thức Thanh Toán</th>
+									<th scope="col">Giá Trị Hợp Đồng</th>
+								  </tr>
+								</thead>
+								<tbody id="Contract">
+								  <tr>
+									<th scope="row">HD01</th>
+									<td>12-07-2022</td>
+									<td>Công ty ABC</td>
+									<td>Giao Hàng Trong 1 năm</td>
+									<td>Trực tiếp</td>
+									<td>20000 USD</td>
+									<td><label><input type="checkbox" name='checkbox0' id='check_all' value=""></label></td>
+								  </tr>
+								  <tr>
+									<th scope="row">HD02</th>
+									<td>31-05-2022</td>
+									<td>Công ty TNT</td>
+									<td>Giao Hàng Trong 6 tháng</td>
+									<td>Chuyển khoảng</td>
+									<td>10000 USD</td>
+									<td><label><input type="checkbox" name='checkbox0' id='check_all' value=""></label></td>
+								  </tr>
+								  <tr>
+									<th scope="row">HD03</th>
+									<td>24-12-2022</td>
+									<td>Công ty ONE</td>
+									<td>Giao Hàng Trong 3 tháng</td>
+									<td>Trực tiếp</td>
+									<td>8000 USD</td>
+									<td><label><input type="checkbox" name='checkbox0' id='check_all' value=""></label></td>
+								  </tr>
+								</tbody>
+							  </table>
+							  <b id="result">Tổng hợp đồng đang chọn = </b> 
+						</div> 
+					</div>
+					<div class="panel-footer">
+						<input type="button" id="btn1" class="btn btn-info"  value="Chọn hết"/>
+       					<input type="button" id="btn2" class="btn btn-default"  value="Bỏ chọn"/>
+						<button type="submit" class="btn btn-warning" >Thanh Lý</button>
+					</div> 
+				</div><!-- /.panel-->
+			</div><!--/.col-->
+			<div class="col-sm-12">
+				<p class="back-link">Make by <a href="https://www.facebook.com/profile.php?id=100006077866205">ONETEAM</a></p>
+			</div>
+		</div><!--/.row-->
+	</div>	<!--/.main-->
+	  
+	
+
+<script src="assets/js/jquery-1.11.1.min.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+	<script src="assets/js/chart.min.js"></script>
+	<script src="assets/js/chart-data.js"></script>
+	<script src="assets/js/easypiechart.js"></script>
+	<script src="assets/js/easypiechart-data.js"></script>
+	<script src="assets/js/bootstrap-datepicker.js"></script>
+	<script src="assets/js/custom.js"></script>
+	<script language="javascript">
+ 
+		// Đếm checkbox chọn
+		showChecked();
+		function showChecked(){
+		  document.getElementById("result").textContent = "Tổng hợp đồng đang chọn = " + document.querySelectorAll("input:checked").length;
+		}
+		document.querySelectorAll("input[name=checkbox0]").forEach(i=>{
+		 i.onclick = function(){
+		  showChecked();
+		 }
+		});
+		// Chức năng chọn hết
+		document.getElementById("btn1").onclick = function () 
+		{
+			// Lấy danh sách checkbox
+			var checkboxes = document.getElementsByName('checkbox0');
+
+			// Lặp và thiết lập checked
+			for (var i = 0; i < checkboxes.length; i++){
+				checkboxes[i].checked = true;
+				showChecked();
+			}
+		};
+
+		// Chức năng bỏ chọn hết
+		document.getElementById("btn2").onclick = function () 
+		{
+			// Lấy danh sách checkbox
+			var checkboxes = document.getElementsByName('checkbox0');
+
+			// Lặp và thiết lập Uncheck
+			for (var i = 0; i < checkboxes.length; i++){
+				checkboxes[i].checked = false;
+				showChecked();
+			}
+		};
+	</script>
+	<script>
+		$(document).ready(function(){
+    $("#myInput").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#Contract tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+});
+	</script>
+
+	
+</body>
+</html>

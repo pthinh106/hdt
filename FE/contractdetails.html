@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Contract Details</title>
+	<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+	<link href="assets/css/font-awesome.min.css" rel="stylesheet">
+	<link href="assets/css/datepicker3.css" rel="stylesheet">
+	<link href="assets/css/styles.css" rel="stylesheet">
+	<!-- Favicon -->
+    <link rel="icon" href="assets/faviconOT.webp">
+	<!--Custom Font-->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+	<!--[if lt IE 9]>
+	<script src="js/html5shiv.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span></button>
+				<a class="navbar-brand" href="index.html"><span>One</span>Team</a>
+				<ul class="nav navbar-top-links navbar-right">
+					<li class="dropdown"><a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+						<em class="fa fa-bell"></em><span class="label label-info">1</span>
+					</a>
+						<ul class="dropdown-menu dropdown-alerts">
+							<li><a href="#">
+								<div><em class="fa fa-envelope"></em> 1 New Message
+									<span class="pull-right text-muted small">3 mins ago</span></div>
+							</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div><!-- /.container-fluid -->
+	</nav>
+	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+		<div class="profile-sidebar">
+			<div class="profile-userpic">
+				<img src="https://scontent.fsgn2-7.fna.fbcdn.net/v/t39.30808-1/272199311_3042407815971784_3816958182075697482_n.jpg?stp=c347.185.479.479a_dst-jpg_s200x200&_nc_cat=100&ccb=1-7&_nc_sid=7206a8&_nc_ohc=2LW6GMBx3-4AX_skB3V&_nc_ht=scontent.fsgn2-7.fna&oh=00_AfAK75W_nUhKPih1MCAK_6qKZrYYUFDYmnLy9PKfir120A&oe=6381E1D1" class="img-responsive" alt="">
+			</div>
+			<div class="profile-usertitle">
+				<div class="profile-usertitle-name">Phòng kinh doanh</div>
+				<div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="divider"></div>
+		<form role="search">
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Search">
+			</div>
+		</form>
+		<ul class="nav menu">
+			<li><a href="index.html"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
+			<li class="active"><a href="contract.html"><em class="fa fa-sticky-note">&nbsp;</em> Contract</a></li>
+			<li><a href="liquidation.html"><em class="fa fa-send-o">&nbsp;</em> Liquidation Contract</a></li>
+			<li><a href="login.html"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+		</ul>
+	</div><!--/.sidebar-->
+		
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="index.html">
+					<em class="fa fa-home"></em>
+				</a></li>
+				<li>Contract</li>
+				<li class="active">Contract Details</li>
+			</ol>
+		</div><!--/.row-->
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Contract Details</h1>
+			</div>
+		</div><!--/.row-->
+
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-heading" style="font-weight: bold;" >Chi Tiết Hợp Đồng Của
+						<a class="addbutton" href="contract.html">
+							<em class="fa fa-close color-red"> Đóng</em>
+						</a>
+					</div>
+					<div class="panel-body">
+						<div class="col-lg-12">
+							<div class="form-group">
+								<div>Họ Tên Người Mua Hàng: Công Ty ABC</div> 
+								<div>Số Điện Thoại: 0902832938</div>
+								<div>Địa Chỉ: 1/2 Đường số 1b Bình Tân</div>
+								<div>Mã Số Thuế: 2400950225</div>
+							</div>
+							<table class="table table-bordered">
+								<thead>
+								  <tr>
+									<th class="text-center" scope="col">STT</th>
+									<th class="text-center" scope="col">Mã Sản Phẩm</th>
+									<th class="text-center" scope="col">Tên Sản Phẩm</th>
+									<th class="text-center" scope="col">Đơn vị Tính</th>
+									<th class="text-center" scope="col">Số Lượng</th>
+									<th class="text-center" scope="col">Đơn Giá</th>
+									<th class="text-center" scope="col">Thành Tiền</th>
+								  </tr>
+								</thead>
+								<tbody>
+								  <tr>
+									<th class="text-center" scope="row">1</th>
+									<td>SP01</td>
+									<td>Cơm Cháy</td>
+									<td>Bịch</td>
+									<td class="text-right">10</td>
+									<td class="text-right">2000</td>
+									<td class="text-right">20000</td>
+								  </tr>
+								  <tr>
+									<th class="text-center" scope="row">2</th>
+									<td>SP02</td>
+									<td>Súp Bào Ngư</td>
+									<td>Lon</td>
+									<td class="text-right">20</td>
+									<td class="text-right">8000</td>
+									<td class="text-right">16000</td>
+								  </tr>
+								  <tr>
+									<th class="text-center" scope="row">3</th>
+									<td>SP03</td>
+									<td>Trứng Luộc</td>
+									<td>Quả</td>
+									<td class="text-right">5</td>
+									<td class="text-right">1000</td>
+									<td class="text-right">5000</td>
+								  </tr>
+								  <tr>
+									<td colspan="6" class="text-right">Cộng Tiền Hàng</td>
+									<td class="text-right">300000</td>
+								  </tr>
+								  <tr>
+									<td colspan="6" class="text-right">Tiền Thuế GTGT (10%)</td>
+									<td class="text-right">2121</td>
+								  </tr>
+								  <tr>
+									<td colspan="6" class="text-right">Tổng Số Tiền Thanh Toán</td>
+									<td class="text-right">444444</td>
+								  </tr>
+								</tbody>
+							  </table>
+						</div>  
+					</div>
+				</div><!-- /.panel-->
+			</div><!--/.col-->
+			<div class="col-sm-12">
+				<p class="back-link">Make by <a href="https://www.facebook.com/profile.php?id=100006077866205">ONETEAM</a></p>
+			</div>
+		</div><!--/.row-->
+	</div>	<!--/.main-->
+	  
+
+<script src="assets/js/jquery-1.11.1.min.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+	<script src="assets/js/chart.min.js"></script>
+	<script src="assets/js/chart-data.js"></script>
+	<script src="assets/js/easypiechart.js"></script>
+	<script src="assets/js/easypiechart-data.js"></script>
+	<script src="assets/js/bootstrap-datepicker.js"></script>
+	<script src="assets/js/custom.js"></script>
+	
+</body>
+</html>
