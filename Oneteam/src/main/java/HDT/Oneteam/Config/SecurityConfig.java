@@ -35,13 +35,14 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http    .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/supply/**").hasAnyRole("SUPPLY")
-                .antMatchers("/sales/**").hasAnyRole("SALES")
+                .antMatchers("/supply/**").hasAnyRole("SUPPLY","MANAGER")
+                .antMatchers("/sales/**").hasAnyRole("SALES","MANAGER")
+                .antMatchers("/manager/**").hasAnyRole("MANAGER")
                 .antMatchers("/**").permitAll()
-                .and().formLogin().loginPage("/login").defaultSuccessUrl("/").failureUrl("/login?error=true").permitAll()
+                .and().formLogin().loginPage("/login").defaultSuccessUrl("/redirect").failureUrl("/login?error=true").permitAll()
                 .and().logout(logout -> logout
                         .logoutUrl("/logout")
-                        .logoutSuccessUrl("/")
+                        .logoutSuccessUrl("/login")
                         .invalidateHttpSession(true)
                         .deleteCookies("JSESSIONID"))
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS);

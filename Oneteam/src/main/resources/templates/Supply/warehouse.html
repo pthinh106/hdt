@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="Fragment/fragment :: head">
+<body>
+	<nav th:replace="Fragment/fragment :: navSupply"></nav>
+	<div th:replace="Fragment/fragment :: slidebar"></div>
+		
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="index.html">
+					<em class="fa fa-home"></em>
+				</a></li>
+				<li class="active">Warehouse</li>
+			</ol>
+		</div><!--/.row-->
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Warehouse</h1>
+			</div>
+		</div><!--/.row-->
+
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-heading" style="font-weight: bold;" >Nguyên Liệu
+						<a class="addbutton" href="warehouse/material/create">
+							<button type="button" class="btn btn-md btn-success">Thêm</button>
+						</a>
+						</div>
+					<div class="panel-body">
+						<div class="col-lg-12">
+							<input style="margin-bottom: 10px;" class="form-control" id="myInput" type="text" placeholder="Search">
+							<table class="table table-bordered">
+								<thead>
+								  <tr>
+									<th scope="col">Mã Nguyên Liệu</th>
+									<th scope="col">Tên Nguyên Liệu</th>
+									<th scope="col">Đơn Vị Tính</th>
+									<th scope="col">Giá Nhập</th>
+									<th scope="col">Số Lượng</th>
+								  </tr>
+								</thead>
+								<tbody id="Ingredient">
+								  <tr>
+									<th scope="row">NL01</th>
+									<td>Gạo Lức</td>
+									<td>Kg</td>
+									<td>10000</td>
+									<td>20</td>
+									<td>
+										<button type="button" class="btn btn-md btn-info addbutton">Sửa</button>
+										<button type="button" class="btn btn-md btn-danger">Xóa</button>	
+									</td>
+								  </tr>
+								  <tr>
+									<th scope="row">NL02</th>
+									<td>Trứng Gà</td>
+									<td>Trái</td>
+									<td>3300</td>
+									<td>100</td>
+									<td>
+										<button type="button" class="btn btn-md btn-info addbutton">Sửa</button>
+										<button type="button" class="btn btn-md btn-danger">Xóa</button>
+									</td>
+								  </tr>
+								  <tr>
+									<th scope="row">NL03</th>
+									<td>Bào Ngư</td>
+									<td>Kg</td>
+									<td>600000</td>
+									<td>15</td>
+									<td>
+										<button type="button" class="btn btn-md btn-info addbutton">Sửa</button>
+										<button type="button" class="btn btn-md btn-danger">Xóa</button>
+									</td>
+								  </tr>
+								</tbody>
+							  </table>
+						</div>  
+					</div>
+				</div><!-- /.panel-->
+
+				<div class="panel panel-default">
+					<div class="panel-heading" style="font-weight: bold;" >Sản Phẩm
+						<a class="addbutton" href="warehouse/product/create">
+							<button type="button" class="btn btn-md btn-success">Thêm</button>
+						</a>
+						</div>
+					<div class="panel-body">
+						<div class="col-lg-12">
+							<input style="margin-bottom: 10px;" class="form-control" id="myInput1" type="text" placeholder="Search">
+							<table class="table table-bordered">
+								<thead>
+								  <tr>
+									<th scope="col">Mã Sản Phẩm</th>
+									<th scope="col">Tên Sản Phẩm</th>
+									<th scope="col">Đơn Vị Tính</th>
+									<th scope="col">Giá Sản Xuất</th>
+									<th scope="col">Số Lượng</th>
+								  </tr>
+								</thead>
+								<tbody id="Product">
+								  <tr>
+									<th scope="row">SP01</th>
+									<td>Cơm Cháy</td>
+									<td>Bịch</td>
+									<td>1500</td>
+									<td>20</td>
+									<td>
+										<button type="button" class="btn btn-md btn-info addbutton">Sửa</button>
+										<button type="button" class="btn btn-md btn-danger">Xóa</button>
+
+									</td>
+								  </tr>
+								  <tr>
+									<th scope="row">SP02</th>
+									<td>Súp Bào Ngư</td>
+									<td>Lon</td>
+									<td>7000</td>
+									<td>30</td>
+									<td>
+										<button type="button" class="btn btn-md btn-info addbutton">Sửa</button>
+										<button type="button" class="btn btn-md btn-danger">Xóa</button>
+									</td>
+								  </tr>
+								  <tr>
+									<th scope="row">SP03</th>
+									<td>Trứng Luộc</td>
+									<td>Quả</td>
+									<td>300</td>
+									<td>100</td>
+									<td>
+										<button type="button" class="btn btn-md btn-info addbutton">Sửa</button>
+										<button type="button" class="btn btn-md btn-danger">Xóa</button>
+									</td>
+								  </tr>
+								</tbody>
+							  </table>
+						</div>  
+					</div>
+				</div><!-- /.panel-->
+			</div><!--/.col-->
+			<div class="col-sm-12">
+				<p class="back-link">Make by <a href="https://www.facebook.com/profile.php?id=100006077866205">ONETEAM</a></p>
+			</div>
+		</div><!--/.row-->
+	</div>	<!--/.main-->
+
+
+	<div th:replace="Fragment/fragment :: js"></div>
+	
+</body>
+</html>

@@ -1,18 +1,6 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Login</title>
-	<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
-	<link href="/assets/css/datepicker3.css" rel="stylesheet">
-	<link href="/assets/css/styles.css" rel="stylesheet">
-    <!-- Favicon -->
-    <link rel="icon" href="/assets/faviconOT.webp">
-	<!--[if lt IE 9]-->
-	<script src="/assets/js/html5shiv.min.js"></script>
-	<script src="/assets/js/respond.min.js"></script>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="Fragment/fragment :: head">
 </head>
 <body>
 	<div class="row">
@@ -37,7 +25,7 @@
 		</div><!-- /.col-->
 	</div><!-- /.row -->	
 	
-
+	<div th:replace="Fragment/fragment :: js"></div>
 	<script src="/assets/js/jquery-1.11.1.min.js"></script>
 	<script src="/assets/js/bootstrap.min.js"></script>
 </body>
