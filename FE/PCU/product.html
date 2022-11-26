@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Ingredient</title>
+	<title>Product</title>
 	<link href="assets/css/bootstrap.min.css" rel="stylesheet">
 	<link href="assets/css/font-awesome.min.css" rel="stylesheet">
 	<link href="assets/css/datepicker3.css" rel="stylesheet">
@@ -61,8 +61,8 @@
 		<ul class="nav menu">
 			<li><a href="index1.html"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
 			<li><a href="warehouse.html"><em class="fa fa-dropbox">&nbsp;</em> Warehouse</a></li>
-			<li  class="active"><a href="ingredient.html"><em class="fa fa-envira">&nbsp;</em> Ingredient</a></li>
-			<li><a href="product.html"><em class="fa fa-gift">&nbsp;</em> Product</a></li>
+			<li><a href="ingredient.html"><em class="fa fa-envira">&nbsp;</em> Ingredient</a></li>
+			<li   class="active"><a href="product.html"><em class="fa fa-gift">&nbsp;</em> Product</a></li>
 			<li><a href="login.html"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
 		</ul>
 	</div><!--/.sidebar-->
@@ -73,53 +73,46 @@
 				<li><a href="index.html">
 					<em class="fa fa-home"></em>
 				</a></li>
-				<li class="active">Ingredient</li>
+				<li class="active">Product</li>
 			</ol>
 		</div><!--/.row-->
 		
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Ingredient</h1>
+				<h1 class="page-header">Product</h1>
 			</div>
 		</div><!--/.row-->
 
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
-					<div class="panel-heading" style="font-weight: bold;" >Phiếu Nhập Nguyên Liệu
-						<a class="addbutton" href="addingredientimport.html">
+					<div class="panel-heading" style="font-weight: bold;" >Phiếu Nhập Sản Phẩm	
+						<a class="addbutton" href="addproductimport.html">
 							<button type="button" class="btn btn-md btn-success">Thêm</button>
 						</a>
 						</div>
 					<div class="panel-body">
 						<div class="col-lg-12">
-							<input style="margin-bottom: 10px;" class="form-control" id="myInput" type="text" placeholder="Search">
 							<table class="table table-bordered">
 								<thead>
 								  <tr>
-									<th scope="col">Mã Phiếu Nhập Nguyên Liệu</th>
-									<th scope="col">Ngày Mua</th>
-									<th scope="col">VAT</th>
-									<th scope="col">Trị giá Phiếu</th>
+									<th scope="col">Mã Phiếu Nhập Sản Phẩm</th>
+									<th scope="col">Ngày Nhập</th>
 								  </tr>
 								</thead>
-								<tbody id="Import">
+								<tbody>
 								  <tr>
-									<th scope="row">PNNL01</th>
+									<th scope="row">PNSP01</th>
 									<td>06-03-2022</td>
-									<td>10%</td>
-									<td>220000</td>
 									<td>
 										<button type="button" class="btn btn-md btn-info addbutton">Sửa</button>
 										<button type="button" class="btn btn-md btn-danger">Xóa</button>
-										<a href="ingredientimportdetail.html"><button type="button" class="btn btn-md btn-default">Xem</button></a>
+										<a href="productimportdetail.html"><button type="button" class="btn btn-md btn-default">Xem</button></a>
 									</td>
 								  </tr>
 								  <tr>
-									<th scope="row">PNNL02</th>
+									<th scope="row">PNSP02</th>
 									<td>10-05-2022</td>
-									<td>5%</td>
-									<td>346500</td>
 									<td>
 										<button type="button" class="btn btn-md btn-info addbutton">Sửa</button>
 										<button type="button" class="btn btn-md btn-danger">Xóa</button>
@@ -127,10 +120,8 @@
 									</td>
 								  </tr>
 								  <tr>
-									<th scope="row">PNNL03</th>
+									<th scope="row">PNSP03</th>
 									<td>15-05-2022</td>
-									<td>5%</td>
-									<td>9450000</td>
 									<td>
 										<button type="button" class="btn btn-md btn-info addbutton">Sửa</button>
 										<button type="button" class="btn btn-md btn-danger">Xóa</button>
@@ -144,34 +135,36 @@
 				</div><!-- /.panel-->
 
 				<div class="panel panel-default">
-					<div class="panel-heading" style="font-weight: bold;" >Phiếu Xuất Nguyên Liệu
-						<a class="addbutton" href="addingredientexport.html">
+					<div class="panel-heading" style="font-weight: bold;" >Phiếu Xuất Sản Phẩm
+						<a class="addbutton" href="addproductexport.html">
 							<button type="button" class="btn btn-md btn-success">Thêm</button>
 						</a>
 						</div>
 					<div class="panel-body">
 						<div class="col-lg-12">
-							<input style="margin-bottom: 10px;" class="form-control" id="myInput1" type="text" placeholder="Search">
 							<table class="table table-bordered">
 								<thead>
 								  <tr>
-									<th scope="col">Mã Phiếu Xuất Nguyên Liệu</th>
+									<th scope="col">Mã Phiếu Nhập Sản Phẩm</th>
 									<th scope="col">Ngày Xuất</th>
+									<th scope="col">Hợp Đồng</th>
 								  </tr>
 								</thead>
-								<tbody id="Export">
+								<tbody>
 								  <tr>
-									<th scope="row">PXNL01</th>
+									<th scope="row">PXSP01</th>
 									<td>06-03-2022</td>
+									<td>HD02</td>
 									<td>
 										<button type="button" class="btn btn-md btn-info addbutton">Sửa</button>
 										<button type="button" class="btn btn-md btn-danger">Xóa</button>
-										<a href="ingredientexportdetail.html"><button type="button" class="btn btn-md btn-default">Xem</button></a>
+										<a href="productexportdetail.html"><button type="button" class="btn btn-md btn-default">Xem</button></a>
 									</td>
 								  </tr>
 								  <tr>
-									<th scope="row">PXNL02</th>
+									<th scope="row">PXSP02</th>
 									<td>10-05-2022</td>
+									<td>HD01</td>
 									<td>
 										<button type="button" class="btn btn-md btn-info addbutton">Sửa</button>
 										<button type="button" class="btn btn-md btn-danger">Xóa</button>
@@ -179,8 +172,9 @@
 									</td>
 								  </tr>
 								  <tr>
-									<th scope="row">PXNL03</th>
+									<th scope="row">PXSP03</th>
 									<td>15-05-2022</td>
+									<td>HD03</td>
 									<td>
 										<button type="button" class="btn btn-md btn-info addbutton">Sửa</button>
 										<button type="button" class="btn btn-md btn-danger">Xóa</button>
@@ -208,24 +202,6 @@
 	<script src="assets/js/easypiechart-data.js"></script>
 	<script src="assets/js/bootstrap-datepicker.js"></script>
 	<script src="assets/js/custom.js"></script>
-	<script>
-		$(document).ready(function(){
-    $("#myInput").on("keyup", function() {
-      var value = $(this).val().toLowerCase();
-      $("#Import tr").filter(function() {
-        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-      });
-    });
-});
-$(document).ready(function(){
-    $("#myInput1").on("keyup", function() {
-      var value = $(this).val().toLowerCase();
-      $("#Export tr").filter(function() {
-        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-      });
-    });
-});
-	</script>
 	
 </body>
 </html>
