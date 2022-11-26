@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Add Product</title>
+	<title>Ingredient Import Detail</title>
 	<link href="assets/css/bootstrap.min.css" rel="stylesheet">
 	<link href="assets/css/font-awesome.min.css" rel="stylesheet">
 	<link href="assets/css/datepicker3.css" rel="stylesheet">
@@ -60,8 +60,8 @@
 		</form>
 		<ul class="nav menu">
 			<li><a href="index1.html"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
-			<li  class="active"><a href="warehouse.html"><em class="fa fa-dropbox">&nbsp;</em> Warehouse</a></li>
-			<li><a href="importingredient.html"><em class="fa fa-tree">&nbsp;</em> Import Ingredient </a></li>
+			<li><a href="warehouse.html"><em class="fa fa-dropbox">&nbsp;</em> Warehouse</a></li>
+			<li  class="active"><a href="importingredient.html"><em class="fa fa-tree">&nbsp;</em> Import Ingredient </a></li>
 			<li><a href="exportingredient.html"><em class="fa fa-envira">&nbsp;</em> Export Ingredient</a></li>
 			<li><a href="importproduct.html"><em class="fa fa-umbrella ">&nbsp;</em> Import Product</a></li>
 			<li><a href="exportproduct.html"><em class="fa fa-gift ">&nbsp;</em> Export Product</a></li>
@@ -75,61 +75,82 @@
 				<li><a href="index.html">
 					<em class="fa fa-home"></em>
 				</a></li>
-				<li class="active">Warehouse</li>
-				<li class="active">AddProduct</li>
+				<li>Ingredient</li>
+				<li class="active">Ingredient Import Detail</li>
 			</ol>
 		</div><!--/.row-->
 		
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Add Product</h1>
+				<h1 class="page-header">Ingredient Import Detail</h1>
 			</div>
 		</div><!--/.row-->
 
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
-					<div class="panel-heading" style="font-weight: bold;" > Thêm Sản Phẩm
-						<a class="addbutton" href="warehouse.html">
+					<div class="panel-heading" style="font-weight: bold;" >Chi Tiết Phiếu Nhập Nguyên Liệu
+						<a class="addbutton" href="importingredient.html">
 							<em class="fa fa-close color-red"> Đóng</em>
 						</a>
 						</div>
 					<div class="panel-body">
-						<div class="col-md-6">
-							<form id="form" role="form" name="MyForm" action="">
-								<div  class="form-group ">
-									<label >Mã Sản Phẩm</label>
-									<label style="color:red ;">(*)</label>
-									<input name="Mahd" id="Mahd"  class="form-control" >
-								</div>
-								<div class="form-group">
-									<label>Tên Sản Phẩm</label>
-									<label style="color:red ;">(*)</label>
-									<input name="IngredientName" id="IngredientName" type="text" class="form-control">
-								</div>
-								
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<label>Đơn Vị Tính</label>
-									<label style="color:red ;">(*)</label>
-									<input name="PlaceOfDelivery" id="PlaceOfDelivery" type="text" class="form-control">
-								</div>
-								<div class="form-group">
-									<label>Giá Sản Xuất</label>
-									<label style="color:red ;">(*)</label>
-									<input name="Rules" id="Rules" type="text" class="form-control">
-								</div>
-							</div>
-							
-							
-							
-						</div> 
-						<div class="panel-footer">
-							<button type="submit" id="Submit" class="btn btn-lg btn-primary">Submit Button</button>
-							<button type="reset" class="btn btn-lg  btn-default">Reset Button</button> 	
-						</form>
-						</div>
+						<div class="col-lg-12">
+							<table class="table table-bordered">
+								<thead>
+								  <tr>
+									<th class="text-center" scope="col">STT</th>
+									<th class="text-center" scope="col">Mã Nguyên Liệu</th>
+									<th class="text-center" scope="col">Tên Nguyên Liệu</th>
+									<th class="text-center" scope="col">Đơn vị Tính</th>
+									<th class="text-center" scope="col">Giá Nhập</th>
+									<th class="text-center" scope="col">Số Lượng</th>
+									<th class="text-center" scope="col">Thành Tiền</th>
+								  </tr>
+								</thead>
+								<tbody>
+								  <tr>
+									<th class="text-center" scope="row">1</th>
+									<td>SP01</td>
+									<td>Cơm Cháy</td>
+									<td>Bịch</td>
+									<td class="text-right">10</td>
+									<td class="text-right">2000</td>
+									<td class="text-right">20000</td>
+								  </tr>
+								  <tr>
+									<th class="text-center" scope="row">2</th>
+									<td>SP02</td>
+									<td>Súp Bào Ngư</td>
+									<td>Lon</td>
+									<td class="text-right">20</td>
+									<td class="text-right">8000</td>
+									<td class="text-right">16000</td>
+								  </tr>
+								  <tr>
+									<th class="text-center" scope="row">3</th>
+									<td>SP03</td>
+									<td>Trứng Luộc</td>
+									<td>Quả</td>
+									<td class="text-right">5</td>
+									<td class="text-right">1000</td>
+									<td class="text-right">5000</td>
+								  </tr>
+								  <tr>
+									<td colspan="6" class="text-right">Cộng Tiền Hàng</td>
+									<td class="text-right">300000</td>
+								  </tr>
+								  <tr>
+									<td colspan="6" class="text-right">Tiền Thuế GTGT (10%)</td>
+									<td class="text-right">2121</td>
+								  </tr>
+								  <tr>
+									<td colspan="6" class="text-right">Tổng Số Tiền Thanh Toán</td>
+									<td class="text-right">444444</td>
+								  </tr>
+								</tbody>
+							  </table>
+						</div>  
 					</div>
 				</div><!-- /.panel-->
 			</div><!--/.col-->

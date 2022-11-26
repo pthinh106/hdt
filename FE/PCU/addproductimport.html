@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Add Product</title>
+	<title>Add Product Import</title>
 	<link href="assets/css/bootstrap.min.css" rel="stylesheet">
 	<link href="assets/css/font-awesome.min.css" rel="stylesheet">
 	<link href="assets/css/datepicker3.css" rel="stylesheet">
@@ -60,10 +60,10 @@
 		</form>
 		<ul class="nav menu">
 			<li><a href="index1.html"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
-			<li  class="active"><a href="warehouse.html"><em class="fa fa-dropbox">&nbsp;</em> Warehouse</a></li>
+			<li><a href="warehouse.html"><em class="fa fa-dropbox">&nbsp;</em> Warehouse</a></li>
 			<li><a href="importingredient.html"><em class="fa fa-tree">&nbsp;</em> Import Ingredient </a></li>
 			<li><a href="exportingredient.html"><em class="fa fa-envira">&nbsp;</em> Export Ingredient</a></li>
-			<li><a href="importproduct.html"><em class="fa fa-umbrella ">&nbsp;</em> Import Product</a></li>
+			<li  class="active"><a href="importproduct.html"><em class="fa fa-umbrella ">&nbsp;</em> Import Product</a></li>
 			<li><a href="exportproduct.html"><em class="fa fa-gift ">&nbsp;</em> Export Product</a></li>
 			<li><a href="login.html"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
 		</ul>
@@ -75,51 +75,68 @@
 				<li><a href="index.html">
 					<em class="fa fa-home"></em>
 				</a></li>
-				<li class="active">Warehouse</li>
-				<li class="active">AddProduct</li>
+				<li class="active">Product</li>
+				<li class="active">AddProductImport</li>
 			</ol>
 		</div><!--/.row-->
 		
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Add Product</h1>
+				<h1 class="page-header">Add Product Import</h1>
 			</div>
 		</div><!--/.row-->
 
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
-					<div class="panel-heading" style="font-weight: bold;" > Thêm Sản Phẩm
-						<a class="addbutton" href="warehouse.html">
+					<div class="panel-heading" style="font-weight: bold;" > Thêm Phiếu Nhập Sản Phẩm
+						<a class="addbutton" href="importproduct.html">
 							<em class="fa fa-close color-red"> Đóng</em>
 						</a>
 						</div>
 					<div class="panel-body">
+						<div class="form-group">
+							<div>Họ Tên Phân Xưởng: Nhà Phân Phối ABZ</div> 
+							<div>Số Điện Thoại: 0902832938</div>
+							<div>Địa Chỉ: 1/2 Đường số 1b Bình Tân</div>
+						</div>
 						<div class="col-md-6">
 							<form id="form" role="form" name="MyForm" action="">
 								<div  class="form-group ">
-									<label >Mã Sản Phẩm</label>
+									<label >Mã Phiếu Nhập Sản Phẩm</label>
 									<label style="color:red ;">(*)</label>
 									<input name="Mahd" id="Mahd"  class="form-control" >
 								</div>
 								<div class="form-group">
-									<label>Tên Sản Phẩm</label>
+									<label>Ngày Nhập</label>
 									<label style="color:red ;">(*)</label>
-									<input name="IngredientName" id="IngredientName" type="text" class="form-control">
+									<input name="IngredientName" id="IngredientName" type="date" class="form-control">
 								</div>
-								
 							</div>
 							<div class="col-md-6">
-								<div class="form-group">
-									<label>Đơn Vị Tính</label>
-									<label style="color:red ;">(*)</label>
-									<input name="PlaceOfDelivery" id="PlaceOfDelivery" type="text" class="form-control">
+								<div id="AddForm" >
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label>Sản Phẩm</label>
+											<label style="color:red ;">(*)</label>
+											<select class="form-control">
+												<option>Cơm Cháy</option>
+												<option>Súp Bào Ngư</option>
+												<option>Trứng Luộc</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label>Số Lượng Sản Phẩm</label>
+											<label style="color:red ;">(*)</label>
+											<input type="number" class="form-control ">
+										</div> 
+									</div>	
 								</div>
-								<div class="form-group">
-									<label>Giá Sản Xuất</label>
-									<label style="color:red ;">(*)</label>
-									<input name="Rules" id="Rules" type="text" class="form-control">
-								</div>
+								<button type="button" id="AddProductImport" class="btn btn-success" style="margin-left:14px ;">
+									<i class="fa fa-plus"></i>	
+								</button>
 							</div>
 							
 							
