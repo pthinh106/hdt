@@ -1,7 +1,5 @@
 package HDT.Oneteam.Model;
 
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-
 import javax.persistence.*;
 
 @Entity
