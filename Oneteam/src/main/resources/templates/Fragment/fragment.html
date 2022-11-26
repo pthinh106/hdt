@@ -72,40 +72,13 @@
 
 <!--/.sidebar Sales-->
 
-<div th:fragment="slidebarSales" id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
-  <div class="profile-sidebar">
-    <div class="profile-userpic">
-      <img src="https://scontent.fsgn2-7.fna.fbcdn.net/v/t39.30808-1/272199311_3042407815971784_3816958182075697482_n.jpg?stp=c347.185.479.479a_dst-jpg_s200x200&_nc_cat=100&ccb=1-7&_nc_sid=7206a8&_nc_ohc=2LW6GMBx3-4AX_skB3V&_nc_ht=scontent.fsgn2-7.fna&oh=00_AfAK75W_nUhKPih1MCAK_6qKZrYYUFDYmnLy9PKfir120A&oe=6381E1D1" class="img-responsive" alt="">
-    </div>
-    <div class="profile-usertitle">
-      <div class="profile-usertitle-name">Phòng kinh doanh</div>
-      <div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
-    </div>
-    <div class="clear"></div>
-  </div>
-  <div class="divider"></div>
-  <form role="search">
-    <div class="form-group">
-      <input type="text" class="form-control" placeholder="Search">
-    </div>
-  </form>
-  <ul class="nav menu">
-    <li th:class="${dashboard != null ? 'active':''}"><a href="/"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
-    <li th:class="${contract != null ? 'active':''}"><a href="/sales/contract"><em class="fa fa-sticky-note">&nbsp;</em> Contract</a></li>
-    <li th:class="${liquidation != null ? 'active':''}"><a href="/sales/liquidation"><em class="fa fa-send-o">&nbsp;</em> Liquidation Contract</a></li>
-    <li><a href="/logout"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
-  </ul>
-</div><!--/.sidebar-->
-
-<!--/.sidebar Supply-->
-
-<div th:fragment="slidebarSupply" id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+<div th:fragment="slidebar" id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
   <div class="profile-sidebar">
     <div class="profile-userpic">
       <img src="https://scontent.fsgn2-5.fna.fbcdn.net/v/t39.30808-6/312565204_1171609460104442_305861500513095724_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=Sn7ffIbksTIAX-uXrXb&_nc_ht=scontent.fsgn2-5.fna&oh=00_AfAi8QwTwxCcW5M7NKWPdNwCtD7Osok0WEemOvz43Jm30Q&oe=6385755C" class="img-responsive" alt="">
     </div>
     <div class="profile-usertitle">
-      <div class="profile-usertitle-name">Phòng cung ứng</div>
+      <div class="profile-usertitle-name">Manager</div>
       <div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
     </div>
     <div class="clear"></div>
@@ -117,13 +90,32 @@
     </div>
   </form>
   <ul class="nav menu">
-    <li th:class="${dashboard != null ? 'active':''}"><a href="/"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
-    <li th:class="${warehouse != null ? 'active':''}"><a href="/supply/warehouse"><em class="fa fa-dropbox">&nbsp;</em> Warehouse</a></li>
-    <li th:class="${ingredient != null ? 'active':''}"><a href="/supply/ingredient"><em class="fa fa-envira">&nbsp;</em> Ingredient</a></li>
-    <li th:class="${product != null ? 'active':''}"><a href="product.html"><em class="fa fa-gift ">&nbsp;</em> Product</a></li>
-    <li ><a href="/logout"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+    <th:block th:if="${account.getRole().getRoleId() == 1}">
+      <li th:class="${dashboard != null ? 'active':''}"><a href="/"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
+      <li th:class="${warehouse != null ? 'active':''}"><a href="/supply/warehouse"><em class="fa fa-dropbox">&nbsp;</em> Warehouse</a></li>
+      <li th:class="${ingredient != null ? 'active':''}"><a href="/supply/ingredient"><em class="fa fa-envira">&nbsp;</em> Ingredient</a></li>
+      <li th:class="${product != null ? 'active':''}"><a href="product.html"><em class="fa fa-gift ">&nbsp;</em> Product</a></li>
+      <li ><a href="/logout"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+    </th:block>
+    <th:block th:if="${account.getRole().getRoleId() == 2}">
+      <li th:class="${dashboard != null ? 'active':''}"><a href="/"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
+      <li th:class="${contract != null ? 'active':''}"><a href="/sales/contract"><em class="fa fa-sticky-note">&nbsp;</em> Contract</a></li>
+      <li th:class="${liquidation != null ? 'active':''}"><a href="/sales/liquidation"><em class="fa fa-send-o">&nbsp;</em> Liquidation Contract</a></li>
+      <li ><a href="/logout"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+    </th:block>
+    <th:block th:if="${account.getRole().getRoleId() == 3}">
+      <li th:class="${dashboard != null ? 'active':''}"><a href="/"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
+      <li th:class="${contract != null ? 'active':''}"><a href="/sales/contract"><em class="fa fa-sticky-note">&nbsp;</em> Contract</a></li>
+      <li th:class="${liquidation != null ? 'active':''}"><a href="/sales/liquidation"><em class="fa fa-send-o">&nbsp;</em> Liquidation Contract</a></li>
+      <li th:class="${warehouse != null ? 'active':''}"><a href="/supply/warehouse"><em class="fa fa-dropbox">&nbsp;</em> Warehouse</a></li>
+      <li th:class="${ingredient != null ? 'active':''}"><a href="/supply/ingredient"><em class="fa fa-envira">&nbsp;</em> Ingredient</a></li>
+      <li th:class="${product != null ? 'active':''}"><a href="product.html"><em class="fa fa-gift ">&nbsp;</em> Product</a></li>
+      <li ><a href="/logout"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+    </th:block>
   </ul>
 </div><!--/.sidebar-->
+
+
 
 <div th:fragment="js">
   <script src="/assets/js/jquery-1.11.1.min.js"></script>

@@ -2,6 +2,7 @@ package HDT.Oneteam.Controllers;
 
 import HDT.Oneteam.Model.Account;
 import HDT.Oneteam.Responsibility.AccountReps;
+import HDT.Oneteam.Service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.Authentication;
@@ -20,21 +21,28 @@ import java.security.Principal;
 @RequestMapping(path = "")
 public class AdminController {
     @Autowired
-    AccountReps accountReps;
+    AccountService accountService;
+    @GetMapping("")
+    public String login(){
+        return "redirect:/login";
+    }
     @GetMapping("/login")
     public String login(Principal principal, @Param("error") String error, Model model){
         if(principal != null){
-            return "redirect:/admin";
+            return "redirect:/redirect";
         }
         if(error != null){
             model.addAttribute("error",true);
         }
         return "login";
     }
-    @GetMapping("/")
+    @GetMapping("/redirect")
     public String getURl(Principal principal){
         if(principal != null){
-            Account account = accountReps.findByUserName(principal.getName());
+            Account account = accountService.getAccountByName(principal.getName());
+            if(account.getRole().getRoleId() == 3){
+                return "redirect:/manager";
+            }
             if(account.getRole().getRoleId() == 1){
                 return "redirect:/supply";
             }
