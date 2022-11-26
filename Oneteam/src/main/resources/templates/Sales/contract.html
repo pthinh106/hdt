@@ -1,0 +1,105 @@
+<!DOCTYPE html >
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="Fragment/fragment :: head">
+</head>
+<body>
+<nav th:replace="Fragment/fragment :: navSales"></nav>
+<div th:replace="Fragment/fragment :: slidebarSales"></div>
+		
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="index.html">
+					<em class="fa fa-home"></em>
+				</a></li>
+				<li class="active">Contract</li>
+			</ol>
+		</div><!--/.row-->
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Contract</h1>
+			</div>
+		</div><!--/.row-->
+
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-heading" style="font-weight: bold;" >Hợp đồng
+						<a class="addbutton" href="contract/create">
+							<button type="button" class="btn btn-md btn-success">Thêm</button>
+						</a>
+						</div>
+					<div class="panel-body">
+						<div class="col-lg-12">
+							<input style="margin-bottom: 10px;" class="form-control" id="myInput" type="text" placeholder="Search">
+							<table class="table table-bordered">
+								<thead>
+								  <tr>
+									<th scope="col">Mã Hợp Đồng</th>
+									<th scope="col">Ngày Kí Hợp Đồng</th>
+									<th scope="col">Nơi Giao</th>
+									<th scope="col">Điều Khoản</th>
+									<th scope="col">Phương Thức Thanh Toán</th>
+									<th scope="col">Giá Trị Hợp Đồng</th>
+								  </tr>
+								</thead>
+								<tbody id="Contract">
+								  <tr>
+									<th scope="row">HD01</th>
+									<td>12-07-2022</td>
+									<td>Công ty ABC</td>
+									<td>Giao Hàng Trong 1 năm</td>
+									<td>Trực tiếp</td>
+									<td>20000 USD</td>
+									<td>
+										<button type="button" class="btn btn-md btn-info addbutton">Sửa</button>
+										<button type="button" class="btn btn-md btn-danger">Xóa</button>
+										<a href="contract/1"><button type="button" class="btn btn-md btn-default">Xem</button></a>
+										<button type="button" class="btn btn-md btn-warning">Gửi</button>
+									</td>
+								  </tr>
+								  <tr>
+									<th scope="row">HD02</th>
+									<td>31-05-2022</td>
+									<td>Công ty TNT</td>
+									<td>Giao Hàng Trong 6 tháng</td>
+									<td>Chuyển khoảng</td>
+									<td>10000 USD</td>
+									<td>
+										<button type="button" class="btn btn-md btn-info addbutton">Sửa</button>
+										<button type="button" class="btn btn-md btn-danger">Xóa</button>
+										<a href="contract/1"><button type="button" class="btn btn-md btn-default">Xem</button></a>
+										<button type="button" class="btn btn-md btn-warning">Gửi</button>
+									</td>
+								  </tr>
+								  <tr>
+									<th scope="row">HD03</th>
+									<td>24-12-2022</td>
+									<td>Công ty ONE</td>
+									<td>Giao Hàng Trong 3 tháng</td>
+									<td>Trực tiếp</td>
+									<td>8000 USD</td>
+									<td>
+										<button type="button" class="btn btn-md btn-info addbutton">Sửa</button>
+										<button type="button" class="btn btn-md btn-danger">Xóa</button>
+										<a href="contract/1"><button type="button" class="btn btn-md btn-default">Xem</button></a>
+										<button type="button" class="btn btn-md btn-warning">Gửi</button>
+									</td>
+								  </tr>
+								</tbody>
+							  </table>
+						</div>  
+					</div>
+				</div><!-- /.panel-->
+			</div><!--/.col-->
+			<div class="col-sm-12">
+				<p class="back-link">Make by <a href="https://www.facebook.com/profile.php?id=100006077866205">ONETEAM</a></p>
+			</div>
+		</div><!--/.row-->
+	</div>	<!--/.main-->
+
+
+	<div th:replace="Fragment/fragment :: js"></div>
+</body>
+</html>

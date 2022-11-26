@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="Fragment/fragment :: head">
+<body>
+	<nav th:replace="Fragment/fragment :: navSupply"></nav>
+	<div th:replace="Fragment/fragment :: slidebarSupply"></div>
+		
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="index.html">
+					<em class="fa fa-home"></em>
+				</a></li>
+				<li class="active">Ingredient</li>
+			</ol>
+		</div><!--/.row-->
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Ingredient</h1>
+			</div>
+		</div><!--/.row-->
+
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-heading" style="font-weight: bold;" >Phiếu Nhập Nguyên Liệu
+						<a class="addbutton" href="ingredient/bill/create">
+							<button type="button" class="btn btn-md btn-success">Thêm</button>
+						</a>
+						</div>
+					<div class="panel-body">
+						<div class="col-lg-12">
+							<table class="table table-bordered">
+								<thead>
+								  <tr>
+									<th scope="col">Mã Phiếu Nhập Nguyên Liệu</th>
+									<th scope="col">Ngày Mua</th>
+									<th scope="col">VAT</th>
+									<th scope="col">Trị giá Phiếu</th>
+								  </tr>
+								</thead>
+								<tbody>
+								  <tr>
+									<th scope="row">PNNL01</th>
+									<td>06-03-2022</td>
+									<td>10%</td>
+									<td>220000</td>
+									<td>
+										<button type="button" class="btn btn-md btn-info addbutton">Sửa</button>
+										<button type="button" class="btn btn-md btn-danger">Xóa</button>
+										<a href="ingredientimportdetail.html"><button type="button" class="btn btn-md btn-default">Xem</button></a>
+									</td>
+								  </tr>
+								  <tr>
+									<th scope="row">PNNL02</th>
+									<td>10-05-2022</td>
+									<td>5%</td>
+									<td>346500</td>
+									<td>
+										<button type="button" class="btn btn-md btn-info addbutton">Sửa</button>
+										<button type="button" class="btn btn-md btn-danger">Xóa</button>
+										<a href=""><button type="button" class="btn btn-md btn-default">Xem</button></a>
+									</td>
+								  </tr>
+								  <tr>
+									<th scope="row">PNNL03</th>
+									<td>15-05-2022</td>
+									<td>5%</td>
+									<td>9450000</td>
+									<td>
+										<button type="button" class="btn btn-md btn-info addbutton">Sửa</button>
+										<button type="button" class="btn btn-md btn-danger">Xóa</button>
+										<a href=""><button type="button" class="btn btn-md btn-default">Xem</button></a>
+									</td>
+								  </tr>
+								</tbody>
+							  </table>
+						</div>  
+					</div>
+				</div><!-- /.panel-->
+
+				<div class="panel panel-default">
+					<div class="panel-heading" style="font-weight: bold;" >Phiếu Xuất Nguyên Liệu
+						<a class="addbutton" href="addcontract.html">
+							<button type="button" class="btn btn-md btn-success">Thêm</button>
+						</a>
+						</div>
+					<div class="panel-body">
+						<div class="col-lg-12">
+							<table class="table table-bordered">
+								<thead>
+								  <tr>
+									<th scope="col">Mã Nguyên Liệu</th>
+									<th scope="col">Tên Nguyên Liệu</th>
+									<th scope="col">Đơn Vị Tính</th>
+									<th scope="col">Giá Nhập</th>
+									<th scope="col">Ngày Mua</th>
+									<th scope="col">Số Lượng</th>
+									<th scope="col">VAT</th>
+									<th scope="col">Trị giá Phiếu</th>
+								  </tr>
+								</thead>
+								<tbody>
+								  <tr>
+									<th scope="row">NL01</th>
+									<td>Gạo Lức</td>
+									<td>Kg</td>
+									<td>10000</td>
+									<td>06-03-2022</td>
+									<td>20</td>
+									<td>10%</td>
+									<td>220000</td>
+									<td>
+										<button type="button" class="btn btn-md btn-info addbutton">Sửa</button>
+										<button type="button" class="btn btn-md btn-danger">Xóa</button>
+										<a href=""><button type="button" class="btn btn-md btn-default">Xem</button></a>
+									</td>
+								  </tr>
+								  <tr>
+									<th scope="row">NL02</th>
+									<td>Trứng Gà</td>
+									<td>Trái</td>
+									<td>3300</td>
+									<td>10-05-2022</td>
+									<td>100</td>
+									<td>5%</td>
+									<td>346500</td>
+									<td>
+										<button type="button" class="btn btn-md btn-info addbutton">Sửa</button>
+										<button type="button" class="btn btn-md btn-danger">Xóa</button>
+										<a href=""><button type="button" class="btn btn-md btn-default">Xem</button></a>
+									</td>
+								  </tr>
+								  <tr>
+									<th scope="row">NL03</th>
+									<td>Bào Ngư</td>
+									<td>Kg</td>
+									<td>600000</td>
+									<td>15-05-2022</td>
+									<td>15</td>
+									<td>5%</td>
+									<td>9450000</td>
+									<td>
+										<button type="button" class="btn btn-md btn-info addbutton">Sửa</button>
+										<button type="button" class="btn btn-md btn-danger">Xóa</button>
+										<a href=""><button type="button" class="btn btn-md btn-default">Xem</button></a>
+									</td>
+								  </tr>
+								</tbody>
+							  </table>
+						</div>  
+					</div>
+				</div><!-- /.panel-->
+			</div><!--/.col-->
+			<div class="col-sm-12">
+				<p class="back-link">Make by <a href="https://www.facebook.com/profile.php?id=100006077866205">ONETEAM</a></p>
+			</div>
+		</div><!--/.row-->
+	</div>	<!--/.main-->
+
+
+	<div th:replace="Fragment/fragment :: js"></div>
+	
+</body>
+</html>

@@ -41,7 +41,7 @@ public class SecurityConfig {
                 .and().formLogin().loginPage("/login").defaultSuccessUrl("/").failureUrl("/login?error=true").permitAll()
                 .and().logout(logout -> logout
                         .logoutUrl("/logout")
-                        .logoutSuccessUrl("/")
+                        .logoutSuccessUrl("/login")
                         .invalidateHttpSession(true)
                         .deleteCookies("JSESSIONID"))
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
