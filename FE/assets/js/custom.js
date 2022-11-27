@@ -38,7 +38,15 @@ const Mahd = document.getElementById('Mahd');
 const PlaceOfDelivery = document.getElementById('PlaceOfDelivery');
 const Rules = document.getElementById('Rules');
 const ContractPrice = document.getElementById('ContractPrice');
+///////////////////////////////////////////////////////////////
+const Manl = document.getElementById('Manl');
 const IngredientName = document.getElementById('IngredientName');
+const Unit = document.getElementById('Unit');
+const ImportPrice = document.getElementById('ImportPrice');
+Unit
+
+const Mapxsp = document.getElementById('Mapxsp');
+
 //Show input error messages
 function showError(input, message) {
     const formControl = input.parentElement;
@@ -73,7 +81,10 @@ function getFieldName(input) {
 //Event Listeners
 form.addEventListener('submit',function(e) {
     e.preventDefault();
-    checkRequired([IngredientName,Mahd, PlaceOfDelivery, Rules, ContractPrice]);
+    checkRequired([Mahd, PlaceOfDelivery, Rules, ContractPrice]);
+    checkRequired([Manl, IngredientName, Unit, ImportPrice]);
+    checkRequired([Mapxsp]);
+    
 });
 ////////////////////////////////////////////////////////////////
 var alertPlaceholder = document.getElementById('AddForm')
@@ -95,6 +106,43 @@ if (addFormgroud) {
     })
 }
 
+var alertPlaceholder = document.getElementById('AddForm')
+var addFormgroud = document.getElementById('AddIngredientImport')
+function add() {
+    var wrapper = document.createElement('div')
+    wrapper.className = 'col-sm-6'
+	var wrapper1 = document.createElement('div')
+    wrapper1.className = 'col-sm-6'
+    wrapper.innerHTML = '<div class="form-group"">' + '<label>Nguyên Liệu</label>' + '<label style="color:red ;">(*)</label>'+ '<select class="form-control">' 
+	+ '<option>Gạo Lức</option>' + '<option>Bào Ngư</option>'+'<option>Trứng Gà</option> </select> ' +'</div>'
+	wrapper1.innerHTML = '<div class="form-group"">'+'<label>Số Lượng Sản Phẩm</label>' + '<label style="color:red ;">(*)</label>'+ '<input type="number" class="form-control"> '+'</div>'
+	alertPlaceholder.append(wrapper)
+	alertPlaceholder.append(wrapper1)
+}
+if (addFormgroud) {
+    addFormgroud.addEventListener('click', function () {
+      add()
+    })
+}
+
+var alertPlaceholder = document.getElementById('AddForm')
+var addFormgroud = document.getElementById('AddProductImport')
+function add() {
+    var wrapper = document.createElement('div')
+    wrapper.className = 'col-sm-6'
+	var wrapper1 = document.createElement('div')
+    wrapper1.className = 'col-sm-6'
+    wrapper.innerHTML = '<div class="form-group"">' + '<label>Nguyên Liệu</label>' + '<label style="color:red ;">(*)</label>'+ '<select class="form-control">' 
+	+ '<option>Cơm cháy</option>' + '<option>Súp Bào Ngư</option>'+'<option>Trứng Luộc</option> </select> ' +'</div>'
+	wrapper1.innerHTML = '<div class="form-group"">'+'<label>Số Lượng Sản Phẩm</label>' + '<label style="color:red ;">(*)</label>'+ '<input type="number" class="form-control"> '+'</div>'
+	alertPlaceholder.append(wrapper)
+	alertPlaceholder.append(wrapper1)
+}
+if (addFormgroud) {
+    addFormgroud.addEventListener('click', function () {
+      add()
+    })
+}
 /*----->
-----Tìm Mã----
+----Popup----
 -------*/
