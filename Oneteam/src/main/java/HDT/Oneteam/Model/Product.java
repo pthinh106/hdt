@@ -12,21 +12,27 @@ public class Product {
     private int productId;
     @Column(name = "TENSANPHAM")
     private String productName;
+    @Column(name = "DONVITINH")
+    private String unit;
     @Column(name = "GIATHANH")
     private double price;
     @Column(name = "SOLUONGTONKHO")
     private int inventory;
+    @Column(name = "TRANGTHAI")
+    private int status;
     @Column(name = "NGAYNHAP")
     private Timestamp created;
     @Column(name = "NGAYCAPNHAT")
     private Timestamp updated;
     public Product(){}
 
-    public Product(int productId, String productName, double price, int inventory) {
+    public Product(int productId, String productName,String unit, double price, int inventory, int status) {
         this.productId = productId;
         this.productName = productName;
+        this.unit = unit;
         this.price = price;
         this.inventory = inventory;
+        this.status = status;
     }
 
     public int getProductId() {
@@ -75,5 +81,21 @@ public class Product {
 
     public void setUpdated(Timestamp updated) {
         this.updated = updated;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

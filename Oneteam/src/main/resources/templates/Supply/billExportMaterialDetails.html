@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="Fragment/fragment :: head">
+<body>
+	<nav th:replace="Fragment/fragment :: navSupply"></nav>
+	<div th:replace="Fragment/fragment :: slidebar"></div>
+
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="index.html">
+					<em class="fa fa-home"></em>
+				</a></li>
+				<li>Ingredient</li>
+				<li class="active">Ingredient Export Detail</li>
+			</ol>
+		</div><!--/.row-->
+
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Ingredient Export Detail</h1>
+			</div>
+		</div><!--/.row-->
+
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-heading" style="font-weight: bold;" >Chi Tiết Phiếu Xuất Nguyên Liệu
+						<a class="addbutton" href="/supply/billexportmatertial">
+							<em class="fa fa-close color-red"> Đóng</em>
+						</a>
+					</div>
+					<div class="panel-body">
+						<div class="col-lg-12">
+							<div class="form-group">
+								<div>Họ Tên Phân Xưởng: <span th:text="${billExportMaterial.getWorkshop().getWorkshopName()}"></span> </div>
+								<div>Số Điện Thoại: <span th:text="${billExportMaterial.getWorkshop().getPhoneNumber()}"></span></div>
+								<div>Địa Chỉ: <span th:text="${billExportMaterial.getWorkshop().getAddress()}"></span></div>
+							</div>
+							<table class="table table-bordered">
+								<thead>
+								<tr>
+									<th class="text-center" scope="col">STT</th>
+									<th class="text-center" scope="col">Mã Nguyên Liệu</th>
+									<th class="text-center" scope="col">Tên Nguyên Liệu</th>
+									<th class="text-center" scope="col">Đơn vị Tính</th>
+									<th class="text-center" scope="col">Số Lượng</th>
+								</tr>
+								</thead>
+								<tbody>
+								<th:block th:each="billExport,count : ${bEDetailsList}">
+									<tr>
+										<th class="text-center" scope="row" th:text="${count.index + 1}">1</th>
+										<td th:text="${'NL'+billExport.getMaterial().getMaterialId()}">NL01</td>
+										<td th:text="${billExport.getMaterial().getMaterialName()}">NL01</td>
+										<td th:text="${billExport.getMaterial().getUnit()}">NL01</td>
+										<td th:text="${billExport.getQuantity()}">NL01</td>
+									</tr>
+								</th:block>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div><!-- /.panel-->
+			</div><!--/.col-->
+			<div class="col-sm-12">
+				<p class="back-link">Make by <a href="https://www.facebook.com/profile.php?id=100006077866205">ONETEAM</a></p>
+			</div>
+		</div><!--/.row-->
+	</div>	<!--/.main-->
+
+
+	<div th:replace="Fragment/fragment :: js"></div>
+	
+</body>
+</html>

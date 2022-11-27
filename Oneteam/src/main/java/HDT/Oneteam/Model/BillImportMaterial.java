@@ -19,13 +19,15 @@ public class BillImportMaterial {
     private double vat;
     @Column(name = "TRIGIA")
     private double total;
-
+    @Column(name = "TRANGTHAI")
+    private int status;
     public BillImportMaterial(){}
 
-    public BillImportMaterial(Contract contract, double vat, double total) {
+    public BillImportMaterial(Contract contract, double vat, double total,int status) {
         this.contract = contract;
         this.vat = vat;
         this.total = total;
+        this.status = status;
     }
 
     public int getBillImportId() {
@@ -66,5 +68,13 @@ public class BillImportMaterial {
 
     public void setTotal(double total) {
         this.total = total;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

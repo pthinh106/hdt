@@ -1,32 +1,32 @@
 $('#calendar').datepicker({
-		});
+});
 
 !function ($) {
-    $(document).on("click","ul.nav li.parent > a ", function(){          
-        $(this).find('em').toggleClass("fa-minus");      
-    }); 
+    $(document).on("click","ul.nav li.parent > a ", function(){
+        $(this).find('em').toggleClass("fa-minus");
+    });
     $(".sidebar span.icon").find('em:first').addClass("fa-plus");
 }
 
 (window.jQuery);
-	$(window).on('resize', function () {
-  if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
+$(window).on('resize', function () {
+    if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
 })
 $(window).on('resize', function () {
-  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
+    if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
 })
 
 $(document).on('click', '.panel-heading span.clickable', function(e){
     var $this = $(this);
-	if(!$this.hasClass('panel-collapsed')) {
-		$this.parents('.panel').find('.panel-body').slideUp();
-		$this.addClass('panel-collapsed');
-		$this.find('em').removeClass('fa-toggle-up').addClass('fa-toggle-down');
-	} else {
-		$this.parents('.panel').find('.panel-body').slideDown();
-		$this.removeClass('panel-collapsed');
-		$this.find('em').removeClass('fa-toggle-down').addClass('fa-toggle-up');
-	}
+    if(!$this.hasClass('panel-collapsed')) {
+        $this.parents('.panel').find('.panel-body').slideUp();
+        $this.addClass('panel-collapsed');
+        $this.find('em').removeClass('fa-toggle-up').addClass('fa-toggle-down');
+    } else {
+        $this.parents('.panel').find('.panel-body').slideDown();
+        $this.removeClass('panel-collapsed');
+        $this.find('em').removeClass('fa-toggle-down').addClass('fa-toggle-up');
+    }
 })
 
 /*---------------------------------
@@ -68,8 +68,6 @@ function checkRequired(inputArr) {
 function getFieldName(input) {
     return input.id.charAt(0).toUpperCase() + input.id.slice(1);
 }
-
-
 //Event Listeners
 form.addEventListener('submit',function(e) {
     e.preventDefault();
@@ -81,17 +79,17 @@ var addFormgroud = document.getElementById('AddProduct')
 function add() {
     var wrapper = document.createElement('div')
     wrapper.className = 'col-sm-6'
-	var wrapper1 = document.createElement('div')
+    var wrapper1 = document.createElement('div')
     wrapper1.className = 'col-sm-6'
-    wrapper.innerHTML = '<div class="form-group"">' + '<label>Loại Sản Phẩm </label>' + '<label style="color:red ;">(*)</label>'+ '<select class="form-control">' 
-	+ '<option>Cơm Sườn</option>' + '<option>Bún Bò</option> </select> ' +'</div>'
-	wrapper1.innerHTML = '<div class="form-group"">'+'<label>Số Lượng Sản Phẩm</label>' + '<label style="color:red ;">(*)</label>'+ '<input type="number" class="form-control"> '+'</div>'
-	alertPlaceholder.append(wrapper)
-	alertPlaceholder.append(wrapper1)
+    wrapper.innerHTML = '<div class="form-group"">' + '<label>Loại Sản Phẩm </label>' + '<label style="color:red ;">(*)</label>'+ '<select class="form-control">'
+        + '<option>Cơm Sườn</option>' + '<option>Bún Bò</option> </select> ' +'</div>'
+    wrapper1.innerHTML = '<div class="form-group"">'+'<label>Số Lượng Sản Phẩm</label>' + '<label style="color:red ;">(*)</label>'+ '<input type="number" class="form-control"> '+'</div>'
+    alertPlaceholder.append(wrapper)
+    alertPlaceholder.append(wrapper1)
 }
 if (addFormgroud) {
     addFormgroud.addEventListener('click', function () {
-      add()
+        add()
     })
 }
 

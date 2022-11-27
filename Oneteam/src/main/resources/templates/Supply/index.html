@@ -63,55 +63,33 @@
 				<input style="margin-bottom: 10px;" class="form-control" id="myInput" type="text" placeholder="Search">
 				<table class="table table-bordered">
 					<thead>
-					  <tr>
-						<th scope="col">Mã Hợp Đồng</th>
-						<th scope="col">Ngày Kí Hợp Đồng</th>
-						<th scope="col">Nơi Giao</th>
-						<th scope="col">Điều Khoản</th>
-						<th scope="col">Phương Thức Thanh Toán</th>
-						<th scope="col">Giá Trị Hợp Đồng</th>
-						<th scope="col">Trạng Thái</th>
-					  </tr>
+						<tr>
+							<th scope="col">Mã Hợp Đồng</th>
+							<th scope="col">Ngày Kí Hợp Đồng</th>
+							<th scope="col">Nơi Giao</th>
+							<th scope="col">Điều Khoản</th>
+							<th scope="col">Phương Thức Thanh Toán</th>
+							<th scope="col">Giá Trị Hợp Đồng</th>
+							<th scope="col">Trạng Thái</th>
+						</tr>
 					</thead>
 					<tbody id="Contract">
-					  <tr>
-						<th scope="row">HD01</th>
-						<td>12-07-2022</td>
-						<td>Công ty ABC</td>
-						<td>Giao Hàng Trong 1 năm</td>
-						<td>Trực tiếp</td>
-						<td>20000 USD</td>
-						<td class="text-center"><i class="fa fa-xl fa-check-square color-teal "></i></td>
-						<td>
-							<a href="contractdetails.html"><button type="button" class="btn btn-md btn-default">Xem</button></a>
-							<button type="button" class="btn btn-md btn-warning">Thanh Lý</button>
-						</td>
-					  </tr>
-					  <tr>
-						<th scope="row">HD02</th>
-						<td>31-05-2022</td>
-						<td>Công ty TNT</td>
-						<td>Giao Hàng Trong 6 tháng</td>
-						<td>Chuyển khoảng</td>
-						<td>10000 USD</td>
-						<td class="text-center"><i class="fa fa-xl fa-check-square color-teal "></i></td>
-						<td>
-							<a href=""><button type="button" class="btn btn-md btn-default">Xem</button></a>
-							<button type="button" class="btn btn-md btn-warning">Thanh Lý</button>
-						</td>
-					  </tr>
-					  <tr>
-						<th scope="row">HD03</th>
-						<td>24-12-2022</td>
-						<td>Công ty ONE</td>
-						<td>Giao Hàng Trong 3 tháng</td>
-						<td>Trực tiếp</td>
-						<td>8000 USD</td>
-						<td></td>
-						<td>
-							<a href=""><button type="button" class="btn btn-md btn-default">Xem</button></a>
-						</td>
-					  </tr>
+					<th:block th:each="contracts : ${contractList}">
+						<tr>
+							<th scope="row" th:text="${'HĐ'+contracts.getContractId()}"></th>
+							<td th:text="${#dates.format(contracts.getCreated(), 'dd-MM-yyyy')}"></td>
+							<td th:text="${contracts.getDeliveryPlace()}"></td>
+							<td th:text="${contracts.getProvision()}"></td>
+							<td th:text="${contracts.getPayment().getPaymentName()}"></td>
+							<td th:text="${#numbers.formatDecimal(contracts.getTotal(), 0, 'COMMA', 0, 'POINT')+ ' VNĐ'}"></td>
+							<td class="text-center"><i class="fa fa-xl fa-check-square color-teal "></i></td>
+							<td>
+								<a th:href="@{/supply/contract/{id}(id=${contracts.getContractId()})}"><button type="button" class="btn btn-md btn-default">Xem</button></a>
+								<button type="button" class="btn btn-md btn-warning">Thanh Lý</button>
+							</td>
+							</td>
+						</tr>
+					</th:block>
 					</tbody>
 				  </table>
 			</div>

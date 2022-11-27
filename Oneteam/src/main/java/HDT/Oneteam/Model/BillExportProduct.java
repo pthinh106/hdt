@@ -8,20 +8,27 @@ import java.sql.Timestamp;
 public class BillExportProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "MAPXNL")
+    @Column(name = "MAPXSP")
     private int billExportId;
     @ManyToOne
     @JoinColumn(name = "MAHD")
     private Contract contract;
     @Column(name = "NGAYXUAT")
     private Timestamp created;
-
+    @Column(name = "TRANGTHAI")
+    private int status;
     public BillExportProduct(){}
 
-    public BillExportProduct(int billExportId, Contract contract) {
+    public BillExportProduct(int billExportId, Contract contract,int status) {
         this.billExportId = billExportId;
         this.contract = contract;
-        this.created = created;
+        this.status = status;
+    }
+    public int getStatus() {
+        return status;
+    }
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public int getBillExportId() {

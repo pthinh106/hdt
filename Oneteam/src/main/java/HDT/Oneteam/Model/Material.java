@@ -12,10 +12,14 @@ public class Material {
     private int materialId;
     @Column(name = "TENNGUYENLIEU")
     private String materialName;
+    @Column(name = "DONVITINH")
+    private String unit;
     @Column(name = "GIATHANH")
     private double price;
     @Column(name = "SOLUONGTONKHO")
     private int inventory;
+    @Column(name = "TRANGTHAI")
+    private int status;
     @Column(name = "NGAYNHAP")
     private Timestamp create;
     @Column(name = "NGAYCAPNHAT")
@@ -23,11 +27,13 @@ public class Material {
 
     public Material(){}
 
-    public Material(int materialId, String materialName, double price, int inventory) {
+    public Material(int materialId, String materialName, String unit, double price, int inventory, int status) {
         this.materialId = materialId;
         this.materialName = materialName;
+        this.unit = unit;
         this.price = price;
         this.inventory = inventory;
+        this.status = status;
     }
 
     public int getMaterialId() {
@@ -76,5 +82,21 @@ public class Material {
 
     public void setUpdated(Timestamp updated) {
         this.updated = updated;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

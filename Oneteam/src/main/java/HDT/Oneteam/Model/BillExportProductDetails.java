@@ -11,7 +11,7 @@ public class BillExportProductDetails {
     private int billExportDetailsId;
     @ManyToOne
     @JoinColumn(name = "MAPXSP")
-    private BillImportProduct billImportProduct;
+    private BillExportProduct billExportProduct;
     @ManyToOne
     @JoinColumn(name = "MASP")
     private Product product;
@@ -22,9 +22,9 @@ public class BillExportProductDetails {
 
     public BillExportProductDetails(){}
 
-    public BillExportProductDetails(int billExportDetailsId, BillImportProduct billImportProduct, Product product, int quantity, double total) {
+    public BillExportProductDetails(int billExportDetailsId, BillExportProduct billExportProduct, Product product, int quantity, double total) {
         this.billExportDetailsId = billExportDetailsId;
-        this.billImportProduct = billImportProduct;
+        this.billExportProduct = billExportProduct;
         this.product = product;
         this.quantity = quantity;
         this.total = total;
@@ -38,12 +38,12 @@ public class BillExportProductDetails {
         this.billExportDetailsId = billExportDetailsId;
     }
 
-    public BillImportProduct getBillImportProduct() {
-        return billImportProduct;
+    public BillExportProduct getBillExportProduct() {
+        return billExportProduct;
     }
 
-    public void setBillImportProduct(BillImportProduct billImportProduct) {
-        this.billImportProduct = billImportProduct;
+    public void setBillExportProduct(BillExportProduct billExportProduct) {
+        this.billExportProduct = billExportProduct;
     }
 
     public Product getProduct() {
