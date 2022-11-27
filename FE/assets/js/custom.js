@@ -89,16 +89,14 @@ form.addEventListener('submit',function(e) {
 ////////////////////////////////////////////////////////////////
 var alertPlaceholder = document.getElementById('AddForm')
 var addFormgroud = document.getElementById('AddProduct')
+let getList = document.getElementById('ListIngredient').innerHTML;
 function add() {
-    var wrapper = document.createElement('div')
-    wrapper.className = 'col-sm-6'
-	var wrapper1 = document.createElement('div')
-    wrapper1.className = 'col-sm-6'
-    wrapper.innerHTML = '<div class="form-group"">' + '<label>Loại Sản Phẩm </label>' + '<label style="color:red ;">(*)</label>'+ '<select class="form-control">' 
-	+ '<option>Cơm Sườn</option>' + '<option>Bún Bò</option> </select> ' +'</div>'
-	wrapper1.innerHTML = '<div class="form-group"">'+'<label>Số Lượng Sản Phẩm</label>' + '<label style="color:red ;">(*)</label>'+ '<input type="number" class="form-control"> '+'</div>'
-	alertPlaceholder.append(wrapper)
-	alertPlaceholder.append(wrapper1)
+    var wrapper0 = document.createElement('div')
+    wrapper0.id ='ListIngredient';
+    wrapper0.className = 'ListIngredient col-sm-12';
+    wrapper0.innerHTML=getList
+	alertPlaceholder.append(wrapper0)
+    
 }
 if (addFormgroud) {
     addFormgroud.addEventListener('click', function () {
@@ -107,8 +105,8 @@ if (addFormgroud) {
 }
 
 var alertPlaceholder = document.getElementById('AddForm')
-var addFormgroud = document.getElementById('AddIngredientImport')
-function add() {
+var addFormgroud1 = document.getElementById('AddIngredientImport')
+function add1() {
     var wrapper = document.createElement('div')
     wrapper.className = 'col-sm-6'
 	var wrapper1 = document.createElement('div')
@@ -119,28 +117,28 @@ function add() {
 	alertPlaceholder.append(wrapper)
 	alertPlaceholder.append(wrapper1)
 }
-if (addFormgroud) {
-    addFormgroud.addEventListener('click', function () {
-      add()
+if (addFormgroud1) {
+    addFormgroud1.addEventListener('click', function () {
+      add1()
     })
 }
 
 var alertPlaceholder = document.getElementById('AddForm')
-var addFormgroud = document.getElementById('AddProductImport')
-function add() {
+var addFormgroud2 = document.getElementById('AddProductImport')
+function add2() {
     var wrapper = document.createElement('div')
     wrapper.className = 'col-sm-6'
 	var wrapper1 = document.createElement('div')
     wrapper1.className = 'col-sm-6'
-    wrapper.innerHTML = '<div class="form-group"">' + '<label>Nguyên Liệu</label>' + '<label style="color:red ;">(*)</label>'+ '<select class="form-control">' 
+    wrapper.innerHTML = '<div class="form-group"">' + '<label>Sản Phẩm</label>' + '<label style="color:red ;">(*)</label>'+ '<select class="form-control">' 
 	+ '<option>Cơm cháy</option>' + '<option>Súp Bào Ngư</option>'+'<option>Trứng Luộc</option> </select> ' +'</div>'
 	wrapper1.innerHTML = '<div class="form-group"">'+'<label>Số Lượng Sản Phẩm</label>' + '<label style="color:red ;">(*)</label>'+ '<input type="number" class="form-control"> '+'</div>'
 	alertPlaceholder.append(wrapper)
 	alertPlaceholder.append(wrapper1)
 }
-if (addFormgroud) {
-    addFormgroud.addEventListener('click', function () {
-      add()
+if (addFormgroud2) {
+    addFormgroud2.addEventListener('click', function () {
+      add2()
     })
 }
 /*----->
