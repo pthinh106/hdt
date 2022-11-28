@@ -115,7 +115,7 @@
 							</div>
 							<div class="col-md-6">
 								<div id="AddForm" >
-									<div id="ListProduct" class="ListProduct col-sm-12">
+									<div id="ListIP" class="ListIP col-sm-12">
 										<div class="col-sm-6">
 											<div class="form-group">
 												<label>Sản Phẩm</label>
@@ -136,7 +136,7 @@
 										</div>
 									</div>
 								</div>
-								<button type="button" id="AddProduct" class="btn btn-success" style="margin-left:14px ;">
+								<button type="button" id="AddIP" class="btn btn-success" style="margin-left:30px ;">
 									<i class="fa fa-plus"></i>	
 								</button>
 							</div>
@@ -165,23 +165,6 @@
 	<script src="assets/js/easypiechart-data.js"></script>
 	<script src="assets/js/bootstrap-datepicker.js"></script>
 	<script src="assets/js/custom.js"></script>
-	<script>
-		var alertPlaceholder = document.getElementById('AddForm');
-    	var addFormgroud = document.getElementById('AddProduct');
-		var getListProduct = document.getElementById('ListProduct').innerHTML;
-		function add() {
-        var wrapper1 = document.createElement('div')
-        wrapper1.id ='ListProduct';
-        wrapper1.className = 'ListProduct col-sm-12';
-        wrapper1.innerHTML=getListProduct
-        alertPlaceholder.append(wrapper1)
-        
-    }
-    if (addFormgroud) {
-        addFormgroud.addEventListener('click', function () {
-        add()
-		})
-    }
-	</script>
+
 </body>
 </html>
