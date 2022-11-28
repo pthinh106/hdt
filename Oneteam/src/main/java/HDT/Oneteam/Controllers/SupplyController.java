@@ -141,19 +141,19 @@ public class SupplyController {
         model.addAttribute("ingredientExport",true);
         return "Supply/billExportMaterial";
     }
-    @GetMapping("/billexportmatertial/{id}")
-    public String billExportMaterialDetails(@PathVariable("id") int id, Model model, Principal principal){
-        if(principal != null){
-            Account account = accountService.getAccountByName(principal.getName());
-            model.addAttribute("account",account);
-        }
-        BillExportMaterial billExportMaterial = billMaterialService.getBillExportMaterialById(id);
-        List<BillExportMaterialDetails> bEDetailsList = billMaterialService.getBEMaterialDetailsByBEMId(billExportMaterial);
-        model.addAttribute("billExportMaterial",billExportMaterial);
-        model.addAttribute("bEDetailsList",bEDetailsList);
-        model.addAttribute("ingredientExport",true);
-        return "Supply/billExportMaterialDetails";
-    }
+//    @GetMapping("/billexportmatertial/{id}")
+//    public String billExportMaterialDetails(@PathVariable("id") int id, Model model, Principal principal){
+//        if(principal != null){
+//            Account account = accountService.getAccountByName(principal.getName());
+//            model.addAttribute("account",account);
+//        }
+//        BillExportMaterial billExportMaterial = billMaterialService.getBillExportMaterialById(id);
+//        List<BillExportMaterialDetails> bEDetailsList = billMaterialService.getBEMaterialDetailsByBEMId(billExportMaterial);
+//        model.addAttribute("billExportMaterial",billExportMaterial);
+//        model.addAttribute("bEDetailsList",bEDetailsList);
+//        model.addAttribute("ingredientExport",true);
+//        return "Supply/billExportMaterialDetails";
+//    }
     @GetMapping("/exportmatertial/bill/create")
     public String createBillExportMaterial(Model model, Principal principal){
         if(principal != null){

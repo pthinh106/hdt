@@ -1,7 +1,7 @@
 package HDT.Oneteam.Service;
 
 import HDT.Oneteam.Model.Account;
-import HDT.Oneteam.Responsibility.AccountReps;
+import HDT.Oneteam.Repository.AccountReps;
 import HDT.Oneteam.UserDetails.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

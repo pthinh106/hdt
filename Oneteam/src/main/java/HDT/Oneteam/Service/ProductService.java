@@ -1,7 +1,7 @@
 package HDT.Oneteam.Service;
 
 import HDT.Oneteam.Model.Product;
-import HDT.Oneteam.Responsibility.ProductReps;
+import HDT.Oneteam.Repository.ProductReps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

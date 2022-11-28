@@ -1037,3 +1037,6 @@ p.back-link {
 {
   margin-left: 2rem;
 }
+.row-click:hover{
+  cursor: pointer;
+}

@@ -26,25 +26,17 @@ public class Employee {
     private Timestamp created;
     @Column(name = "NGAYTHAYDOI")
     private Timestamp updated;
+    @Column(name = "TRANGTHAI")
+    private int status;
     public Employee(){}
-    public Employee(int employeeId, Account account, Position position, String employeeName, String address, String phoneNumber) {
+    public Employee(int employeeId, Account account, Position position, String employeeName, String address, String phoneNumber, int status) {
         this.employeeId = employeeId;
         this.account = account;
         this.position = position;
         this.employeeName = employeeName;
         this.address = address;
         this.phoneNumber = phoneNumber;
-    }
-
-    public Employee(int employeeId, Account account, Position position, String employeeName, String address, String phoneNumber, Timestamp created, Timestamp updated) {
-        this.employeeId = employeeId;
-        this.account = account;
-        this.position = position;
-        this.employeeName = employeeName;
-        this.address = address;
-        this.phoneNumber = phoneNumber;
-        this.created = created;
-        this.updated = updated;
+        this.status = status;
     }
 
     public int getEmployeeId() {
@@ -109,5 +101,27 @@ public class Employee {
     }
     public void setUpdated(Timestamp updated) {
         this.updated = updated;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "employeeId=" + employeeId +
+                ", account=" + account +
+                ", position=" + position +
+                ", employeeName='" + employeeName + '\'' +
+                ", address='" + address + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", created=" + created +
+                ", updated=" + updated +
+                '}';
     }
 }

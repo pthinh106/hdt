@@ -1,7 +1,6 @@
 package HDT.Oneteam.Controllers;
 
 import HDT.Oneteam.Model.Account;
-import HDT.Oneteam.Responsibility.AccountReps;
 import HDT.Oneteam.Service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;

@@ -97,7 +97,7 @@
             <li th:class="${ingredientImport != null ? 'active':''}"><a href="/supply/billimportmatertial"><em class="fa fa-tree">&nbsp;</em> Import Bill Ingredient </a></li>
             <li th:class="${ingredientExport != null ? 'active':''}"><a href="/supply/billexportmatertial"><em class="fa fa-envira">&nbsp;</em> Export Bill Ingredient</a></li>
             <li th:class="${productImport != null ? 'active':''}"><a href="/supply/billimportproduct"><em class="fa fa-umbrella ">&nbsp;</em> Import Bill Product</a></li>
-            <li th:class="${productExport != null ? 'active':''}"><a href="/supply/billexportproduct"><em class="fa fa-gift ">&nbsp;</em> Export Bill Product</a></li>
+<!--            <li th:class="${productExport != null ? 'active':''}"><a href="/supply/billexportproduct"><em class="fa fa-gift ">&nbsp;</em> Export Bill Product</a></li>-->
             <li ><a href="/logout"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
         </th:block>
         <th:block th:if="${account.getRole().getRoleId() == 2}">
@@ -115,7 +115,7 @@
             <li th:class="${ingredientImport != null ? 'active':''}"><a href="/supply/billimportmatertial"><em class="fa fa-tree">&nbsp;</em> Import Bill Ingredient </a></li>
             <li th:class="${ingredientExport != null ? 'active':''}"><a href="/supply/billexportmatertial"><em class="fa fa-envira">&nbsp;</em> Export Bill Ingredient</a></li>
             <li th:class="${productImport != null ? 'active':''}"><a href="/supply/billimportproduct"><em class="fa fa-umbrella ">&nbsp;</em> Import Bill Product</a></li>
-            <li th:class="${productExport != null ? 'active':''}"><a href="/supply/billexportproduct"><em class="fa fa-gift ">&nbsp;</em> Export Bill Product</a></li>
+<!--            <li th:class="${productExport != null ? 'active':''}"><a href="/supply/billexportproduct"><em class="fa fa-gift ">&nbsp;</em> Export Bill Product</a></li>-->
             <li th:class="${employee != null ? 'active':''}"><a href="/manager/employee"><em class="fa fa-gift ">&nbsp;</em> Employee Manager</a></li>
             <li ><a href="/logout"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
         </th:block>
@@ -181,5 +181,10 @@
                 });
             });
         });
+    </script>
+    <script>
+        function contractdetails(id){
+            window.location="http://localhost:8060/supply/contract/"+id;
+        }
     </script>
 </div>

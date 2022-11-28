@@ -4,7 +4,6 @@ import HDT.Oneteam.Model.Account;
 import HDT.Oneteam.Model.Employee;
 import HDT.Oneteam.Model.Position;
 import HDT.Oneteam.Model.Role;
-import HDT.Oneteam.Responsibility.AccountReps;
 import HDT.Oneteam.Service.AccountService;
 import HDT.Oneteam.Service.EmployeeService;
 import HDT.Oneteam.Service.PositionService;
@@ -44,7 +43,7 @@ public class ManagerController {
             Account account = accountService.getAccountByName(principal.getName());
             model.addAttribute("account",account);
         }
-        List<Employee> employeeList = employeeService.getAllEmployee();
+        List<Employee> employeeList = employeeService.getAllEmployeeByStatus(1);
         model.addAttribute("employeeList",employeeList);
         model.addAttribute("employee",true);
         return "manager/employeeManager";
@@ -58,6 +57,7 @@ public class ManagerController {
         Employee employeeDetails = employeeService.getEmployeeById(id);
         List<Position> positionList = positionService.getAllPosition();
         List<Role> roleList = roleService.getAllRole();
+        model.addAttribute("edit",true);
         model.addAttribute("roleList",roleList);
         model.addAttribute("positionList",positionList);
         model.addAttribute("employeeDetails",employeeDetails);

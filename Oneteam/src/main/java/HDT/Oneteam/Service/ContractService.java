@@ -2,8 +2,8 @@ package HDT.Oneteam.Service;
 
 import HDT.Oneteam.Model.Contract;
 import HDT.Oneteam.Model.ContractDetails;
-import HDT.Oneteam.Responsibility.ContractDetailsReps;
-import HDT.Oneteam.Responsibility.ContractReps;
+import HDT.Oneteam.Repository.ContractDetailsReps;
+import HDT.Oneteam.Repository.ContractReps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

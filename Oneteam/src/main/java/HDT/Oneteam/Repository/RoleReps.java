@@ -1,4 +1,4 @@
-package HDT.Oneteam.Responsibility;
+package HDT.Oneteam.Repository;
 
 import HDT.Oneteam.Model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
