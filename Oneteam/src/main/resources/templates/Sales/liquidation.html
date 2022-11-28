@@ -28,7 +28,7 @@
 					<div class="panel-heading" style="font-weight: bold;" >Hợp đồng</div>
 					<div class="panel-body">
 						<div class="col-lg-12">
-								<input style="margin-bottom: 10px;" class="form-control" id="myInput" type="text" placeholder="Search">
+							<input style="margin-bottom: 10px;" class="form-control" id="myInput" type="text" placeholder="Search">
 							<table class="table table-bordered" >
 								<thead>
 								  <tr>
@@ -41,33 +41,23 @@
 								  </tr>
 								</thead>
 								<tbody id="Contract">
-								  <tr>
-									<th scope="row">HD01</th>
-									<td>12-07-2022</td>
-									<td>Công ty ABC</td>
-									<td>Giao Hàng Trong 1 năm</td>
-									<td>Trực tiếp</td>
-									<td>20000 USD</td>
-									<td><label><input type="checkbox" name='checkbox0' id='check_all' value=""></label></td>
-								  </tr>
-								  <tr>
-									<th scope="row">HD02</th>
-									<td>31-05-2022</td>
-									<td>Công ty TNT</td>
-									<td>Giao Hàng Trong 6 tháng</td>
-									<td>Chuyển khoảng</td>
-									<td>10000 USD</td>
-									<td><label><input type="checkbox" name='checkbox0' id='check_all' value=""></label></td>
-								  </tr>
-								  <tr>
-									<th scope="row">HD03</th>
-									<td>24-12-2022</td>
-									<td>Công ty ONE</td>
-									<td>Giao Hàng Trong 3 tháng</td>
-									<td>Trực tiếp</td>
-									<td>8000 USD</td>
-									<td><label><input type="checkbox" name='checkbox0' id='check_all' value=""></label></td>
-								  </tr>
+									<th:block th:each="contracts : ${contractList}">
+										<tr>
+											<th scope="row" th:text="${'HĐ'+contracts.getContractId()}"></th>
+											<td th:text="${#dates.format(contracts.getCreated(), 'dd-MM-yyyy')}"></td>
+											<td th:text="${contracts.getDeliveryPlace()}"></td>
+											<td th:text="${contracts.getProvision()}"></td>
+											<td th:text="${contracts.getPayment().getPaymentName()}"></td>
+											<td th:text="${#numbers.formatDecimal(contracts.getTotal(), 0, 'COMMA', 0, 'POINT')+ ' VNĐ'}"></td>
+											<td>
+												<button type="button" class="btn btn-md btn-info addbutton">Sửa</button>
+												<button type="button" class="btn btn-md btn-danger">Xóa</button>
+												<a th:href="@{contract/{id}(id=${contracts.getContractId()})}"><button type="button" class="btn btn-md btn-default">Xem</button></a>
+												<button type="button" class="btn btn-md btn-warning">Gửi</button>
+											</td>
+											<td><label><input type="checkbox" name='checkbox0' id='check_all' value=""></label></td>
+										</tr>
+									</th:block>
 								</tbody>
 							  </table>
 							  <b id="result">Tổng hợp đồng đang chọn = </b> 

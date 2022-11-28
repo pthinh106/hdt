@@ -15,10 +15,12 @@ public class BillExportMaterial {
     private Workshop workshop;
     @Column(name = "NGAYXUAT")
     private Timestamp created;
+    @Column(name = "TRANGTHAI")
+    private int status;
 
     public BillExportMaterial(){}
 
-    public BillExportMaterial(int billExportId, Workshop workshop) {
+    public BillExportMaterial(int billExportId, Workshop workshop,int status) {
         this.billExportId = billExportId;
         this.workshop = workshop;
         this.created = created;
@@ -46,5 +48,13 @@ public class BillExportMaterial {
 
     public void setCreated(Timestamp created) {
         this.created = created;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

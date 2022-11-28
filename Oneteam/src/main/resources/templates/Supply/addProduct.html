@@ -4,7 +4,7 @@
 <body>
 	<nav th:replace="Fragment/fragment :: navSupply"></nav>
 	<div th:replace="Fragment/fragment :: slidebar"></div>
-		
+
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 		<div class="row">
 			<ol class="breadcrumb">
@@ -15,12 +15,12 @@
 				<li class="active">AddProduct</li>
 			</ol>
 		</div><!--/.row-->
-		
+
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">Add Product</h1>
 			</div>
-		</div><!--/.row-->
+		</div>
 
 		<div class="row">
 			<div class="col-lg-12">
@@ -29,10 +29,10 @@
 						<a class="addbutton" href="/supply/warehouse">
 							<em class="fa fa-close color-red"> Đóng</em>
 						</a>
-						</div>
-					<div class="panel-body">
-						<div class="col-md-6">
-							<form id="form" role="form" name="MyForm" action="">
+					</div>
+					<form id="form" role="form" name="MyForm" action="">
+						<div class="panel-body">
+							<div class="col-md-6">
 								<div  class="form-group ">
 									<label >Mã Sản Phẩm</label>
 									<label style="color:red ;">(*)</label>
@@ -43,8 +43,8 @@
 									<label style="color:red ;">(*)</label>
 									<input name="IngredientName" id="IngredientName" type="text" class="form-control">
 								</div>
-							</form>
-						</div>
+
+							</div>
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>Đơn Vị Tính</label>
@@ -57,22 +57,19 @@
 									<input name="Rules" id="Rules" type="text" class="form-control">
 								</div>
 							</div>
-							
-							
-							
-						</div> 
-						<div class="panel-footer">
-							<button type="submit" id="Submit" class="btn btn-lg btn-primary">Submit Button</button>
-							<button type="reset" class="btn btn-lg  btn-default">Reset Button</button>
+							<div class="panel-footer">
+								<button type="submit" id="Submit" class="btn btn-lg btn-primary">Submit Button</button>
+								<button type="reset" class="btn btn-lg  btn-default">Reset Button</button>
+							</div>
 						</div>
-					</div>
-				</div><!-- /.panel-->
-			</div><!--/.col-->
+					</form>
+				</div>
+			</div><!-- /.panel-->
 			<div class="col-sm-12">
 				<p class="back-link">Make by <a href="https://www.facebook.com/profile.php?id=100006077866205">ONETEAM</a></p>
 			</div>
-		</div>
-	</div>
+		</div><!--/.col-->
+	</div>	<!--/.main-->
 
 
 	<div th:replace="Fragment/fragment :: js"></div>

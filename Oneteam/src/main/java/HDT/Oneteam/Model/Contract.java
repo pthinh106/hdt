@@ -29,9 +29,11 @@ public class Contract {
     private Payment payment;
     @Column(name = "TRIGIAHD")
     private double total;
+    @Column(name = "TRANGTHAI")
+    private int status;
     public Contract(){}
 
-    public Contract(int contractId, Employee employee, Customer customer, String deliveryPlace, String provision, Payment payment, double total) {
+    public Contract(int contractId, Employee employee, Customer customer, String deliveryPlace, String provision, Payment payment, double total, int status) {
         this.contractId = contractId;
         this.employee = employee;
         this.customer = customer;
@@ -39,6 +41,7 @@ public class Contract {
         this.provision = provision;
         this.payment = payment;
         this.total = total;
+        this.status =status;
     }
 
     public int getContractId() {
@@ -111,5 +114,13 @@ public class Contract {
 
     public void setTotal(double total) {
         this.total = total;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

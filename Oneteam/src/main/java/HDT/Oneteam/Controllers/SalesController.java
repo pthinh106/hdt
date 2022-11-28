@@ -1,7 +1,9 @@
 package HDT.Oneteam.Controllers;
 
 import HDT.Oneteam.Model.Account;
+import HDT.Oneteam.Model.Contract;
 import HDT.Oneteam.Service.AccountService;
+import HDT.Oneteam.Service.ContractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -12,19 +14,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 @RequestMapping(path = "/sales")
 public class SalesController {
     @Autowired
-    AccountService accountService;
+    private AccountService accountService;
+    @Autowired
+    private ContractService contractService;
     @GetMapping("")
     public String index(Model model, Principal principal){
         if(principal != null){
             Account account = accountService.getAccountByName(principal.getName());
             model.addAttribute("account",account);
         }
-        model.addAttribute("dashboard",true);
+        model.addAttribute("dashboardSales",true);
         return "Sales/index";
     }
     @GetMapping("/contract")
@@ -33,6 +38,8 @@ public class SalesController {
             Account account = accountService.getAccountByName(principal.getName());
             model.addAttribute("account",account);
         }
+        List<Contract> contractList = contractService.getContractByStatus(0);
+        model.addAttribute("contractList",contractList);
         model.addAttribute("contract",true);
         return "Sales/contract";
     }
@@ -60,6 +67,8 @@ public class SalesController {
             Account account = accountService.getAccountByName(principal.getName());
             model.addAttribute("account",account);
         }
+        List<Contract> contractList = contractService.getContractByStatus(0);
+        model.addAttribute("contractList",contractList);
         model.addAttribute("liquidation",true);
         return "Sales/liquidation";
     }

@@ -34,48 +34,28 @@
 							<input style="margin-bottom: 10px;" class="form-control" id="myInput" type="text" placeholder="Search">
 							<table class="table table-bordered">
 								<thead>
-								  <tr>
-									<th scope="col">Mã Nguyên Liệu</th>
-									<th scope="col">Tên Nguyên Liệu</th>
-									<th scope="col">Đơn Vị Tính</th>
-									<th scope="col">Giá Nhập</th>
-									<th scope="col">Số Lượng</th>
-								  </tr>
+									<tr>
+										<th scope="col">Mã Nguyên Liệu</th>
+										<th scope="col">Tên Nguyên Liệu</th>
+										<th scope="col">Đơn Vị Tính</th>
+										<th scope="col">Giá Nhập</th>
+										<th scope="col">Số Lượng</th>
+									</tr>
 								</thead>
 								<tbody id="Ingredient">
-								  <tr>
-									<th scope="row">NL01</th>
-									<td>Gạo Lức</td>
-									<td>Kg</td>
-									<td>10000</td>
-									<td>20</td>
-									<td>
-										<button type="button" class="btn btn-md btn-info addbutton">Sửa</button>
-										<button type="button" class="btn btn-md btn-danger">Xóa</button>	
-									</td>
-								  </tr>
-								  <tr>
-									<th scope="row">NL02</th>
-									<td>Trứng Gà</td>
-									<td>Trái</td>
-									<td>3300</td>
-									<td>100</td>
-									<td>
-										<button type="button" class="btn btn-md btn-info addbutton">Sửa</button>
-										<button type="button" class="btn btn-md btn-danger">Xóa</button>
-									</td>
-								  </tr>
-								  <tr>
-									<th scope="row">NL03</th>
-									<td>Bào Ngư</td>
-									<td>Kg</td>
-									<td>600000</td>
-									<td>15</td>
-									<td>
-										<button type="button" class="btn btn-md btn-info addbutton">Sửa</button>
-										<button type="button" class="btn btn-md btn-danger">Xóa</button>
-									</td>
-								  </tr>
+									<th:block th:each="material : ${materialList}">
+										<tr>
+											<th scope="row" th:text="${'NL'+material.getMaterialId()}"></th>
+											<td th:text="${material.getMaterialName()}"></td>
+											<td th:text="${material.getUnit()}"></td>
+											<td th:text="${#numbers.formatDecimal(material.getPrice(), 0, 'COMMA', 0, 'POINT')+ ' VNĐ'}"></td>
+											<td th:text="${material.getInventory()}"></td>
+											<td>
+												<button type="button" class="btn btn-md btn-info addbutton">Sửa</button>
+												<button type="button" class="btn btn-md btn-danger">Xóa</button>
+											</td>
+										</tr>
+									</th:block>
 								</tbody>
 							  </table>
 						</div>  
@@ -93,49 +73,28 @@
 							<input style="margin-bottom: 10px;" class="form-control" id="myInput1" type="text" placeholder="Search">
 							<table class="table table-bordered">
 								<thead>
-								  <tr>
-									<th scope="col">Mã Sản Phẩm</th>
-									<th scope="col">Tên Sản Phẩm</th>
-									<th scope="col">Đơn Vị Tính</th>
-									<th scope="col">Giá Sản Xuất</th>
-									<th scope="col">Số Lượng</th>
-								  </tr>
+									<tr>
+										<th scope="col">Mã Sản Phẩm</th>
+										<th scope="col">Tên Sản Phẩm</th>
+										<th scope="col">Đơn Vị Tính</th>
+										<th scope="col">Giá Sản Xuất</th>
+										<th scope="col">Số Lượng</th>
+									</tr>
 								</thead>
 								<tbody id="Product">
-								  <tr>
-									<th scope="row">SP01</th>
-									<td>Cơm Cháy</td>
-									<td>Bịch</td>
-									<td>1500</td>
-									<td>20</td>
-									<td>
-										<button type="button" class="btn btn-md btn-info addbutton">Sửa</button>
-										<button type="button" class="btn btn-md btn-danger">Xóa</button>
-
-									</td>
-								  </tr>
-								  <tr>
-									<th scope="row">SP02</th>
-									<td>Súp Bào Ngư</td>
-									<td>Lon</td>
-									<td>7000</td>
-									<td>30</td>
-									<td>
-										<button type="button" class="btn btn-md btn-info addbutton">Sửa</button>
-										<button type="button" class="btn btn-md btn-danger">Xóa</button>
-									</td>
-								  </tr>
-								  <tr>
-									<th scope="row">SP03</th>
-									<td>Trứng Luộc</td>
-									<td>Quả</td>
-									<td>300</td>
-									<td>100</td>
-									<td>
-										<button type="button" class="btn btn-md btn-info addbutton">Sửa</button>
-										<button type="button" class="btn btn-md btn-danger">Xóa</button>
-									</td>
-								  </tr>
+								<th:block th:each="product : ${productList}">
+									<tr>
+										<th scope="row" th:text="${'SP'+product.getProductId()}"></th>
+										<td th:text="${product.getProductName()}"></td>
+										<td th:text="${product.getUnit()}"></td>
+										<td th:text="${#numbers.formatDecimal(product.getPrice(), 0, 'COMMA', 0, 'POINT')+ ' VNĐ'}"></td>
+										<td th:text="${product.getInventory()}"></td>
+										<td>
+											<button type="button" class="btn btn-md btn-info addbutton">Sửa</button>
+											<button type="button" class="btn btn-md btn-danger">Xóa</button>
+										</td>
+									</tr>
+								</th:block>
 								</tbody>
 							  </table>
 						</div>  

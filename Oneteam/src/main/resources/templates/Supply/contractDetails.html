@@ -1,0 +1,110 @@
+<!DOCTYPE html >
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="Fragment/fragment :: head">
+</head>
+<body>
+<nav th:replace="Fragment/fragment :: navSales"></nav>
+<div th:replace="Fragment/fragment :: slidebar"></div>
+		
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="index.html">
+					<em class="fa fa-home"></em>
+				</a></li>
+				<li>Contract</li>
+				<li class="active">Contract Details</li>
+			</ol>
+		</div><!--/.row-->
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Contract Details</h1>
+			</div>
+		</div><!--/.row-->
+
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-heading" style="font-weight: bold;" >Chi Tiết Hợp Đồng Của
+						<a class="addbutton" href="/supply">
+							<em class="fa fa-close color-red"> Đóng</em>
+						</a>
+					</div>
+					<div class="panel-body">
+						<div class="col-lg-12">
+							<div class="form-group">
+								<div>Họ Tên Người Mua Hàng: Công Ty ABC</div> 
+								<div>Số Điện Thoại: 0902832938</div>
+								<div>Địa Chỉ: 1/2 Đường số 1b Bình Tân</div>
+								<div>Mã Số Thuế: 2400950225</div>
+							</div>
+							<table class="table table-bordered">
+								<thead>
+								  <tr>
+									<th class="text-center" scope="col">STT</th>
+									<th class="text-center" scope="col">Mã Sản Phẩm</th>
+									<th class="text-center" scope="col">Tên Sản Phẩm</th>
+									<th class="text-center" scope="col">Đơn vị Tính</th>
+									<th class="text-center" scope="col">Số Lượng</th>
+									<th class="text-center" scope="col">Đơn Giá</th>
+									<th class="text-center" scope="col">Thành Tiền</th>
+								  </tr>
+								</thead>
+								<tbody>
+								  <tr>
+									<th class="text-center" scope="row">1</th>
+									<td>SP01</td>
+									<td>Cơm Cháy</td>
+									<td>Bịch</td>
+									<td class="text-right">10</td>
+									<td class="text-right">2000</td>
+									<td class="text-right">20000</td>
+								  </tr>
+								  <tr>
+									<th class="text-center" scope="row">2</th>
+									<td>SP02</td>
+									<td>Súp Bào Ngư</td>
+									<td>Lon</td>
+									<td class="text-right">20</td>
+									<td class="text-right">8000</td>
+									<td class="text-right">16000</td>
+								  </tr>
+								  <tr>
+									<th class="text-center" scope="row">3</th>
+									<td>SP03</td>
+									<td>Trứng Luộc</td>
+									<td>Quả</td>
+									<td class="text-right">5</td>
+									<td class="text-right">1000</td>
+									<td class="text-right">5000</td>
+								  </tr>
+								  <tr>
+									<td colspan="6" class="text-right">Cộng Tiền Hàng</td>
+									<td class="text-right">300000</td>
+								  </tr>
+								  <tr>
+									<td colspan="6" class="text-right">Tiền Thuế GTGT (10%)</td>
+									<td class="text-right">2121</td>
+								  </tr>
+								  <tr>
+									<td colspan="6" class="text-right">Tổng Số Tiền Thanh Toán</td>
+									<td class="text-right">444444</td>
+								  </tr>
+								</tbody>
+							  </table>
+						</div>  
+					</div>
+				</div><!-- /.panel-->
+			</div><!--/.col-->
+			<div class="col-sm-12">
+				<p class="back-link">Make by <a href="https://www.facebook.com/profile.php?id=100006077866205">ONETEAM</a></p>
+			</div>
+		</div><!--/.row-->
+	</div>	<!--/.main-->
+
+
+	<div th:replace="Fragment/fragment :: js"></div>
+	
+</body>
+</html>

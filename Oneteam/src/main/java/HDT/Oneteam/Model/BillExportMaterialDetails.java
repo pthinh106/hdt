@@ -3,7 +3,7 @@ package HDT.Oneteam.Model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "chitietpnnl")
+@Table(name = "chitietpxnl")
 public class BillExportMaterialDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -11,23 +11,30 @@ public class BillExportMaterialDetails {
     private int billExportDetailsId;
     @ManyToOne
     @JoinColumn(name = "MAPXNL")
-    private BillImportMaterial billImportMaterial;
+    private BillExportMaterial billExportMaterial;
     @ManyToOne
     @JoinColumn(name = "MANL")
     private Material material;
     @Column(name = "SOLUONG")
     private int quantity;
-    @Column(name = "DONGIA")
-    private double total;
-
+//    @Column(name = "DONGIA")
+//    private double total;
+//
     public BillExportMaterialDetails(){}
+//
+//    public BillExportMaterialDetails(int billExportDetailsId, BillExportMaterial billExportMaterial, Material material, int quantity, double total) {
+//        this.billExportDetailsId = billExportDetailsId;
+//        this.billExportMaterial = billExportMaterial;
+//        this.material = material;
+//        this.quantity = quantity;
+//        this.total = total;
+//    }
 
-    public BillExportMaterialDetails(int billExportDetailsId, BillImportMaterial billImportMaterial, Material material, int quantity, double total) {
+    public BillExportMaterialDetails(int billExportDetailsId, BillExportMaterial billExportMaterial, Material material, int quantity) {
         this.billExportDetailsId = billExportDetailsId;
-        this.billImportMaterial = billImportMaterial;
+        this.billExportMaterial = billExportMaterial;
         this.material = material;
         this.quantity = quantity;
-        this.total = total;
     }
 
     public int getBillExportDetailsId() {
@@ -38,12 +45,12 @@ public class BillExportMaterialDetails {
         this.billExportDetailsId = billExportDetailsId;
     }
 
-    public BillImportMaterial getBillImportMaterial() {
-        return billImportMaterial;
+    public BillExportMaterial getBillExportMaterial() {
+        return billExportMaterial;
     }
 
-    public void setBillImportMaterial(BillImportMaterial billImportMaterial) {
-        this.billImportMaterial = billImportMaterial;
+    public void setBillExportMaterial(BillExportMaterial billExportMaterial) {
+        this.billExportMaterial = billExportMaterial;
     }
 
     public Material getMaterial() {
@@ -62,11 +69,11 @@ public class BillExportMaterialDetails {
         this.quantity = quantity;
     }
 
-    public double getTotal() {
-        return total;
-    }
-
-    public void setTotal(double total) {
-        this.total = total;
-    }
+//    public double getTotal() {
+//        return total;
+//    }
+//
+//    public void setTotal(double total) {
+//        this.total = total;
+//    }
 }
