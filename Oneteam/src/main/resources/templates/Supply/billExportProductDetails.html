@@ -40,29 +40,33 @@
 									<th class="text-center" scope="col">Tên Sản Phẩm</th>
 									<th class="text-center" scope="col">Đơn vị Tính</th>
 									<th class="text-center" scope="col">Số Lượng</th>
+									<th class="text-center" scope="col">Giá Tiền</th>
+									<th class="text-center" scope="col">Thành Tiền</th>
 								</tr>
 								</thead>
 								<tbody>
+								<th:block th:each=" billDetails,count : ${bEDetailsList}">
+									<tr>
+										<th class="text-center" scope="row" th:text="${count.index + 1}">1</th>
+										<td th:text="${'SP'+billDetails.getProduct().getProductId()}">SP01</td>
+										<td th:text="${billDetails.getProduct().getProductName()}">Cơm Cháy</td>
+										<td th:text="${billDetails.getProduct().getUnit()}">Bịch</td>
+										<td class="text-right" th:text="${billDetails.getQuantity()}">10</td>
+										<td class="text-right" th:text="${billDetails.getProduct().getPrice()}">10</td>
+										<td class="text-right" th:text="${#numbers.formatDecimal(billDetails.getProduct().getPrice()*billDetails.getQuantity(), 0, 'COMMA', 0, 'POINT')+ ' VNĐ'}">10</td>
+									</tr>
+								</th:block>
 								<tr>
-									<th class="text-center" scope="row">1</th>
-									<td>SP01</td>
-									<td>Cơm Cháy</td>
-									<td>Bịch</td>
-									<td class="text-right">10</td>
+									<td colspan="6" class="text-right">Cộng Tiền Hàng</td>
+									<td class="text-right" th:text="${#numbers.formatDecimal(total, 0, 'COMMA', 0, 'POINT')+ ' VNĐ'}"></td>
 								</tr>
 								<tr>
-									<th class="text-center" scope="row">2</th>
-									<td>SP02</td>
-									<td>Súp Bào Ngư</td>
-									<td>Lon</td>
-									<td class="text-right">20</td>
+									<td colspan="6" class="text-right" >Tiền Thuế GTGT (10%)</td>
+									<td class="text-right" th:text="${#numbers.formatDecimal(total*0.1,0,'COMMA', 0, 'POINT')+ ' VNĐ'}">2121</td>
 								</tr>
 								<tr>
-									<th class="text-center" scope="row">3</th>
-									<td>SP03</td>
-									<td>Trứng Luộc</td>
-									<td>Quả</td>
-									<td class="text-right">5</td>
+									<td colspan="6" class="text-right">Tổng Số Tiền Thanh Toán</td>
+									<td class="text-right" th:text="${#numbers.formatDecimal(total*0.1 + total,0,'COMMA', 0, 'POINT')+ ' VNĐ'}"></td>
 								</tr>
 								</tbody>
 							</table>
