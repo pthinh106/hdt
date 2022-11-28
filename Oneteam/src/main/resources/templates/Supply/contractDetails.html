@@ -34,10 +34,10 @@
 					<div class="panel-body">
 						<div class="col-lg-12">
 							<div class="form-group">
-								<div>Họ Tên Người Mua Hàng: Công Ty ABC</div> 
-								<div>Số Điện Thoại: 0902832938</div>
-								<div>Địa Chỉ: 1/2 Đường số 1b Bình Tân</div>
-								<div>Mã Số Thuế: 2400950225</div>
+								<div>Họ Tên Người Mua Hàng: <span th:text="${contracts.getCustomer().getCustomerName()}"></span></div>
+								<div>Số Điện Thoại: <span th:text="${contracts.getCustomer().getPhoneNumber()}"></span></div>
+								<div>Địa Chỉ: <span th:text="${contracts.getCustomer().getAddress()}"></span></div>
+								<div>Mã Số Thuế: <span th:text="${contracts.getCustomer().getTax()}"></span></div>
 							</div>
 							<table class="table table-bordered">
 								<thead>
@@ -52,44 +52,28 @@
 								  </tr>
 								</thead>
 								<tbody>
-								  <tr>
-									<th class="text-center" scope="row">1</th>
-									<td>SP01</td>
-									<td>Cơm Cháy</td>
-									<td>Bịch</td>
-									<td class="text-right">10</td>
-									<td class="text-right">2000</td>
-									<td class="text-right">20000</td>
-								  </tr>
-								  <tr>
-									<th class="text-center" scope="row">2</th>
-									<td>SP02</td>
-									<td>Súp Bào Ngư</td>
-									<td>Lon</td>
-									<td class="text-right">20</td>
-									<td class="text-right">8000</td>
-									<td class="text-right">16000</td>
-								  </tr>
-								  <tr>
-									<th class="text-center" scope="row">3</th>
-									<td>SP03</td>
-									<td>Trứng Luộc</td>
-									<td>Quả</td>
-									<td class="text-right">5</td>
-									<td class="text-right">1000</td>
-									<td class="text-right">5000</td>
-								  </tr>
+								<th:block th:each="contractDetails,count : ${contractDetailsList}" >
+									<tr>
+										<th class="text-center" scope="row" th:text="${count.index + 1}">1</th>
+										<td th:text="${'SP'+contractDetails.getProduct().getProductId()}">SP01</td>
+										<td th:text="${contractDetails.getProduct().getProductName()}">Cơm Cháy</td>
+										<td th:text="${contractDetails.getProduct().getUnit()}">Bịch</td>
+										<td class="text-right" th:text="${contractDetails.getQuantity()}">10</td>
+										<td class="text-right" th:text="${#numbers.formatDecimal(contractDetails.getProduct().getPrice(),0, 'COMMA', 0, 'POINT')+ ' VNĐ'}">2000</td>
+										<td class="text-right" th:text="${#numbers.formatDecimal(contractDetails.getProduct().getPrice()*contractDetails.getQuantity(),0, 'COMMA', 0, 'POINT')+ ' VNĐ'}">20000</td>
+									</tr>
+								</th:block>
 								  <tr>
 									<td colspan="6" class="text-right">Cộng Tiền Hàng</td>
-									<td class="text-right">300000</td>
+									<td class="text-right" th:text="${#numbers.formatDecimal(total,0, 'COMMA', 0, 'POINT')+ ' VNĐ'}">300000</td>
 								  </tr>
 								  <tr>
 									<td colspan="6" class="text-right">Tiền Thuế GTGT (10%)</td>
-									<td class="text-right">2121</td>
+									<td class="text-right" th:text="${#numbers.formatDecimal(total*0.1,0, 'COMMA', 0, 'POINT')+ ' VNĐ'}">2121</td>
 								  </tr>
 								  <tr>
 									<td colspan="6" class="text-right">Tổng Số Tiền Thanh Toán</td>
-									<td class="text-right">444444</td>
+									<td class="text-right" th:text="${#numbers.formatDecimal(total*1.1,0, 'COMMA', 0, 'POINT')+ ' VNĐ'}">444444</td>
 								  </tr>
 								</tbody>
 							  </table>

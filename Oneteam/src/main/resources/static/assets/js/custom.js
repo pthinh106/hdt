@@ -38,7 +38,15 @@ const Mahd = document.getElementById('Mahd');
 const PlaceOfDelivery = document.getElementById('PlaceOfDelivery');
 const Rules = document.getElementById('Rules');
 const ContractPrice = document.getElementById('ContractPrice');
+///////////////////////////////////////////////////////////////
+const Manl = document.getElementById('Manl');
 const IngredientName = document.getElementById('IngredientName');
+const Unit = document.getElementById('Unit');
+const ImportPrice = document.getElementById('ImportPrice');
+Unit
+
+const Mapxsp = document.getElementById('Mapxsp');
+
 //Show input error messages
 function showError(input, message) {
     const formControl = input.parentElement;
@@ -68,31 +76,33 @@ function checkRequired(inputArr) {
 function getFieldName(input) {
     return input.id.charAt(0).toUpperCase() + input.id.slice(1);
 }
+
+
 //Event Listeners
 form.addEventListener('submit',function(e) {
     e.preventDefault();
-    checkRequired([IngredientName,Mahd, PlaceOfDelivery, Rules, ContractPrice]);
+    checkRequired([Mahd, PlaceOfDelivery, Rules, ContractPrice]);
+    checkRequired([Manl, IngredientName, Unit, ImportPrice]);
+    checkRequired([Mapxsp]);
+
 });
 ////////////////////////////////////////////////////////////////
-var alertPlaceholder = document.getElementById('AddForm')
-var addFormgroud = document.getElementById('AddProduct')
+var alertPlaceholder = document.getElementById('AddForm');
+var addFormgroud = document.getElementById('AddIP');
+var getList = document.getElementById('ListIP').innerHTML;
 function add() {
     var wrapper = document.createElement('div')
-    wrapper.className = 'col-sm-6'
-    var wrapper1 = document.createElement('div')
-    wrapper1.className = 'col-sm-6'
-    wrapper.innerHTML = '<div class="form-group"">' + '<label>Loại Sản Phẩm </label>' + '<label style="color:red ;">(*)</label>'+ '<select class="form-control">'
-        + '<option>Cơm Sườn</option>' + '<option>Bún Bò</option> </select> ' +'</div>'
-    wrapper1.innerHTML = '<div class="form-group"">'+'<label>Số Lượng Sản Phẩm</label>' + '<label style="color:red ;">(*)</label>'+ '<input type="number" class="form-control"> '+'</div>'
+    wrapper.id ='ListIP';
+    wrapper.className = 'ListIP col-sm-12';
+    wrapper.innerHTML=getList
     alertPlaceholder.append(wrapper)
-    alertPlaceholder.append(wrapper1)
+
 }
 if (addFormgroud) {
     addFormgroud.addEventListener('click', function () {
         add()
     })
 }
-
 /*----->
-----Tìm Mã----
+----Popup----
 -------*/

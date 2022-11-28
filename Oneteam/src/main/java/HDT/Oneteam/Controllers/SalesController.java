@@ -2,6 +2,7 @@ package HDT.Oneteam.Controllers;
 
 import HDT.Oneteam.Model.Account;
 import HDT.Oneteam.Model.Contract;
+import HDT.Oneteam.Model.ContractDetails;
 import HDT.Oneteam.Service.AccountService;
 import HDT.Oneteam.Service.ContractService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +50,15 @@ public class SalesController {
             Account account = accountService.getAccountByName(principal.getName());
             model.addAttribute("account",account);
         }
+        double total = 0 ;
+        Contract contracts = contractService.getContractById(contractId);
+        List<ContractDetails> contractDetailsList = contractService.getListContractDetailsByContract(contracts);
+        for(ContractDetails contractDetails : contractDetailsList){
+            total = total + contractDetails.getProduct().getPrice()+contractDetails.getQuantity();
+        }
+        model.addAttribute("total",total);
+        model.addAttribute("contracts",contracts);
+        model.addAttribute("contractDetailsList",contractDetailsList);
         model.addAttribute("contract",true);
         return "Sales/contractDetails";
     }
@@ -78,8 +88,15 @@ public class SalesController {
             Account account = accountService.getAccountByName(principal.getName());
             model.addAttribute("account",account);
         }
-        List<Contract> contractList = contractService.getContractByStatus(0);
-        model.addAttribute("contractList",contractList);
+        double total = 0 ;
+        Contract contracts = contractService.getContractById(id);
+        List<ContractDetails> contractDetailsList = contractService.getListContractDetailsByContract(contracts);
+        for(ContractDetails contractDetails : contractDetailsList){
+            total = total + contractDetails.getProduct().getPrice()+contractDetails.getQuantity();
+        }
+        model.addAttribute("total",total);
+        model.addAttribute("contracts",contracts);
+        model.addAttribute("contractDetailsList",contractDetailsList);
         model.addAttribute("liquidation",true);
         return "Sales/contractDetails";
     }
