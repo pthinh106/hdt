@@ -72,4 +72,15 @@ public class SalesController {
         model.addAttribute("liquidation",true);
         return "Sales/liquidation";
     }
+    @GetMapping("/liquidation/{id}")
+    public String liquidationContactDetails(@PathVariable("id") int id, Model model, Principal principal){
+        if(principal != null){
+            Account account = accountService.getAccountByName(principal.getName());
+            model.addAttribute("account",account);
+        }
+        List<Contract> contractList = contractService.getContractByStatus(0);
+        model.addAttribute("contractList",contractList);
+        model.addAttribute("liquidation",true);
+        return "Sales/contractDetails";
+    }
 }

@@ -29,7 +29,7 @@ public class BillProductService {
     public BillImportProduct getBillImportProductById(int id){
         return bImportProductReps.findById(id).get();
     }
-    public List<BillImportProductDetails> getBIMaterialDetailsByBIMId(BillImportProduct billImportProduct){
+    public List<BillImportProductDetails> getBIProductDetailsByBIPId(BillImportProduct billImportProduct){
         return biProductDetailsReps.findAllByBillImportProduct(billImportProduct);
     }
 
@@ -41,7 +41,7 @@ public class BillProductService {
     public BillExportProduct getBillExportProductById(int id){
         return bExportProductReps.findById(id).get();
     }
-    public List<BillExportProductDetails> getBEMaterialDetailsByBEMId(BillExportProduct billExportProduct){
+    public List<BillExportProductDetails> getBEProductDetailsByBEPId(BillExportProduct billExportProduct){
         return beProductDetailsReps.findAllByBillExportProduct(billExportProduct);
     }
 }

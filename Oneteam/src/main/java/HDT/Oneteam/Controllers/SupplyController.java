@@ -174,6 +174,10 @@ public class SupplyController {
             Account account = accountService.getAccountByName(principal.getName());
             model.addAttribute("account",account);
         }
+        BillImportProduct billImportProduct = billProductService.getBillImportProductById(id);
+        List<BillImportProductDetails> bEDetailsList = billProductService.getBIProductDetailsByBIPId(billImportProduct);
+        model.addAttribute("billImportProduct",billImportProduct);
+        model.addAttribute("bEDetailsList",bEDetailsList);
         model.addAttribute("productImport",true);
         return "Supply/billImportProductDetails";
     }
@@ -203,6 +207,15 @@ public class SupplyController {
             Account account = accountService.getAccountByName(principal.getName());
             model.addAttribute("account",account);
         }
+        double total = 0;
+        BillExportProduct billExportProduct = billProductService.getBillExportProductById(id);
+        List<BillExportProductDetails> bEDetailsList = billProductService.getBEProductDetailsByBEPId(billExportProduct);
+        for(BillExportProductDetails billExportProductDetails : bEDetailsList){
+            total = total + billExportProductDetails.getProduct().getPrice() * billExportProductDetails.getQuantity();
+        }
+        model.addAttribute("billExportProduct",billExportProduct);
+        model.addAttribute("bEDetailsList",bEDetailsList);
+        model.addAttribute("total",total);
         model.addAttribute("productExport",true);
         return "Supply/billExportProductDetails";
     }

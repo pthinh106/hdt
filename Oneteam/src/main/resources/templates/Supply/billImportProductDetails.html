@@ -45,33 +45,17 @@
 								</tr>
 								</thead>
 								<tbody>
-								<tr>
-									<th class="text-center" scope="row">1</th>
-									<td>SP01</td>
-									<td>Cơm Cháy</td>
-									<td>Bịch</td>
-									<td class="text-right">10</td>
-									<td class="text-right">2000</td>
-									<td class="text-right">20000</td>
-								</tr>
-								<tr>
-									<th class="text-center" scope="row">2</th>
-									<td>SP02</td>
-									<td>Súp Bào Ngư</td>
-									<td>Lon</td>
-									<td class="text-right">20</td>
-									<td class="text-right">8000</td>
-									<td class="text-right">16000</td>
-								</tr>
-								<tr>
-									<th class="text-center" scope="row">3</th>
-									<td>SP03</td>
-									<td>Trứng Luộc</td>
-									<td>Quả</td>
-									<td class="text-right">5</td>
-									<td class="text-right">1000</td>
-									<td class="text-right">5000</td>
-								</tr>
+								<th:block th:each="billDetails,count : ${bEDetailsList}">
+									<tr>
+										<th class="text-center" scope="row" th:text="${count.index + 1}">1</th>
+										<td th:text="${'SP'+billDetails.getProduct().getProductId()}">SP01</td>
+										<td th:text="${billDetails.getProduct().getProductName()}">Cơm Cháy</td>
+										<td th:text="${billDetails.getProduct().getUnit()}">Bịch</td>
+										<td class="text-right" th:text="${billDetails.getProduct().getPrice()}">2000</td>
+										<td class="text-right" th:text="${billDetails.getQuantity()}">10</td>
+										<td class="text-right" th:text="${#numbers.formatDecimal(billDetails.getProduct().getPrice()*billDetails.getQuantity(), 0, 'COMMA', 0, 'POINT')+ ' VNĐ'}">20000</td>
+									</tr>
+								</th:block>
 								</tbody>
 							</table>
 						</div>
