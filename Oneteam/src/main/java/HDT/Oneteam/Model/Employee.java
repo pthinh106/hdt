@@ -1,6 +1,7 @@
 package HDT.Oneteam.Model;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "nhanvien")
@@ -21,8 +22,11 @@ public class Employee {
     private String address;
     @Column(name = "SDT")
     private String phoneNumber;
+    @Column(name = "NGAYGIANHAP")
+    private Timestamp created;
+    @Column(name = "NGAYTHAYDOI")
+    private Timestamp updated;
     public Employee(){}
-
     public Employee(int employeeId, Account account, Position position, String employeeName, String address, String phoneNumber) {
         this.employeeId = employeeId;
         this.account = account;
@@ -30,6 +34,17 @@ public class Employee {
         this.employeeName = employeeName;
         this.address = address;
         this.phoneNumber = phoneNumber;
+    }
+
+    public Employee(int employeeId, Account account, Position position, String employeeName, String address, String phoneNumber, Timestamp created, Timestamp updated) {
+        this.employeeId = employeeId;
+        this.account = account;
+        this.position = position;
+        this.employeeName = employeeName;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.created = created;
+        this.updated = updated;
     }
 
     public int getEmployeeId() {
@@ -78,5 +93,21 @@ public class Employee {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+
+    public Timestamp getCreated() {
+        return created;
+    }
+
+    public void setCreated(Timestamp created) {
+        this.created = created;
+    }
+
+    public Timestamp getUpdated() {
+        return updated;
+    }
+    public void setUpdated(Timestamp updated) {
+        this.updated = updated;
     }
 }

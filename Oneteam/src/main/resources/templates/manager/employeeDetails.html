@@ -1,0 +1,107 @@
+<!DOCTYPE html >
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="Fragment/fragment :: head">
+</head>
+<body>
+<nav th:replace="Fragment/fragment :: navSales"></nav>
+<div th:replace="Fragment/fragment :: slidebar"></div>
+
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+    <div class="row">
+        <ol class="breadcrumb">
+            <li><a href="index.html">
+                <em class="fa fa-home"></em>
+            </a></li>
+            <li class="active">Edit Employee Information</li>
+        </ol>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Edit Employee Information</h1>
+        </div>
+    </div><!--/.row-->
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="font-weight: bold;" > Thông Tin Nhân Viên
+                    <a class="addbutton" href="/manager/employee">
+                        <em class="fa fa-close color-red"> Đóng</em>
+                    </a>
+                </div>
+                <form id="form" role="form" name="MyForm" action="" th:object="${employeeDetails}">
+                    <div class="panel-body">
+                        <div class="col-md-6">
+                            <div    class="form-group">
+                                <label >Họ và Tên Nhân Viên</label>
+                                <label style="color:red ;">(*)</label>
+                                <input class="form-control" th:field="*{employeeName}">
+                            </div>
+                            <div class="form-group">
+                                <label>Chức Vụ</label>
+                                <label style="color:red ;">(*)</label>
+                                <select class="form-control" th:field="*{position}">
+                                    <th:block th:each="position : ${positionList}">
+                                        <option th:value="${position.getPositionId()}" th:text="${position.getPositionName()}"></option>
+                                    </th:block>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Địa Chỉ</label>
+                                <label style="color:red ;">(*)</label>
+                                <input class="form-control" th:field="*{address}">
+                            </div>
+                            <div class="form-group">
+                                <label>Số Điện Thoại</label>
+                                <label style="color:red ;">(*)</label>
+                                <input class="form-control" th:field="*{phoneNumber}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Tên Tài Khoản</label>
+                                <label style="color:red ;">(*)</label>
+                                <input class="form-control" th:field="*{account.userName}">
+                            </div>
+                            <div class="form-group">
+                                <label>Mật Khẩu</label>
+                                <label style="color:red ;">(*)</label>
+                                <input class="form-control" th:field="*{account.passWord}" >
+                            </div>
+                            <div class="form-group">
+                                <label>Quyền Tài Khoản</label>
+                                <label style="color:red ;">(*)</label>
+                                <select class="form-control" th:field="*{account.role}">
+                                    <th:block th:each="role : ${roleList}">
+                                        <option th:value="${role.getRoleId()}" th:text="${role.getRoleName()}"></option>
+                                    </th:block>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Trạng Thái</label>
+                                <label style="color:red ;">(*)</label>
+                                <select class="form-control" th:field="*{account.status}">
+                                    <option value="0" >Đã nghỉ làm</option>
+                                    <option value="1" >Đang làm việc tại công ty</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <input type="hidden" th:value="${employeeDetails.getEmployeeId()}">
+                        <button type="submit" id="Submit" class="btn btn-lg btn-primary">Submit Button</button>
+                        <button type="reset" class="btn btn-lg    btn-default">Reset Button</button>
+                    </div>
+                </form>
+            </div>
+        </div><!--/.col-->
+        <div class="col-sm-12">
+            <p class="back-link">Make by <a href="https://www.facebook.com/profile.php?id=100006077866205">ONETEAM</a></p>
+        </div>
+    </div><!--/.row-->
+</div>	<!--/.main-->
+
+<div th:replace="Fragment/fragment :: js"></div>
+
+</body>
+</html>

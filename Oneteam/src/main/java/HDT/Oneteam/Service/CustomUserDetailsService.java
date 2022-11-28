@@ -16,7 +16,10 @@ public class CustomUserDetailsService implements UserDetailsService {
         boolean exist = accountReps.existsByUserName(username);
         if(exist){
             Account account = accountReps.findByUserName(username);
-            CustomUserDetails customUserDetails = new CustomUserDetails(account);
+            CustomUserDetails customUserDetails = null ;
+            if(account.getStatus() == 1){
+                customUserDetails = new CustomUserDetails(account);
+            }
             return customUserDetails;
         }
         return null;
