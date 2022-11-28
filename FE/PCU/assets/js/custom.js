@@ -76,7 +76,6 @@ form.addEventListener('submit',function(e) {
     checkRequired([IngredientName,Mahd, PlaceOfDelivery, Rules, ContractPrice]);
 });
 ////////////////////////////////////////////////////////////////
-
 var alertPlaceholder = document.getElementById('AddForm')
 var addFormgroud = document.getElementById('AddProduct')
 function add() {
