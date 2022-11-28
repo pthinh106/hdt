@@ -56,10 +56,10 @@
                                 <tr>
                                     <th scope="row" th:text="${count.index + 1}"></th>
                                     <th:block th:if="${employees.getAccount().getRole().getRoleId() == 3}">
-                                        <th scope="row" th:text="${'QL'+ employees.getEmployeeId()}">PNSP01</th>
+                                        <th th:id="${employees.employeeId}" scope="row" th:text="${'QL'+ employees.getEmployeeId()}">PNSP01</th>
                                     </th:block>
                                     <th:block th:unless="${employees.getAccount().getRole().getRoleId() == 3}">
-                                        <th scope="row" th:text="${'NV'+ employees.getEmployeeId()}">PNSP01</th>
+                                        <th th:id="${employees.employeeId}" scope="row" th:text="${'NV'+ employees.getEmployeeId()}">PNSP01</th>
                                     </th:block>
                                     <td th:text="${employees.getEmployeeName()}">PNSP01</td>
                                     <td th:text="${employees.getPosition().getPositionName()}">PNSP01</td>
@@ -88,30 +88,43 @@
 <div th:replace="Fragment/fragment :: js"></div>
 <script>
     function deletedEmployee(id) {
-        $.ajax({
-            type: "POST",
-            url: "http://localhost:8060/manager/api/employee/delete/"+id,
-            success: function(data)
-            {
-                if(data){
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Xóa nhân viên thành công',
-                        showConfirmButton: true
-                    }).then((result) =>{
-                        window.location.reload();
-                    })
-                }else{
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Failed',
-                        text: 'Tài Khoản đã tồn tại! hoặc thiếu thông tin nhân viên',
-                        footer: '<a>Vui lòng thử lại</a>'
-                    })
-                }
+        var employmentId = document.getElementById(id).text;
+        Swal.fire({
+            title: 'Bạn chắc chắn muốn xóa nhân viên có id là '+employmentId+"?",
+            showCancelButton: true,
+            confirmButtonText: 'Yes',
+            denyButtonText: `No`,
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost:8060/manager/api/employee/delete/"+id,
+                    success: function(data)
+                    {
+                        if(data){
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Xóa nhân viên thành công',
+                                showConfirmButton: true
+                            }).then((result) =>{
+                                window.location.reload();
+                            })
+                        }else{
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Failed',
+                                text: 'Tài Khoản đã tồn tại! hoặc thiếu thông tin nhân viên',
+                                footer: '<a>Vui lòng thử lại</a>'
+                            })
+                        }
+                    }
+                });
             }
-        });
+        })
+
+
     }
 </script>
 

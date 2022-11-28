@@ -187,4 +187,19 @@
             window.location="http://localhost:8060/supply/contract/"+id;
         }
     </script>
+    <script>
+        function exit(url) {
+            Swal.fire({
+                title: 'Bạn chắc chắn muốn thoát?',
+                showCancelButton: true,
+                confirmButtonText: 'Yes',
+                denyButtonText: `No`,
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    window.location="http://localhost:8060/"+url;
+                }
+            })
+        }
+    </script>
 </div>

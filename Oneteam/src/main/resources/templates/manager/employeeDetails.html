@@ -34,7 +34,7 @@
                         <span style="font-weight: bold; font-size: 22px" >Thông Tin Nhân Viên</span>
                     </div>
                     <div>
-                        <a class="addbutton" href="/manager/employee">
+                        <a class="addbutton" onclick="exit('manager/employee')">
                             <em class="fa fa-close color-red"> Đóng</em>
                         </a>
                     </div>
@@ -141,10 +141,10 @@
                     })
                 }else{
                     Swal.fire({
+                        position: 'center',
                         icon: 'error',
-                        title: 'Oops...',
-                        text: 'Something went wrong!',
-                        footer: '<a href="">Why do I have this issue?</a>'
+                        title: 'Thiếu thông tin hoặc tài khoản đã tồn tại',
+                        showConfirmButton: true
                     })
                 }
             }
