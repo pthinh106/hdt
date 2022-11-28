@@ -16,14 +16,16 @@ public class Account {
     @ManyToOne
     @JoinColumn(name = "MAQ")
     private Role role;
-
+    @Column(name = "TRANGTHAI")
+    private int status;
     public Account(){}
 
-    public Account(int accountId, String userName, String passWord, Role role) {
+    public Account(int accountId, String userName, String passWord, Role role, int status) {
         this.accountId = accountId;
         this.userName = userName;
         this.passWord = passWord;
         this.role = role;
+        this.status = status;
     }
 
     public int getAccountId() {
@@ -56,5 +58,13 @@ public class Account {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }
