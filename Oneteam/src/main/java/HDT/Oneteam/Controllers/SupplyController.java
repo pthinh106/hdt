@@ -46,6 +46,15 @@ public class SupplyController {
             Account account = accountService.getAccountByName(principal.getName());
             model.addAttribute("account",account);
         }
+        double total = 0 ;
+        Contract contracts = contractService.getContractById(id);
+        List<ContractDetails> contractDetailsList = contractService.getListContractDetailsByContract(contracts);
+        for(ContractDetails contractDetails : contractDetailsList){
+            total = total + contractDetails.getProduct().getPrice()*contractDetails.getQuantity();
+        }
+        model.addAttribute("total",total);
+        model.addAttribute("contracts",contracts);
+        model.addAttribute("contractDetailsList",contractDetailsList);
         model.addAttribute("dashboardSupply",true);
         return "Supply/contractDetails";
     }
@@ -79,7 +88,7 @@ public class SupplyController {
             model.addAttribute("account",account);
         }
         model.addAttribute("warehouse",true);
-        return "Supply/addIngredient";
+        return "Supply/addMaterial";
     }
 
     ///Material

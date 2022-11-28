@@ -27,13 +27,13 @@
 			<div class="col-lg-12">
 				<div class="panel panel-default">
 					<div class="panel-heading" style="font-weight: bold;" >Lập Hợp đồng
-						<a class="addbutton" href="/sales/contract">
+						<a class="addbutton" href="contract.html">
 							<em class="fa fa-close color-red"> Đóng</em>
 						</a>
-						</div>
-					<div class="panel-body">
-						<div class="col-md-6">
-							<form id="form" role="form" name="MyForm" action="">
+					</div>
+					<form id="form" role="form" name="MyForm" action="">
+						<div class="panel-body">
+							<div class="col-md-6">
 								<div  class="form-group ">
 									<label >Mã hợp đồng</label>
 									<label style="color:red ;">(*)</label>
@@ -67,44 +67,41 @@
 									<label style="color:red ;">(*)</label>
 									<input name="ContractPrice" id="ContractPrice" type="text" class="form-control">
 								</div>
-							</form>
-						</div>
+							</div>
 							<div class="col-md-6">
 								<div id="AddForm" >
-									<div class="col-sm-6">
-									
-										<div class="form-group">
-											<label>Loại Sản Phẩm</label>
-											<label style="color:red ;">(*)</label>
-											<select class="form-control">
-												<option>Cơm Sườn</option>
-												<option>Bún Bò</option>
-											</select>
+									<div id="ListIP" class="ListIP col-sm-12">
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label>Loại Sản Phẩm</label>
+												<label style="color:red ;">(*)</label>
+												<select class="form-control">
+													<option>Cơm Sườn</option>
+													<option>Bún Bò</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-sm-6" >
+											<div class="form-group">
+												<label>Số Lượng Sản Phẩm</label>
+												<label style="color:red ;">(*)</label>
+												<input type="number" class="form-control ">
+											</div>
 										</div>
 									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<label>Số Lượng Sản Phẩm</label>
-											<label style="color:red ;">(*)</label>
-											<input type="number" class="form-control ">
-										</div> 
-									</div>	
 								</div>
-								<button type="button" id="AddProduct" class="btn btn-success" style="margin-left:14px ;">
-									<i class="fa fa-plus"></i>	
+								<button type="button" id="AddIP" class="btn btn-success" style="margin-left:30px ;">
+									<i class="fa fa-plus"></i>
 								</button>
 							</div>
-							
-							
-							
+
 						</div>
 						<div class="panel-footer">
 							<button type="submit" id="Submit" class="btn btn-lg btn-primary">Submit Button</button>
-							<button type="reset" class="btn btn-lg  btn-default">Reset Button</button> 	
-						</form>
+							<button type="reset" class="btn btn-lg  btn-default">Reset Button</button>
 						</div>
-					</div>
-				</div><!-- /.panel-->
+					</form>
+				</div>
 			</div><!--/.col-->
 			<div class="col-sm-12">
 				<p class="back-link">Make by <a href="https://www.facebook.com/profile.php?id=100006077866205">ONETEAM</a></p>
