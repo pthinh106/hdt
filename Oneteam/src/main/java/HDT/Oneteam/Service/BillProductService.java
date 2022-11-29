@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BillProductService {
@@ -47,4 +48,23 @@ public class BillProductService {
         return beProductDetailsReps.findAllByBillExportProduct(billExportProduct);
     }
 
+    public boolean deleteProductImport(int id) {
+        Optional<BillImportProduct> billImportProduct = bImportProductReps.findById(id);
+        if(billImportProduct.isPresent()){
+            billImportProduct.get().setStatus(0);
+            bImportProductReps.save(billImportProduct.get());
+            return true;
+        }
+        return false;
+    }
+
+    public boolean deleteProductExport(int id) {
+        Optional<BillExportProduct> billExportProduct = bExportProductReps.findById(id);
+        if(billExportProduct.isPresent()){
+            billExportProduct.get().setStatus(0);
+            bExportProductReps.save(billExportProduct.get());
+            return true;
+        }
+        return false;
+    }
 }

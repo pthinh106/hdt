@@ -45,14 +45,14 @@
 								<tbody>
 									<th:block th:each="billImportMaterial : ${billImportMaterialList}">
 										<tr>
-											<th scope="row" th:text="${'PNNL'+billImportMaterial.getBillImportId()}"></th>
+											<th scope="row" th:id="${billImportMaterial.getBillImportId()}" th:text="${'PNNL'+billImportMaterial.getBillImportId()}"></th>
 											<th scope="row" th:text="${'HĐ'+billImportMaterial.getContract().getContractId()}"></th>
 											<td th:text="${billImportMaterial.getContract().getCustomer().getCustomerName()}"></td>
 											<td th:text="${#dates.format(billImportMaterial.getCreated(), 'dd-MM-yyyy')}"></td>
 											<td th:text="${#numbers.formatDecimal(billImportMaterial.getVat(), 0, 'COMMA', 0, 'POINT')+ '%'}"></td>
 											<td th:text="${#numbers.formatDecimal(billImportMaterial.getTotal(), 0, 'COMMA', 0, 'POINT')+ ' VNĐ'}"></td>
 											<td>
-												<button type="button" class="btn btn-md btn-danger">Xóa</button>
+												<button type="button" class="btn btn-md btn-danger" th:onclick="deleteBill([[${billImportMaterial.getBillImportId()}]])">Xóa</button>
 												<a th:href="@{billimportmatertial/{id}(id=${billImportMaterial.getBillImportId()})}"><button type="button" class="btn btn-md btn-default">Xem</button></a>
 											</td>
 										</tr>
@@ -71,6 +71,47 @@
 
 
 	<div th:replace="Fragment/fragment :: js"></div>
+	<script>
+		function deleteBill(id) {
+			var bill = document.getElementById(id).innerText;
+			Swal.fire({
+				title: 'Bạn chắc chắn muốn xóa bill có id là '+bill+"?",
+				showCancelButton: true,
+				confirmButtonText: 'Yes',
+				denyButtonText: `No`,
+			}).then((result) => {
+				/* Read more about isConfirmed, isDenied below */
+				if (result.isConfirmed) {
+					$.ajax({
+						type: "POST",
+						url: "http://localhost:8060/sales/api/materialimport/delete/"+id,
+						success: function(data)
+						{
+							if(data){
+								Swal.fire({
+									position: 'center',
+									icon: 'success',
+									title: 'Xóa thành công',
+									showConfirmButton: true
+								}).then((result) =>{
+									window.location.reload();
+								})
+							}else{
+								Swal.fire({
+									icon: 'error',
+									title: 'Failed',
+									text: 'Vui lòng thử lại',
+									footer: '<a>Vui lòng thử lại</a>'
+								})
+							}
+						}
+					});
+				}
+			})
+
+
+		}
+	</script>
 	
 </body>
 </html>

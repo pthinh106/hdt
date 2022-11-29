@@ -52,7 +52,7 @@
 											<td th:text="${material.getInventory()}"></td>
 											<td>
 												<button type="button" class="btn btn-md btn-info addbutton">Sửa</button>
-												<button type="button" class="btn btn-md btn-danger">Xóa</button>
+												<button type="button" class="btn btn-md btn-danger" th:onclick="deleteMiterial([[${material.getMaterialId()}]])">Xóa</button>
 											</td>
 										</tr>
 									</th:block>
@@ -84,14 +84,14 @@
 								<tbody id="Product">
 								<th:block th:each="product : ${productList}">
 									<tr>
-										<th scope="row" th:text="${'SP'+product.getProductId()}"></th>
+										<th scope="row"  th:text="${'SP'+product.getProductId()}"></th>
 										<td th:text="${product.getProductName()}"></td>
 										<td th:text="${product.getUnit()}"></td>
 										<td th:text="${#numbers.formatDecimal(product.getPrice(), 0, 'COMMA', 0, 'POINT')+ ' VNĐ'}"></td>
 										<td th:text="${product.getInventory()}"></td>
 										<td>
 											<button type="button" class="btn btn-md btn-info addbutton">Sửa</button>
-											<button type="button" class="btn btn-md btn-danger">Xóa</button>
+											<button type="button" class="btn btn-md btn-danger" th:onclick="deleteProduct([[${product.getProductId()}]])">Xóa</button>
 											<a th:href="@{warehouse/product/{id}(id=${product.getProductId()})}"><button type="button" class="btn btn-md btn-default">Xem</button></a>
 										</td>
 									</tr>
@@ -110,6 +110,88 @@
 
 
 	<div th:replace="Fragment/fragment :: js"></div>
+	<script>
+		function deleteProduct(id) {
+			var employmentId = document.getElementById(id).innerText;
+			Swal.fire({
+				title: 'Bạn chắc chắn muốn xóa sản phẩm này?',
+				showCancelButton: true,
+				confirmButtonText: 'Yes',
+				denyButtonText: `No`,
+			}).then((result) => {
+				/* Read more about isConfirmed, isDenied below */
+				if (result.isConfirmed) {
+					$.ajax({
+						type: "POST",
+						url: "http://localhost:8060/sales/api/product/delete/"+id,
+						success: function(data)
+						{
+							if(data){
+								Swal.fire({
+									position: 'center',
+									icon: 'success',
+									title: 'Xóa sản phẩm thành công',
+									showConfirmButton: true
+								}).then((result) =>{
+									window.location.reload();
+								})
+							}else{
+								Swal.fire({
+									icon: 'error',
+									title: 'Failed',
+									text: 'Vui lòng thử lại',
+									footer: '<a>Vui lòng thử lại</a>'
+								})
+							}
+						}
+					});
+				}
+			})
+
+
+		}
+	</script>
+	<script>
+		function deleteMiterial(id) {
+			var employmentId = document.getElementById(id).innerText;
+			Swal.fire({
+				title: 'Bạn chắc chắn muốn xóa nguyên liệu này? ',
+				showCancelButton: true,
+				confirmButtonText: 'Yes',
+				denyButtonText: `No`,
+			}).then((result) => {
+				/* Read more about isConfirmed, isDenied below */
+				if (result.isConfirmed) {
+					$.ajax({
+						type: "POST",
+						url: "http://localhost:8060/sales/api/material/delete/"+id,
+						success: function(data)
+						{
+							if(data){
+								Swal.fire({
+									position: 'center',
+									icon: 'success',
+									title: 'Xóa nguyên liệu thành công',
+									showConfirmButton: true
+								}).then((result) =>{
+									window.location.reload();
+								})
+							}else{
+								Swal.fire({
+									icon: 'error',
+									title: 'Failed',
+									text: 'Vui lòng thử lại',
+									footer: '<a>Vui lòng thử lại</a>'
+								})
+							}
+						}
+					});
+				}
+			})
+
+
+		}
+	</script>
 	
 </body>
 </html>

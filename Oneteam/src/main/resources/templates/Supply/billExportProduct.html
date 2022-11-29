@@ -44,12 +44,12 @@
 								<tbody id="ExportProduct">
 								<th:block th:each=" billExportProduct,count : ${billExportProductList}">
 									<tr>
-										<th scope="row" th:text="${count.index + 1}">PXSP01</th>
-										<th scope="row" th:text="${'PXSP'+ billExportProduct.getBillExportId()}">PXSP01</th>
+										<th scope="row"  th:text="${count.index + 1}">PXSP01</th>
+										<th scope="row" th:id="${ billExportProduct.getBillExportId()}" th:text="${'PXSP'+ billExportProduct.getBillExportId()}">PXSP01</th>
 										<td th:text="${'HĐ'+billExportProduct.getContract().getContractId()}">HD02</td>
 										<td th:text="${#dates.format(billExportProduct.getCreated(), 'dd-MM-yyyy')}">06-03-2022</td>
 										<td>
-											<button type="button" class="btn btn-md btn-danger">Xóa</button>
+											<button type="button" class="btn btn-md btn-danger" th:onclick="deleteBill([[${billExportProduct.getBillExportId()}]])">Xóa</button>
 											<a th:href="@{billexportproduct/{id}(id=${billExportProduct.getBillExportId()})}"><button type="button" class="btn btn-md btn-default">Xem</button></a>
 										</td>
 									</tr>
@@ -68,6 +68,47 @@
 
 
 	<div th:replace="Fragment/fragment :: js"></div>
+	<script>
+		function deleteBill(id) {
+			var bill = document.getElementById(id).innerText;
+			Swal.fire({
+				title: 'Bạn chắc chắn muốn xóa bill có id là '+bill+"?",
+				showCancelButton: true,
+				confirmButtonText: 'Yes',
+				denyButtonText: `No`,
+			}).then((result) => {
+				/* Read more about isConfirmed, isDenied below */
+				if (result.isConfirmed) {
+					$.ajax({
+						type: "POST",
+						url: "http://localhost:8060/sales/api/productexport/delete/"+id,
+						success: function(data)
+						{
+							if(data){
+								Swal.fire({
+									position: 'center',
+									icon: 'success',
+									title: 'Xóa thành công',
+									showConfirmButton: true
+								}).then((result) =>{
+									window.location.reload();
+								})
+							}else{
+								Swal.fire({
+									icon: 'error',
+									title: 'Failed',
+									text: 'Vui lòng thử lại',
+									footer: '<a>Vui lòng thử lại</a>'
+								})
+							}
+						}
+					});
+				}
+			})
+
+
+		}
+	</script>
 	
 </body>
 </html>

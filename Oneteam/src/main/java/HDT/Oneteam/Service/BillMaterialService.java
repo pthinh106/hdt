@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BillMaterialService {
@@ -49,5 +50,26 @@ public class BillMaterialService {
     }
     public List<BillExportMaterialDetails> getBEMaterialDetailsByBEMId(BillExportMaterial billExportMaterial){
         return bEMaterialDetailsReps.findAllByBillExportMaterial(billExportMaterial);
+    }
+
+    public boolean deleteMaterialImport(int id) {
+
+        Optional<BillImportMaterial> billImportMaterial = bImportMaterialReps.findById(id);
+        if(billImportMaterial.isPresent()){
+            billImportMaterial.get().setStatus(0);
+            bImportMaterialReps.save(billImportMaterial.get());
+            return true;
+        }
+        return false;
+    }
+
+    public boolean deleteMaterialExport(int id) {
+        Optional<BillExportMaterial> billExportMaterial = bExportMaterialReps.findById(id);
+        if(billExportMaterial.isPresent()){
+            billExportMaterial.get().setStatus(0);
+            bExportMaterialReps.save(billExportMaterial.get());
+            return true;
+        }
+        return false;
     }
 }
