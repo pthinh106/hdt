@@ -19,6 +19,8 @@ public class BillProductService {
     private BIProductDetailsReps biProductDetailsReps;
     @Autowired
     private BImportProductReps bImportProductReps;
+    @Autowired
+    private ContractService contractService;
 
 
 
@@ -44,4 +46,5 @@ public class BillProductService {
     public List<BillExportProductDetails> getBEProductDetailsByBEPId(BillExportProduct billExportProduct){
         return beProductDetailsReps.findAllByBillExportProduct(billExportProduct);
     }
+
 }

@@ -5,7 +5,7 @@
 <body>
 <nav th:replace="Fragment/fragment :: navSales"></nav>
 <div th:replace="Fragment/fragment :: slidebar"></div>
-		
+
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 		<div class="row">
 			<ol class="breadcrumb">
@@ -15,7 +15,7 @@
 				<li class="active">Contract</li>
 			</ol>
 		</div><!--/.row-->
-		
+
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">Contract</h1>
@@ -25,7 +25,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
-					<div class="panel-heading" style="font-weight: bold;" >Hợp đồng
+					<div class="panel-heading" style="font-weight: bold;" >Hợp đồng Đang Thực Hiện
 						<a class="addbutton" href="contract/create">
 							<button type="button" class="btn btn-md btn-success">Thêm</button>
 						</a>
@@ -47,7 +47,7 @@
 								<tbody id="Contract">
 									<th:block th:each="contracts : ${contractList}">
 										<tr>
-											<th scope="row" th:text="${'HĐ'+contracts.getContractId()}"></th>
+											<th scope="row" th:id="${contracts.getContractId()}"  th:text="${'HĐ'+contracts.getContractId()}"></th>
 											<td th:text="${#dates.format(contracts.getCreated(), 'dd-MM-yyyy')}"></td>
 											<td th:text="${contracts.getDeliveryPlace()}"></td>
 											<td th:text="${contracts.getProvision()}"></td>
@@ -55,14 +55,14 @@
 											<td th:text="${#numbers.formatDecimal(contracts.getTotal(), 0, 'COMMA', 0, 'POINT')+ ' VNĐ'}"></td>
 											<td>
 												<button type="button" class="btn btn-md btn-info addbutton">Sửa</button>
-												<button type="button" class="btn btn-md btn-danger">Xóa</button>
+												<button type="button" class="btn btn-md btn-danger" th:onclick="deleteContract([[${contracts.getContractId()}]])">Xóa</button>
 												<a th:href="@{contract/{id}(id=${contracts.getContractId()})}"><button type="button" class="btn btn-md btn-default">Xem</button></a>
 											</td>
 										</tr>
 									</th:block>
 								</tbody>
 							  </table>
-						</div>  
+						</div>
 					</div>
 				</div><!-- /.panel-->
 			</div><!--/.col-->
@@ -74,5 +74,44 @@
 
 
 	<div th:replace="Fragment/fragment :: js"></div>
+	<script>
+		function deleteContract(id){
+			var contractId = document.getElementById(id).innerText;
+			Swal.fire({
+				title: 'Bạn chắc chắn muốn xóa hợp đồng có id là '+contractId+"?",
+				showCancelButton: true,
+				confirmButtonText: 'Yes',
+				denyButtonText: `No`,
+			}).then((result) => {
+				/* Read more about isConfirmed, isDenied below */
+				if (result.isConfirmed) {
+					$.ajax({
+						type: "POST",
+						url: "http://localhost:8060/sales/api/contract/delete/"+id,
+						success: function(data)
+						{
+							if(data){
+								Swal.fire({
+									position: 'center',
+									icon: 'success',
+									title: 'Xóa hợp đồng thành công',
+									showConfirmButton: true
+								}).then((result) =>{
+									window.location.reload();
+								})
+							}else{
+								Swal.fire({
+									icon: 'error',
+									title: 'Failed',
+									text: 'Xóa thất bại vui lòng kiểm tra lại',
+									footer: '<a>Vui lòng thử lại</a>'
+								})
+							}
+						}
+					});
+				}
+			})
+		}
+	</script>
 </body>
 </html>

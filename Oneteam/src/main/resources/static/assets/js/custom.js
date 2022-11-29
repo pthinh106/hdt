@@ -94,6 +94,7 @@ function add() {
     var wrapper = document.createElement('div')
     wrapper.id ='ListIP';
     wrapper.className = 'ListIP col-sm-12';
+    wrapper.style='padding: 0;';
     wrapper.innerHTML=getList
     alertPlaceholder.append(wrapper)
 

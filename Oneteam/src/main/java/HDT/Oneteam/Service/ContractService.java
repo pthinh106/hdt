@@ -1,8 +1,8 @@
 package HDT.Oneteam.Service;
 
-import HDT.Oneteam.Model.Contract;
-import HDT.Oneteam.Model.ContractDetails;
-import HDT.Oneteam.Model.Product;
+import HDT.Oneteam.Model.*;
+import HDT.Oneteam.Repository.BEProductDetailsReps;
+import HDT.Oneteam.Repository.BExportProductReps;
 import HDT.Oneteam.Repository.ContractDetailsReps;
 import HDT.Oneteam.Repository.ContractReps;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +22,14 @@ public class ContractService {
     private ContractDetailsReps contractDetailsReps;
     @Autowired
     private ProductService productService;
+    @Autowired
+    private CustomerService customerService;
+    @Autowired
+    private EmployeeService employeeService;
+    @Autowired
+    private BEProductDetailsReps bEProductDetailsReps;
+    @Autowired
+    private BExportProductReps bExportProductReps;
 
 
     ///module
@@ -90,6 +98,19 @@ public class ContractService {
         List<Contract> contractList = contractReps.findAllByContractIdIn(listContractIdCol);
         if(!contractList.isEmpty()){
             for(Contract contract : contractList){
+                BillExportProduct billExportProduct = new BillExportProduct();
+                billExportProduct.setContract(contract);
+                billExportProduct.setStatus(1);
+                bExportProductReps.save(billExportProduct);
+                List<ContractDetails> contractDetailsList = getListContractDetailsByContract(contract);
+                for(ContractDetails contractDetails : contractDetailsList){
+                    BillExportProductDetails billExportProductDetails = new BillExportProductDetails();
+                    billExportProductDetails.setBillExportProduct(billExportProduct);
+                    billExportProductDetails.setProduct(contractDetails.getProduct());
+                    billExportProductDetails.setQuantity(contractDetails.getQuantity());
+                    billExportProductDetails.setTotal(contractDetails.getTotal());
+                    bEProductDetailsReps.save(billExportProductDetails);
+                }
                 contract.setStatus(1);
             }
             contractReps.saveAll(contractList);
@@ -112,5 +133,40 @@ public class ContractService {
             return true;
         }
         return false;
+    }
+    public Boolean createContract(Contract contract,int[] productDetailsId, int[] productQuantity,int accountId){
+        if(contract.getCustomer().getCustomerName().isEmpty() || contract.getCustomer().getAddress().isEmpty() ||
+                contract.getCustomer().getTax().isEmpty() || contract.getCustomer().getPhoneNumber().isEmpty() ||
+                contract.getDeliveryPlace().isEmpty() ){
+            return false;
+        }
+        Customer customer = contract.getCustomer();
+        customerService.save(customer);
+        contract.setCustomer(customer);
+        contract.setEmployee(employeeService.getEmployeeByAccountId(accountId));
+        contractReps.save(contract);
+        double total = 0;
+        for(int i = 0; i <productQuantity.length;i++){
+            ContractDetails contractDetails = new ContractDetails();
+            contractDetails.setContract(contract);
+            contractDetails.setProduct(productService.getProductById(productDetailsId[i]));
+            contractDetails.setQuantity(productQuantity[i]);
+            contractDetails.setTotal(productService.getProductById(productDetailsId[i]).getPrice()*productQuantity[i]);
+            total += contractDetails.getTotal();
+            contractDetailsReps.save(contractDetails);
+        }
+        contract.setTotal(total*1.1);
+        contractReps.save(contract);
+        return true;
+    }
+    public Boolean deletecontract(int contractId){
+        Optional<Contract> contract = contractReps.findById(contractId);
+        if(contract.isPresent()){
+            contract.get().setStatus(3);
+            contractReps.save(contract.get());
+            return true;
+        }else{
+            return false;
+        }
     }
 }

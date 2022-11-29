@@ -33,4 +33,12 @@ public class Payment {
     public void setPaymentName(String paymentName) {
         this.paymentName = paymentName;
     }
+
+    @Override
+    public String toString() {
+        return "Payment{" +
+                "paymentId=" + paymentId +
+                ", paymentName='" + paymentName + '\'' +
+                '}';
+    }
 }

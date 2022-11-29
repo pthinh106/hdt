@@ -30,8 +30,12 @@
 							<em class="fa fa-close color-red"> Đóng</em>
 						</a>
 					</div>
-					<div class="panel-body">
-						<div class="col-lg-12">
+					<div class="panel-body" style="font-size: 16px">
+						<div class="col-lg-12" >
+							<div class="form-group">
+								<div><strong>Phân Xưởng: </strong> <span th:text="${billImportProduct.getWorkshop().getWorkshopName()}"></span></div>
+								<div><strong>Ngày Xuất Phiếu: </strong><span th:text="${#dates.format(billImportProduct.getCreated(), 'dd-MM-yyyy hh:mm:SS')}"></span></div>
+							</div>
 							<table class="table table-bordered">
 								<thead>
 								<tr>

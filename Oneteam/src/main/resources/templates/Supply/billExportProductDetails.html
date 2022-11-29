@@ -30,8 +30,15 @@
 							<em class="fa fa-close color-red"> Đóng</em>
 						</a>
 					</div>
-					<div class="panel-body">
+					<div class="panel-body" style="font-size: 16px">
 						<div class="col-lg-12">
+							<div class="form-group">
+								<div><strong>Họ Tên Người Mua Hàng: </strong> <span th:text="${contracts.getCustomer().getCustomerName()}"></span></div>
+								<div><strong>Số Điện Thoại: </strong><span th:text="${contracts.getCustomer().getPhoneNumber()}"></span></div>
+								<div><strong>Địa Chỉ: </strong><span th:text="${contracts.getCustomer().getAddress()}"></span></div>
+								<div><strong>Mã Số Thuế: </strong><span th:text="${contracts.getCustomer().getTax()}"></span></div>
+								<div><strong>Ngày Xuất Phiếu: </strong><span th:text="${#dates.format(billExportProduct.getCreated(), 'dd-MM-yyyy hh:mm:SS')}"></span></div>
+							</div>
 							<table class="table table-bordered">
 								<thead>
 								<tr>
