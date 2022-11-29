@@ -52,7 +52,7 @@
 											<td th:text="${#numbers.formatDecimal(billImportMaterial.getVat(), 0, 'COMMA', 0, 'POINT')+ '%'}"></td>
 											<td th:text="${#numbers.formatDecimal(billImportMaterial.getTotal(), 0, 'COMMA', 0, 'POINT')+ ' VNĐ'}"></td>
 											<td>
-												<button type="button" class="btn btn-md btn-danger" th:onclick="deleteBill([${billImportMaterial.getBillImportId()}])">Xóa</button>
+												<button type="button" class="btn btn-md btn-danger" th:onclick="deleteBill([[${billImportMaterial.getBillImportId()}]])">Xóa</button>
 												<a th:href="@{billimportmatertial/{id}(id=${billImportMaterial.getBillImportId()})}"><button type="button" class="btn btn-md btn-default">Xem</button></a>
 											</td>
 										</tr>
