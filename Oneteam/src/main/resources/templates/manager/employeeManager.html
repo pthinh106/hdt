@@ -88,7 +88,7 @@
 <div th:replace="Fragment/fragment :: js"></div>
 <script>
     function deletedEmployee(id) {
-        var employmentId = document.getElementById(id).text;
+        var employmentId = document.getElementById(id).innerText;
         Swal.fire({
             title: 'Bạn chắc chắn muốn xóa nhân viên có id là '+employmentId+"?",
             showCancelButton: true,

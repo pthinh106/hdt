@@ -75,7 +75,7 @@ public class SalesController {
             Account account = accountService.getAccountByName(principal.getName());
             model.addAttribute("account",account);
         }
-        List<Contract> contractList = contractService.getContractByStatus(0);
+        List<Contract> contractList = contractService.getContractByStatusAndLiquidationStatus(0,2);
         model.addAttribute("contractList",contractList);
         model.addAttribute("liquidation",true);
         return "Sales/liquidation";

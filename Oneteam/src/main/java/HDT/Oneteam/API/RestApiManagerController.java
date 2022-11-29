@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/manager/api")
-public class ApiRestManagerController {
+public class RestApiManagerController {
     @Autowired
     private EmployeeService employeeService;
     @PostMapping("/employee")

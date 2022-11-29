@@ -19,4 +19,15 @@ public class ProductService {
     public List<Product> getAllProductOn(int status){
         return productReps.findAllByStatus(status);
     }
+    public Product getProductById(int productId){
+        return productReps.findById(productId).get();
+    }
+    public void saveAll(List<Product> productList){
+        productReps.saveAll(productList);
+    }
+
+    public void save(Product product){
+        productReps.save(product);
+    }
+
 }

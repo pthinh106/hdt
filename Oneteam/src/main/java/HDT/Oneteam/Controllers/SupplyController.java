@@ -3,6 +3,7 @@ package HDT.Oneteam.Controllers;
 import HDT.Oneteam.Model.*;
 import HDT.Oneteam.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.relational.core.sql.In;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Controller
@@ -35,7 +38,10 @@ public class SupplyController {
             Account account = accountService.getAccountByName(principal.getName());
             model.addAttribute("account",account);
         }
-        List<Contract> contractList = contractService.getContractByStatus(0);
+        Collection<Integer> liquidation = new ArrayList<>();
+        liquidation.add(0);
+        liquidation.add(1);
+        List<Contract> contractList = contractService.getContractByStatusAndLiquidationStatusIn(0,liquidation);
         model.addAttribute("contractList",contractList);
         model.addAttribute("dashboardSupply",true);
         return "Supply/index";
@@ -141,19 +147,19 @@ public class SupplyController {
         model.addAttribute("ingredientExport",true);
         return "Supply/billExportMaterial";
     }
-//    @GetMapping("/billexportmatertial/{id}")
-//    public String billExportMaterialDetails(@PathVariable("id") int id, Model model, Principal principal){
-//        if(principal != null){
-//            Account account = accountService.getAccountByName(principal.getName());
-//            model.addAttribute("account",account);
-//        }
-//        BillExportMaterial billExportMaterial = billMaterialService.getBillExportMaterialById(id);
-//        List<BillExportMaterialDetails> bEDetailsList = billMaterialService.getBEMaterialDetailsByBEMId(billExportMaterial);
-//        model.addAttribute("billExportMaterial",billExportMaterial);
-//        model.addAttribute("bEDetailsList",bEDetailsList);
-//        model.addAttribute("ingredientExport",true);
-//        return "Supply/billExportMaterialDetails";
-//    }
+    @GetMapping("/billexportmatertial/{id}")
+    public String billExportMaterialDetails(@PathVariable("id") int id, Model model, Principal principal){
+        if(principal != null){
+            Account account = accountService.getAccountByName(principal.getName());
+            model.addAttribute("account",account);
+        }
+        BillExportMaterial billExportMaterial = billMaterialService.getBillExportMaterialById(id);
+        List<BillExportMaterialDetails> bEDetailsList = billMaterialService.getBEMaterialDetailsByBEMId(billExportMaterial);
+        model.addAttribute("billExportMaterial",billExportMaterial);
+        model.addAttribute("bEDetailsList",bEDetailsList);
+        model.addAttribute("ingredientExport",true);
+        return "Supply/billExportMaterialDetails";
+    }
     @GetMapping("/exportmatertial/bill/create")
     public String createBillExportMaterial(Model model, Principal principal){
         if(principal != null){
@@ -228,15 +234,15 @@ public class SupplyController {
         model.addAttribute("productExport",true);
         return "Supply/billExportProductDetails";
     }
-    @GetMapping("/exportproduct/bill/create")
-    public String createBillExportProduct(Model model, Principal principal){
-        if(principal != null){
-            Account account = accountService.getAccountByName(principal.getName());
-            model.addAttribute("account",account);
-        }
-        model.addAttribute("productExport",true);;
-        return "Supply/addBillExportProduct";
-    }
+//    @GetMapping("/exportproduct/bill/create")
+//    public String createBillExportProduct(Model model, Principal principal){
+//        if(principal != null){
+//            Account account = accountService.getAccountByName(principal.getName());
+//            model.addAttribute("account",account);
+//        }
+//        model.addAttribute("productExport",true);;
+//        return "Supply/addBillExportProduct";
+//    }
 
 
 }
