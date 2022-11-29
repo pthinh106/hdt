@@ -87,7 +87,23 @@
         
     });
     ////////////////////////////////////////////////////////////////
+    var alertPlaceholder = document.getElementById('AddForm');
+    var addFormgroud = document.getElementById('AddIP');
+    var getList = document.getElementById('ListIP').innerHTML;
+    function add() {
+    var wrapper = document.createElement('div')
+    wrapper.id ='ListIP';
+    wrapper.className = 'ListIP col-sm-12';
+    wrapper.style='padding-left: 0;';
+    wrapper.innerHTML=getList
+    alertPlaceholder.append(wrapper)
     
+}
+if (addFormgroud) {
+    addFormgroud.addEventListener('click', function () {
+    add()
+    })
+}  
     /*----->
     ----Popup----
     -------*/
