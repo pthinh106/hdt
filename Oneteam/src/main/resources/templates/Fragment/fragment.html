@@ -1,0 +1,205 @@
+<head th:fragment="head">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard</title>
+    <!--	<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">-->
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/assets/css/datepicker3.css" rel="stylesheet">
+    <link href="/assets/css/styles.css" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/assets/faviconOT.webp">
+    <!--Custom Font-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!--[if lt IE 9]-->
+    <script src="/assets/js/html5shiv.min.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+    <!--[endif]-->
+</head>
+
+<!--/.nav Sales-->
+
+
+<nav th:fragment="navSales" class="navbar navbar-custom navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span></button>
+            <a class="navbar-brand" href="/"><span>One</span>Team</a>
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown"><a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                    <em class="fa fa-bell"></em><span class="label label-info">1</span>
+                </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li><a href="#">
+                            <div><em class="fa fa-envelope"></em> 1 New Message
+                                <span class="pull-right text-muted small">3 mins ago</span></div>
+                        </a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div><!-- /.container-fluid -->
+</nav>
+
+<!--/.nav Supply-->
+
+<nav th:fragment="navSupply" class="navbar navbar-custom navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span></button>
+            <a class="navbar-brand" href="/"><span>One</span>Team</a>
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown"><a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                    <em class="fa fa-bell"></em><span class="label label-info">1</span>
+                </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li><a href="#">
+                            <div><em class="fa fa-envelope"></em> 1 New Message
+                                <span class="pull-right text-muted small">3 mins ago</span></div>
+                        </a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div><!-- /.container-fluid -->
+</nav>
+
+<!--/.sidebar Sales-->
+
+<div th:fragment="slidebar" id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+    <div class="profile-sidebar">
+        <div class="profile-userpic">
+            <img src="https://scontent.fsgn2-5.fna.fbcdn.net/v/t39.30808-6/312565204_1171609460104442_305861500513095724_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=Sn7ffIbksTIAX-uXrXb&_nc_ht=scontent.fsgn2-5.fna&oh=00_AfAi8QwTwxCcW5M7NKWPdNwCtD7Osok0WEemOvz43Jm30Q&oe=6385755C" class="img-responsive" alt="">
+        </div>
+        <div class="profile-usertitle">
+            <div class="profile-usertitle-name">Manager</div>
+            <div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="divider"></div>
+    <form role="search">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search">
+        </div>
+    </form>
+    <ul class="nav menu">
+        <th:block th:if="${account.getRole().getRoleId() == 1}">
+            <li th:class="${dashboard != null ? 'active':''}"><a href="/"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
+            <li th:class="${warehouse != null ? 'active':''}"><a href="/supply/warehouse"><em class="fa fa-dropbox">&nbsp;</em> Warehouse</a></li>
+            <li th:class="${ingredientImport != null ? 'active':''}"><a href="/supply/billimportmatertial"><em class="fa fa-tree">&nbsp;</em> Import Bill Ingredient </a></li>
+            <li th:class="${ingredientExport != null ? 'active':''}"><a href="/supply/billexportmatertial"><em class="fa fa-envira">&nbsp;</em> Export Bill Ingredient</a></li>
+            <li th:class="${productImport != null ? 'active':''}"><a href="/supply/billimportproduct"><em class="fa fa-umbrella ">&nbsp;</em> Import Bill Product</a></li>
+            <li th:class="${productExport != null ? 'active':''}"><a href="/supply/billexportproduct"><em class="fa fa-gift ">&nbsp;</em> Export Bill Product</a></li>
+            <li ><a href="/logout"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+        </th:block>
+        <th:block th:if="${account.getRole().getRoleId() == 2}">
+            <li th:class="${dashboard != null ? 'active':''}"><a href="/"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
+            <li th:class="${contract != null ? 'active':''}"><a href="/sales/contract"><em class="fa fa-sticky-note">&nbsp;</em> Contract</a></li>
+            <li th:class="${liquidation != null ? 'active':''}"><a href="/sales/liquidation"><em class="fa fa-send-o">&nbsp;</em> Liquidation Contract</a></li>
+            <li ><a href="/logout"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+        </th:block>
+        <th:block th:if="${account.getRole().getRoleId() == 3}">
+            <li th:class="${dashboardSupply != null ? 'active':''}"><a href="/supply"><em class="fa fa-dashboard">&nbsp;</em> Dashboard Supply</a></li>
+            <li th:class="${dashboardSales != null ? 'active':''}"><a href="/sales"><em class="fa fa-dashboard">&nbsp;</em> Dashboard Sales</a></li>
+            <li th:class="${contract != null ? 'active':''}"><a href="/sales/contract"><em class="fa fa-sticky-note">&nbsp;</em> Contract</a></li>
+            <li th:class="${liquidation != null ? 'active':''}"><a href="/sales/liquidation"><em class="fa fa-send-o">&nbsp;</em> Liquidation Contract</a></li>
+            <li th:class="${warehouse != null ? 'active':''}"><a href="/supply/warehouse"><em class="fa fa-dropbox">&nbsp;</em> Warehouse</a></li>
+            <li th:class="${ingredientImport != null ? 'active':''}"><a href="/supply/billimportmatertial"><em class="fa fa-tree">&nbsp;</em> Import Bill Ingredient </a></li>
+            <li th:class="${ingredientExport != null ? 'active':''}"><a href="/supply/billexportmatertial"><em class="fa fa-envira">&nbsp;</em> Export Bill Ingredient</a></li>
+            <li th:class="${productImport != null ? 'active':''}"><a href="/supply/billimportproduct"><em class="fa fa-umbrella ">&nbsp;</em> Import Bill Product</a></li>
+            <li th:class="${productExport != null ? 'active':''}"><a href="/supply/billexportproduct"><em class="fa fa-gift ">&nbsp;</em> Export Bill Product</a></li>
+            <li th:class="${employee != null ? 'active':''}"><a href="/manager/employee"><em class="fa fa-gift ">&nbsp;</em> Employee Manager</a></li>
+            <li ><a href="/logout"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+        </th:block>
+    </ul>
+</div><!--/.sidebar-->
+
+
+
+<div th:fragment="js">
+    <script src="/assets/js/jquery-1.11.1.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/chart.min.js"></script>
+    <script src="/assets/js/chart-data.js"></script>
+    <script src="/assets/js/easypiechart.js"></script>
+    <script src="/assets/js/easypiechart-data.js"></script>
+    <script src="/assets/js/bootstrap-datepicker.js"></script>
+    <script src="/assets/js/custom.js"></script>
+    <script src="/sweetalert2/sweetalert2.min.js"></script>
+    <script language="javascript">
+
+        // Đếm checkbox chọn
+        showChecked();
+        function showChecked(){
+            document.getElementById("result").textContent = "Tổng hợp đồng đang chọn = " + document.querySelectorAll("input:checked").length;
+        }
+        document.querySelectorAll("input[name=checkbox0]").forEach(i=>{
+            i.onclick = function(){
+                showChecked();
+            }
+        });
+        // Chức năng chọn hết
+        document.getElementById("btn1").onclick = function ()
+        {
+            // Lấy danh sách checkbox
+            var checkboxes = document.getElementsByName('checkbox0');
+
+            // Lặp và thiết lập checked
+            for (var i = 0; i < checkboxes.length; i++){
+                checkboxes[i].checked = true;
+                showChecked();
+            }
+        };
+
+        // Chức năng bỏ chọn hết
+        document.getElementById("btn2").onclick = function ()
+        {
+            // Lấy danh sách checkbox
+            var checkboxes = document.getElementsByName('checkbox0');
+
+            // Lặp và thiết lập Uncheck
+            for (var i = 0; i < checkboxes.length; i++){
+                checkboxes[i].checked = false;
+                showChecked();
+            }
+        };
+    </script>
+    <script>
+        $(document).ready(function(){
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#Contract tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+    <script>
+        function contractdetails(id){
+            window.location="http://localhost:8060/supply/contract/"+id;
+        }
+    </script>
+    <script>
+        function exit(url) {
+            Swal.fire({
+                title: 'Bạn chắc chắn muốn thoát?',
+                showCancelButton: true,
+                confirmButtonText: 'Yes',
+                denyButtonText: `No`,
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    window.location="http://localhost:8060/"+url;
+                }
+            })
+        }
+    </script>
+</div>

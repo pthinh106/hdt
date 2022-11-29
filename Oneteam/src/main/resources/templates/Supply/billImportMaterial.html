@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="Fragment/fragment :: head">
+<body>
+	<nav th:replace="Fragment/fragment :: navSupply"></nav>
+	<div th:replace="Fragment/fragment :: slidebar"></div>
+		
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="index.html">
+					<em class="fa fa-home"></em>
+				</a></li>
+				<li class="active">Ingredient</li>
+			</ol>
+		</div><!--/.row-->
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Ingredient</h1>
+			</div>
+		</div><!--/.row-->
+
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-heading" style="font-weight: bold;" >Phiếu Nhập Nguyên Liệu
+						<a class="addbutton" href="importmatertial/bill/create">
+							<button type="button" class="btn btn-md btn-success">Thêm</button>
+						</a>
+						</div>
+					<div class="panel-body">
+						<div class="col-lg-12">
+							<table class="table table-bordered">
+								<thead>
+								  <tr>
+									<th scope="col">Mã Phiếu Nhập Nguyên Liệu</th>
+									<th scope="col">Mã Hợp Đồng</th>
+									<th scope="col">Tên Khách Hàng</th>
+									<th scope="col">Ngày Mua</th>
+									<th scope="col">VAT</th>
+									<th scope="col">Trị giá Phiếu</th>
+								  </tr>
+								</thead>
+								<tbody>
+									<th:block th:each="billImportMaterial : ${billImportMaterialList}">
+										<tr>
+											<th scope="row" th:text="${'PNNL'+billImportMaterial.getBillImportId()}"></th>
+											<th scope="row" th:text="${'HĐ'+billImportMaterial.getContract().getContractId()}"></th>
+											<td th:text="${billImportMaterial.getContract().getCustomer().getCustomerName()}"></td>
+											<td th:text="${#dates.format(billImportMaterial.getCreated(), 'dd-MM-yyyy')}"></td>
+											<td th:text="${#numbers.formatDecimal(billImportMaterial.getVat(), 0, 'COMMA', 0, 'POINT')+ '%'}"></td>
+											<td th:text="${#numbers.formatDecimal(billImportMaterial.getTotal(), 0, 'COMMA', 0, 'POINT')+ ' VNĐ'}"></td>
+											<td>
+												<button type="button" class="btn btn-md btn-danger">Xóa</button>
+												<a th:href="@{billimportmatertial/{id}(id=${billImportMaterial.getBillImportId()})}"><button type="button" class="btn btn-md btn-default">Xem</button></a>
+											</td>
+										</tr>
+									</th:block>
+								</tbody>
+							  </table>
+						</div>  
+					</div>
+				</div><!-- /.panel-->
+			</div><!--/.col-->
+			<div class="col-sm-12">
+				<p class="back-link">Make by <a href="https://www.facebook.com/profile.php?id=100006077866205">ONETEAM</a></p>
+			</div>
+		</div><!--/.row-->
+	</div>	<!--/.main-->
+
+
+	<div th:replace="Fragment/fragment :: js"></div>
+	
+</body>
+</html>

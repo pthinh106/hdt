@@ -1,0 +1,109 @@
+<!DOCTYPE html >
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="Fragment/fragment :: head">
+</head>
+<body>
+<nav th:replace="Fragment/fragment :: navSales"></nav>
+<div th:replace="Fragment/fragment :: slidebar"></div>
+		
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="index.html">
+					<em class="fa fa-home"></em>
+				</a></li>
+				<li>Contract</li>
+				<li class="active">Contract Details</li>
+			</ol>
+		</div><!--/.row-->
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Contract Details</h1>
+			</div>
+		</div><!--/.row-->
+
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-heading" style="font-weight: bold;" >Chi Tiết Hợp Đồng Của
+
+						<th:block th:if="${contract != null}">
+							<a class="addbutton" href="/sales/contract">
+								<em class="fa fa-close color-red"> Đóng</em>
+							</a>
+						</th:block>
+						<th:block th:if="${liquidation != null}">
+							<a class="addbutton" href="/sales/liquidation">
+								<em class="fa fa-close color-red"> Đóng</em>
+							</a>
+						</th:block>
+						<th:block th:if="${dashboardSales != null}">
+							<a class="addbutton" href="/sales">
+								<em class="fa fa-close color-red"> Đóng</em>
+							</a>
+						</th:block>
+
+					</div>
+					<div class="panel-body">
+						<div class="col-lg-12">
+							<div class="form-group">
+								<div>Họ Tên Người Mua Hàng: <span th:text="${contracts.getCustomer().getCustomerName()}"></span></div>
+								<div>Số Điện Thoại: <span th:text="${contracts.getCustomer().getPhoneNumber()}"></span></div>
+								<div>Địa Chỉ: <span th:text="${contracts.getCustomer().getAddress()}"></span></div>
+								<div>Mã Số Thuế: <span th:text="${contracts.getCustomer().getTax()}"></span></div>
+								<div>Ngày Giao Hàng: <span th:text="${#dates.format(contracts.getCreated(), 'dd-MM-yyyy')}"></span></div>
+							</div>
+							<table class="table table-bordered">
+								<thead>
+								  <tr>
+									<th class="text-center" scope="col">STT</th>
+									<th class="text-center" scope="col">Mã Sản Phẩm</th>
+									<th class="text-center" scope="col">Tên Sản Phẩm</th>
+									<th class="text-center" scope="col">Đơn vị Tính</th>
+									<th class="text-center" scope="col">Số Lượng</th>
+									<th class="text-center" scope="col">Đơn Giá</th>
+									<th class="text-center" scope="col">Thành Tiền</th>
+								  </tr>
+								</thead>
+								<tbody>
+								<th:block th:each="contractDetails,count : ${contractDetailsList}" >
+									<tr>
+										<th class="text-center" scope="row" th:text="${count.index + 1}">1</th>
+										<td th:text="${'SP'+contractDetails.getProduct().getProductId()}">SP01</td>
+										<td th:text="${contractDetails.getProduct().getProductName()}">Cơm Cháy</td>
+										<td th:text="${contractDetails.getProduct().getUnit()}">Bịch</td>
+										<td class="text-right" th:text="${contractDetails.getQuantity()}">10</td>
+										<td class="text-right" th:text="${#numbers.formatDecimal(contractDetails.getProduct().getPrice(),0, 'COMMA', 0, 'POINT')+ ' VNĐ'}">2000</td>
+										<td class="text-right" th:text="${#numbers.formatDecimal(contractDetails.getProduct().getPrice()*contractDetails.getQuantity(),0, 'COMMA', 0, 'POINT')+ ' VNĐ'}">20000</td>
+									</tr>
+								</th:block>
+								<tr>
+									<td colspan="6" class="text-right">Cộng Tiền Hàng</td>
+									<td class="text-right" th:text="${#numbers.formatDecimal(total,0, 'COMMA', 0, 'POINT')+ ' VNĐ'}">300000</td>
+								</tr>
+								<tr>
+									<td colspan="6" class="text-right">Tiền Thuế GTGT (10%)</td>
+									<td class="text-right" th:text="${#numbers.formatDecimal(total*0.1,0, 'COMMA', 0, 'POINT')+ ' VNĐ'}">2121</td>
+								</tr>
+								<tr>
+									<td colspan="6" class="text-right">Tổng Số Tiền Thanh Toán</td>
+									<td class="text-right" th:text="${#numbers.formatDecimal(total*1.1,0, 'COMMA', 0, 'POINT')+ ' VNĐ'}">444444</td>
+								</tr>
+								</tbody>
+							  </table>
+						</div>  
+					</div>
+				</div><!-- /.panel-->
+			</div><!--/.col-->
+			<div class="col-sm-12">
+				<p class="back-link">Make by <a href="https://www.facebook.com/profile.php?id=100006077866205">ONETEAM</a></p>
+			</div>
+		</div><!--/.row-->
+	</div>	<!--/.main-->
+
+
+	<div th:replace="Fragment/fragment :: js"></div>
+	
+</body>
+</html>

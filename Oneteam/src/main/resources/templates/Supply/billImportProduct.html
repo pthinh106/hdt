@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="Fragment/fragment :: head">
+<body>
+	<nav th:replace="Fragment/fragment :: navSupply"></nav>
+	<div th:replace="Fragment/fragment :: slidebar"></div>
+
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="index.html">
+					<em class="fa fa-home"></em>
+				</a></li>
+				<li class="active">Import Product</li>
+			</ol>
+		</div><!--/.row-->
+
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Import Product</h1>
+			</div>
+		</div><!--/.row-->
+
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-heading" style="font-weight: bold;" >Phiếu Nhập Sản Phẩm
+						<a class="addbutton" href="importproduct/bill/create">
+							<button type="button" class="btn btn-md btn-success">Thêm</button>
+						</a>
+					</div>
+					<div class="panel-body">
+						<div class="col-lg-12">
+							<input style="margin-bottom: 10px;" class="form-control" id="myInput" type="text" placeholder="Search">
+							<table class="table table-bordered">
+								<thead>
+								<tr>
+									<th scope="col">STT</th>
+									<th scope="col">Mã Phiếu Nhập Sản Phẩm</th>
+									<th scope="col">Phân Xưởng</th>
+									<th scope="col">Ngày Nhập</th>
+								</tr>
+								</thead>
+								<tbody id="ImportProduct">
+								<th:block th:each="billImportProduct,count : ${billImportProductList}">
+									<tr>
+										<th scope="row" th:text="${count.index + 1}"></th>
+										<th scope="row" th:text="${'PNSP'+ billImportProduct.getBillImportId()}">PNSP01</th>
+										<td th:text="${billImportProduct.getWorkshop().getWorkshopName()}">PNSP01</td>
+										<td th:text="${#dates.format(billImportProduct.getCreated(), 'dd-MM-yyyy')}">06-03-2022</td>
+										<td>
+											<button type="button" class="btn btn-md btn-danger">Xóa</button>
+											<a  th:href="@{billimportproduct/{id}(id=${billImportProduct.getBillImportId()})}"><button type="button" class="btn btn-md btn-default">Xem</button></a>
+										</td>
+									</tr>
+								</th:block>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div><!-- /.panel-->
+			</div><!--/.col-->
+			<div class="col-sm-12">
+				<p class="back-link">Make by <a href="https://www.facebook.com/profile.php?id=100006077866205">ONETEAM</a></p>
+			</div>
+		</div><!--/.row-->
+	</div>	<!--/.main-->
+
+
+	<div th:replace="Fragment/fragment :: js"></div>
+	
+</body>
+</html>

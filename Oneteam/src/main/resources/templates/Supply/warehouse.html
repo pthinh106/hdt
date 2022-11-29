@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="Fragment/fragment :: head">
+<body>
+	<nav th:replace="Fragment/fragment :: navSupply"></nav>
+	<div th:replace="Fragment/fragment :: slidebar"></div>
+		
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="index.html">
+					<em class="fa fa-home"></em>
+				</a></li>
+				<li class="active">Warehouse</li>
+			</ol>
+		</div><!--/.row-->
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Warehouse</h1>
+			</div>
+		</div><!--/.row-->
+
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-heading" style="font-weight: bold;" >Nguyên Liệu
+						<a class="addbutton" href="warehouse/material/create">
+							<button type="button" class="btn btn-md btn-success">Thêm</button>
+						</a>
+						</div>
+					<div class="panel-body">
+						<div class="col-lg-12">
+							<input style="margin-bottom: 10px;" class="form-control" id="myInput" type="text" placeholder="Search">
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th scope="col">Mã Nguyên Liệu</th>
+										<th scope="col">Tên Nguyên Liệu</th>
+										<th scope="col">Đơn Vị Tính</th>
+										<th scope="col">Giá Nhập</th>
+										<th scope="col">Số Lượng</th>
+									</tr>
+								</thead>
+								<tbody id="Ingredient">
+									<th:block th:each="material : ${materialList}">
+										<tr>
+											<th scope="row" th:text="${'NL'+material.getMaterialId()}"></th>
+											<td th:text="${material.getMaterialName()}"></td>
+											<td th:text="${material.getUnit()}"></td>
+											<td th:text="${#numbers.formatDecimal(material.getPrice(), 0, 'COMMA', 0, 'POINT')+ ' VNĐ'}"></td>
+											<td th:text="${material.getInventory()}"></td>
+											<td>
+												<button type="button" class="btn btn-md btn-info addbutton">Sửa</button>
+												<button type="button" class="btn btn-md btn-danger">Xóa</button>
+											</td>
+										</tr>
+									</th:block>
+								</tbody>
+							  </table>
+						</div>  
+					</div>
+				</div><!-- /.panel-->
+
+				<div class="panel panel-default">
+					<div class="panel-heading" style="font-weight: bold;" >Sản Phẩm
+						<a class="addbutton" href="warehouse/product/create">
+							<button type="button" class="btn btn-md btn-success">Thêm</button>
+						</a>
+						</div>
+					<div class="panel-body">
+						<div class="col-lg-12">
+							<input style="margin-bottom: 10px;" class="form-control" id="myInput1" type="text" placeholder="Search">
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th scope="col">Mã Sản Phẩm</th>
+										<th scope="col">Tên Sản Phẩm</th>
+										<th scope="col">Đơn Vị Tính</th>
+										<th scope="col">Giá Sản Xuất</th>
+										<th scope="col">Số Lượng</th>
+									</tr>
+								</thead>
+								<tbody id="Product">
+								<th:block th:each="product : ${productList}">
+									<tr>
+										<th scope="row" th:text="${'SP'+product.getProductId()}"></th>
+										<td th:text="${product.getProductName()}"></td>
+										<td th:text="${product.getUnit()}"></td>
+										<td th:text="${#numbers.formatDecimal(product.getPrice(), 0, 'COMMA', 0, 'POINT')+ ' VNĐ'}"></td>
+										<td th:text="${product.getInventory()}"></td>
+										<td>
+											<button type="button" class="btn btn-md btn-info addbutton">Sửa</button>
+											<button type="button" class="btn btn-md btn-danger">Xóa</button>
+										</td>
+									</tr>
+								</th:block>
+								</tbody>
+							  </table>
+						</div>  
+					</div>
+				</div><!-- /.panel-->
+			</div><!--/.col-->
+			<div class="col-sm-12">
+				<p class="back-link">Make by <a href="https://www.facebook.com/profile.php?id=100006077866205">ONETEAM</a></p>
+			</div>
+		</div><!--/.row-->
+	</div>	<!--/.main-->
+
+
+	<div th:replace="Fragment/fragment :: js"></div>
+	
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="Fragment/fragment :: head">
+<body>
+	<nav th:replace="Fragment/fragment :: navSupply"></nav>
+	<div th:replace="Fragment/fragment :: slidebar"></div>
+		
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="#">
+					<em class="fa fa-home"></em>
+				</a></li>
+				<li class="active">Dashboard</li>
+			</ol>
+		</div><!--/.row-->
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Dashboard</h1>
+			</div>
+		</div><!--/.row-->
+		
+		<div class="panel panel-container">
+			<div class="row">
+				<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+					<div class="panel panel-teal panel-widget border-right">
+						<div class="row no-padding"><em class="fa fa-xl fa-shopping-cart color-blue"></em>
+							<div class="large">15</div>
+							<div class="text-muted">Phiếu nhập nguyên liệu</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+					<div class="panel panel-blue panel-widget border-right">
+						<div class="row no-padding"><em class="fa fa-xl fa-file color-orange"></em>
+							<div class="large">8</div>
+							<div class="text-muted">phiếu xuất nguyên liệu</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+					<div class="panel panel-orange panel-widget border-right">
+						<div class="row no-padding"><em class="fa fa-xl fa-cubes color-teal"></em>
+							<div class="large">15</div>
+							<div class="text-muted">Phiếu nhập sản phẩm</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+					<div class="panel panel-red panel-widget ">
+						<div class="row no-padding"><em class="fa fa-xl fa-file-text color-red"></em>
+							<div class="large">2</div>
+							<div class="text-muted">Phiếu xuất sản phầm</div>
+						</div>
+					</div>
+				</div>
+			</div><!--/.row-->
+		</div>
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<input style="margin-bottom: 10px;" class="form-control" id="myInput" type="text" placeholder="Search">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th scope="col">Mã Hợp Đồng</th>
+							<th scope="col">Ngày Kí Hợp Đồng</th>
+							<th scope="col">Nơi Giao</th>
+							<th scope="col">Điều Khoản</th>
+							<th scope="col">Phương Thức Thanh Toán</th>
+							<th scope="col">Giá Trị Hợp Đồng</th>
+							<th scope="col">Trạng Thái</th>
+						</tr>
+					</thead>
+					<tbody id="Contract">
+					<th:block th:each="contracts : ${contractList}">
+						<tr>
+							<th scope="row" th:id="${contracts.getContractId()}" th:text="${'HĐ'+contracts.getContractId()}"></th>
+							<td th:text="${#dates.format(contracts.getCreated(), 'dd-MM-yyyy')}"></td>
+							<td th:text="${contracts.getDeliveryPlace()}"></td>
+							<td th:text="${contracts.getProvision()}"></td>
+							<td th:text="${contracts.getPayment().getPaymentName()}"></td>
+							<td th:text="${#numbers.formatDecimal(contracts.getTotal(), 0, 'COMMA', 0, 'POINT')+ ' VNĐ'}"></td>
+							<th:block th:if="${contracts.getLiquidationStatus() == 1}">
+								<td class="text-center"><i class="fa fa-xl fa-check-square color-teal "></i></td>
+							</th:block>
+							<th:block th:unless="${contracts.getLiquidationStatus() == 1}">
+								<td class="text-center"></td>
+							</th:block>
+							<td>
+								<a th:href="@{/supply/contract/{id}(id=${contracts.getContractId()})}"><button type="button" class="btn btn-md btn-default">Xem</button></a>
+								<th:block th:if="${contracts.getLiquidationStatus() == 1}">
+									<button type="button" class="btn btn-md btn-warning" th:onclick="liquidationrequest([[${contracts.getContractId()}]])">Gửi Yêu Cầu Thanh Lý</button>
+								</th:block>
+							</td>
+							</td>
+						</tr>
+					</th:block>
+					</tbody>
+				  </table>
+			</div>
+		</div><!--/.row-->
+		
+		<div class="row">
+			<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Việc cần làm
+						<span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span></div>
+					<div class="panel-body">
+						<ul class="todo-list">
+							<li class="todo-list-item">
+								<div class="checkbox">
+									<input type="checkbox" id="checkbox-1" />
+									<label for="checkbox-1">Mua Nguyên Liệu A</label>
+								</div>
+								<div class="pull-right action-buttons"><a href="#" class="trash">
+									<em class="fa fa-trash"></em>
+								</a></div>
+							</li>
+							<li class="todo-list-item">
+								<div class="checkbox">
+									<input type="checkbox" id="checkbox-2" />
+									<label for="checkbox-2">Mua Nguyên Liệu C</label>
+								</div>
+								<div class="pull-right action-buttons"><a href="#" class="trash">
+									<em class="fa fa-trash"></em>
+								</a></div>
+							</li>
+							<li class="todo-list-item">
+								<div class="checkbox">
+									<input type="checkbox" id="checkbox-3" />
+									<label for="checkbox-3">Kiểm Tra Hợp Đông</label>
+								</div>
+								<div class="pull-right action-buttons"><a href="#" class="trash">
+									<em class="fa fa-trash"></em>
+								</a></div>
+							</li>
+							<li class="todo-list-item">
+								<div class="checkbox">
+									<input type="checkbox" id="checkbox-4" />
+									<label for="checkbox-4">Gửi Thanh Lý Hợp Đồng</label>
+								</div>
+								<div class="pull-right action-buttons"><a href="#" class="trash">
+									<em class="fa fa-trash"></em>
+								</a></div>
+							</li>
+							<li class="todo-list-item">
+								<div class="checkbox">
+									<input type="checkbox" id="checkbox-5" />
+									<label for="checkbox-5">Đi ăn BBQ</label>
+								</div>
+								<div class="pull-right action-buttons"><a href="#" class="trash">
+									<em class="fa fa-trash"></em>
+								</a></div>
+							</li>
+						</ul>
+					</div>
+					<div class="panel-footer">
+						<div class="input-group">
+							<input id="btn-input" type="text" class="form-control input-md" placeholder="Add new task" /><span class="input-group-btn">
+								<button class="btn btn-primary btn-md" id="btn-todo">Add</button>
+						</span></div>
+					</div>
+				</div>
+			</div><!--/.col-->
+			
+			
+			<div class="col-md-6">
+				<div class="panel panel-default ">
+					<div class="panel-heading">
+						Timeline
+						<span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span></div>
+					<div class="panel-body timeline-container">
+						<ul class="timeline">
+							<li>
+								<div class="timeline-badge"><em class="glyphicon glyphicon-pushpin"></em></div>
+								<div class="timeline-panel">
+									<div class="timeline-heading">
+										<h4 class="timeline-title">Lorem ipsum dolor sit amet</h4>
+									</div>
+									<div class="timeline-body">
+										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at sodales nisl. Donec malesuada orci ornare risus finibus feugiat.</p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="timeline-badge primary"><em class="glyphicon glyphicon-link"></em></div>
+								<div class="timeline-panel">
+									<div class="timeline-heading">
+										<h4 class="timeline-title">Lorem ipsum dolor sit amet</h4>
+									</div>
+									<div class="timeline-body">
+										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="timeline-badge"><em class="glyphicon glyphicon-camera"></em></div>
+								<div class="timeline-panel">
+									<div class="timeline-heading">
+										<h4 class="timeline-title">Lorem ipsum dolor sit amet</h4>
+									</div>
+									<div class="timeline-body">
+										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at sodales nisl. Donec malesuada orci ornare risus finibus feugiat.</p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="timeline-badge"><em class="glyphicon glyphicon-paperclip"></em></div>
+								<div class="timeline-panel">
+									<div class="timeline-heading">
+										<h4 class="timeline-title">Lorem ipsum dolor sit amet</h4>
+									</div>
+									<div class="timeline-body">
+										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div><!--/.col-->
+			<div class="col-sm-12">
+				<p class="back-link">Make by <a href="https://www.facebook.com/profile.php?id=100006077866205">ONETEAM</a></p>
+			</div>
+		</div><!--/.row-->
+	</div>	<!--/.main-->
+
+	<div th:replace="Fragment/fragment :: js"></div>
+	<script>
+		function liquidationrequest(id) {
+			var contractId = document.getElementById(id).innerText;
+			Swal.fire({
+				title: 'Bạn chắc chắn muốn gửi yêu cầu thanh lí hợp đồng có id là '+contractId+"?",
+				showCancelButton: true,
+				confirmButtonText: 'Yes',
+				denyButtonText: `No`,
+			}).then((result) => {
+				/* Read more about isConfirmed, isDenied below */
+				if (result.isConfirmed) {
+					$.ajax({
+						type: "POST",
+						url: "http://localhost:8060/supply/api/liquidationrequest/"+id,
+						success: function(data)
+						{
+							if(data){
+								Swal.fire({
+									position: 'center',
+									icon: 'success',
+									title: 'Gửi yêu cầu thành công!',
+									showConfirmButton: true
+								}).then((result) =>{
+									window.location.reload();
+								})
+							}else{
+								Swal.fire({
+									icon: 'error',
+									title: 'Failed',
+									text: 'Không tìm thấy hợp đồng có id là '+ contractId,
+									footer: '<a>Vui lòng thử lại</a>'
+								})
+							}
+						}
+					});
+				}
+			})
+
+
+		}
+	</script>
+		
+</body>
+</html>

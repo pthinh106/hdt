@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="Fragment/fragment :: head">
+<body>
+	<nav th:replace="Fragment/fragment :: navSupply"></nav>
+	<div th:replace="Fragment/fragment :: slidebar"></div>
+
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="index.html">
+					<em class="fa fa-home"></em>
+				</a></li>
+				<li class="active">Warehouse</li>
+				<li class="active">AddIngredient</li>
+			</ol>
+		</div><!--/.row-->
+
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Add Ingredient</h1>
+			</div>
+		</div><!--/.row-->
+
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-heading" style="font-weight: bold;" > Thêm Nguyên Liệu
+						<a class="addbutton" href="/supply/warehouse">
+							<em class="fa fa-close color-red"> Đóng</em>
+						</a>
+					</div>
+					<form id="form" role="form" name="MyForm" action="">
+						<div class="panel-body">
+							<div class="col-md-6">
+								<div  class="form-group ">
+									<label >Mã Nguyên Liệu</label>
+									<label style="color:red ;">(*)</label>
+									<input name="Mahd" id="Mahd"  class="form-control" >
+								</div>
+								<div class="form-group">
+									<label>Tên Nguyên Liệu</label>
+									<label style="color:red ;">(*)</label>
+									<input name="IngredientName" id="IngredientName" type="text" class="form-control">
+								</div>
+
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Đơn Vị Tính</label>
+									<label style="color:red ;">(*)</label>
+									<input name="PlaceOfDelivery" id="PlaceOfDelivery" type="text" class="form-control">
+								</div>
+								<div class="form-group">
+									<label>Giá Nhập</label>
+									<label style="color:red ;">(*)</label>
+									<input name="Rules" id="Rules" type="text" class="form-control">
+								</div>
+							</div>
+						</div>
+						<div class="panel-footer">
+							<button type="submit" id="Submit" class="btn btn-lg btn-primary">Submit Button</button>
+							<button type="reset" class="btn btn-lg  btn-default">Reset Button</button>
+						</div>
+					</form>
+				</div><!-- /.panel-->
+			</div><!--/.col-->
+			<div class="col-sm-12">
+				<p class="back-link">Make by <a href="https://www.facebook.com/profile.php?id=100006077866205">ONETEAM</a></p>
+			</div>
+		</div><!--/.row-->
+	</div>	<!--/.main-->
+
+
+	<div th:replace="Fragment/fragment :: js"></div>
+</body>
+</html>
