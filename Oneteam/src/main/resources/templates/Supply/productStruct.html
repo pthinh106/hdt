@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="Fragment/fragment :: head">
+<body>
+    <nav th:replace="Fragment/fragment :: navSupply"></nav>
+    <div th:replace="Fragment/fragment :: slidebar"></div>
+    <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+        <div class="row">
+            <ol class="breadcrumb">
+                <li><a href="index.html">
+                    <em class="fa fa-home"></em>
+                </a></li>
+                <li>Warehouse</li>
+                <li class="active">ProductStructure</li>
+            </ol>
+        </div>
+        <!--/.row-->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Product Structure</h1>
+            </div>
+        </div>
+        <!--/.row-->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="font-weight: bold;">Cơ Cấu Sản Phẩm
+                        <a class="addbutton" href="/supply/warehouse">
+                            <em class="fa fa-close color-red"> Đóng</em>
+                        </a>
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <div>Tên Sản Phẩm: Cơm Cháy</div>
+                                <div>Đơn Vị Tính: Bịch</div>
+                                <div>Giá Sản Xuất: ????$</div>
+                            </div>
+                            <table class="table table-bordered">
+                                <caption style="text-align: center; color: #444444; padding-top: 0;"><h3 style="font-weight: bold; margin: 0px;">Bảng Nguyên Liệu</h3></caption>
+                                <thead>
+                                <tr>
+                                    <th class="text-center" scope="col">STT</th>
+                                    <th class="text-center" scope="col">Mã Nguyên Liệu</th>
+                                    <th class="text-center" scope="col">Tên Nguyên Liệu</th>
+                                    <th class="text-center" scope="col">Đơn vị Tính</th>
+                                    <th class="text-center" scope="col">Số Lượng</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <th class="text-center" scope="row">1</th>
+                                    <td>NL01</td>
+                                    <td>Gạo Lức</td>
+                                    <td>Kg</td>
+                                    <td class="text-right">2</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-center" scope="row">2</th>
+                                    <td>NL02</td>
+                                    <td>Bào Ngư</td>
+                                    <td>Kg</td>
+                                    <td class="text-right">5</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div><!-- /.panel-->
+                </div>
+                <!--/.col-->
+                <div class="col-sm-12">
+                    <p class="back-link">Make by <a
+                                    href="https://www.facebook.com/profile.php?id=100006077866205">ONETEAM</a>
+                    </p>
+                </div>
+            </div>
+            <!--/.row-->
+        </div>
+    </div>
+
+
+    <div th:replace="Fragment/fragment :: js"></div>
+
+</body>
+</html>

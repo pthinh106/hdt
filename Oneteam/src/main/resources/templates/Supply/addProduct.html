@@ -33,19 +33,11 @@
 					<form id="form" role="form" name="MyForm" action="">
 						<div class="panel-body">
 							<div class="col-md-6">
-								<div  class="form-group ">
-									<label >Mã Sản Phẩm</label>
-									<label style="color:red ;">(*)</label>
-									<input name="Mahd" id="Mahd"  class="form-control" >
-								</div>
 								<div class="form-group">
 									<label>Tên Sản Phẩm</label>
 									<label style="color:red ;">(*)</label>
 									<input name="IngredientName" id="IngredientName" type="text" class="form-control">
 								</div>
-
-							</div>
-							<div class="col-md-6">
 								<div class="form-group">
 									<label>Đơn Vị Tính</label>
 									<label style="color:red ;">(*)</label>
@@ -57,10 +49,37 @@
 									<input name="Rules" id="Rules" type="text" class="form-control">
 								</div>
 							</div>
-							<div class="panel-footer">
-								<button type="submit" id="Submit" class="btn btn-lg btn-primary">Submit Button</button>
-								<button type="reset" class="btn btn-lg  btn-default">Reset Button</button>
+							<div class="col-md-6">
+								<div id="AddForm">
+									<div id="ListIP" class="ListIP col-sm-12" style="padding-left: 0;">
+										<div class="col-sm-6" style="padding-left: 0;">
+											<div class="form-group">
+												<label>Nguyên Liệu</label>
+												<label style="color:red ;">(*)</label>
+												<select class="form-control">
+													<option>Gạo Lức</option>
+													<option>Bào Ngư</option>
+													<option>Trứng Gà</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label>Số Lượng Nguyên Liệu</label>
+												<label style="color:red ;">(*)</label>
+												<input type="number" class="form-control ">
+											</div>
+										</div>
+									</div>
+								</div>
+								<button type="button" id="AddIP" class="btn btn-success">
+									<i class="fa fa-plus"></i>
+								</button>
 							</div>
+						</div>
+						<div class="panel-footer">
+							<button type="submit" id="Submit" class="btn btn-lg btn-primary">Submit Button</button>
+							<button type="reset" class="btn btn-lg  btn-default">Reset Button</button>
 						</div>
 					</form>
 				</div>
