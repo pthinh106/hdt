@@ -121,6 +121,8 @@ public class SupplyController {
         for(BillImportMaterialDetails biMaterialDetails : BIMaterialDetails){
             total = total + biMaterialDetails.getMaterial().getPrice() * biMaterialDetails.getQuantity();
         }
+        Contract contracts = contractService.getContractById(billImportMaterial.getContract().getContractId());
+        model.addAttribute("contracts",contracts);
         model.addAttribute("billImportMaterial",billImportMaterial);
         model.addAttribute("total",total);
         model.addAttribute("BIMaterialDetails",BIMaterialDetails);
@@ -222,12 +224,15 @@ public class SupplyController {
             Account account = accountService.getAccountByName(principal.getName());
             model.addAttribute("account",account);
         }
+
         double total = 0;
         BillExportProduct billExportProduct = billProductService.getBillExportProductById(id);
         List<BillExportProductDetails> bEDetailsList = billProductService.getBEProductDetailsByBEPId(billExportProduct);
         for(BillExportProductDetails billExportProductDetails : bEDetailsList){
             total = total + billExportProductDetails.getProduct().getPrice() * billExportProductDetails.getQuantity();
         }
+        Contract contracts = contractService.getContractById(billExportProduct.getContract().getContractId());
+        model.addAttribute("contracts",contracts);
         model.addAttribute("billExportProduct",billExportProduct);
         model.addAttribute("bEDetailsList",bEDetailsList);
         model.addAttribute("total",total);

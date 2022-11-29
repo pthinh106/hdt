@@ -30,12 +30,13 @@
 							<em class="fa fa-close color-red"> Đóng</em>
 						</a>
 					</div>
-					<div class="panel-body">
+					<div class="panel-body" style="font-size: 16px">
 						<div class="col-lg-12">
 							<div class="form-group">
-								<div>Họ Tên Phân Xưởng: <span th:text="${billExportMaterial.getWorkshop().getWorkshopName()}"></span> </div>
-								<div>Số Điện Thoại: <span th:text="${billExportMaterial.getWorkshop().getPhoneNumber()}"></span></div>
-								<div>Địa Chỉ: <span th:text="${billExportMaterial.getWorkshop().getAddress()}"></span></div>
+								<div><strong>Tên Phân Xưởng: </strong> <span th:text="${billExportMaterial.getWorkshop().getWorkshopName()}"></span> </div>
+								<div><strong>Điện Thoại: </strong> <span th:text="${billExportMaterial.getWorkshop().getPhoneNumber()}"></span></div>
+								<div><strong>Địa Chỉ: </strong> <span th:text="${billExportMaterial.getWorkshop().getAddress()}"></span></div>
+								<div><strong>Ngày Xuất Phiếu Nhập: </strong> <span th:text="${#dates.format(billExportMaterial.getCreated(), 'dd-MM-yyyy hh:mm:SS')}"></span></div>
 							</div>
 							<table class="table table-bordered">
 								<thead>

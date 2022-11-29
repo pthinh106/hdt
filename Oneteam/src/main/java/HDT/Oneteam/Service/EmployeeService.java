@@ -23,6 +23,9 @@ public class EmployeeService {
     public Employee getEmployeeById(int employeeId){
         return employeeReps.findById(employeeId).get();
     }
+    public Employee getEmployeeByAccountId(int accountId){
+        return employeeReps.findByAccount(accountService.getAccountById(accountId));
+    }
     public List<Employee> getAllEmployeeByStatus(int status){
         return employeeReps.findAllByStatus(status);
     }

@@ -49,7 +49,6 @@
 										<td th:text="${billImportProduct.getWorkshop().getWorkshopName()}">PNSP01</td>
 										<td th:text="${#dates.format(billImportProduct.getCreated(), 'dd-MM-yyyy')}">06-03-2022</td>
 										<td>
-											<button type="button" class="btn btn-md btn-info addbutton">Sửa</button>
 											<button type="button" class="btn btn-md btn-danger">Xóa</button>
 											<a  th:href="@{billimportproduct/{id}(id=${billImportProduct.getBillImportId()})}"><button type="button" class="btn btn-md btn-default">Xem</button></a>
 										</td>

@@ -3,9 +3,9 @@
 <head th:replace="Fragment/fragment :: head">
 </head>
 <body>
-<nav th:replace="Fragment/fragment :: navSales"></nav>
-<div th:replace="Fragment/fragment :: slidebar"></div>
-		
+	<nav th:replace="Fragment/fragment :: navSales"></nav>
+	<div th:replace="Fragment/fragment :: slidebar"></div>
+
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 		<div class="row">
 			<ol class="breadcrumb">
@@ -15,86 +15,102 @@
 				<li class="active">Contract</li>
 				<li class="active">AddContract</li>
 			</ol>
-		</div><!--/.row-->
-		
+		</div>
+		<!--/.row-->
+
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">AddContract</h1>
 			</div>
-		</div><!--/.row-->
+		</div>
+		<!--/.row-->
 
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
-					<div class="panel-heading" style="font-weight: bold;" >Lập Hợp đồng
+					<div class="panel-heading" style="font-weight: bold;">Lập Hợp đồng
 						<a class="addbutton" href="/sales/contract">
 							<em class="fa fa-close color-red"> Đóng</em>
 						</a>
 					</div>
-					<form id="form" role="form" name="MyForm" action="">
+					<form id="form" role="form" name="MyForm" action="/sales/api/contract/create" method="post" th:object="${contracts}">
+						<input type="hidden" name="accountId" th:value="${account.getAccountId()}">
 						<div class="panel-body">
 							<div class="col-md-6">
-								<div  class="form-group ">
-									<label >Mã hợp đồng</label>
+								<div class="form-group">
+									<label>Họ Tên Khách Hàng</label>
 									<label style="color:red ;">(*)</label>
-									<input name="Mahd" id="Mahd"  class="form-control" >
+									<input type="text" class="form-control" th:field="*{customer.customerName}">
 								</div>
 								<div class="form-group">
-									<label>Ngày Kí Hợp Đồng</label>
+									<label>Địa Chỉ</label>
 									<label style="color:red ;">(*)</label>
-									<input name="DeliveryDate" id="DeliveryDate" type="date" class="form-control" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))">
+									<input type="text" class="form-control" th:field="*{customer.address}">
 								</div>
 								<div class="form-group">
 									<label>Nơi Giao</label>
 									<label style="color:red ;">(*)</label>
-									<input name="PlaceOfDelivery" id="PlaceOfDelivery" type="text" class="form-control">
+									<input name="PlaceOfDelivery" id="PlaceOfDelivery" type="text" class="form-control" th:field="*{deliveryPlace}">
 								</div>
 								<div class="form-group">
 									<label>Điều Khoảng</label>
 									<label style="color:red ;">(*)</label>
-									<textarea name="Rules" id="Rules" type="text" class="form-control"></textarea>
+									<textarea name="Rules" id="Rules" type="text" class="form-control" th:field="*{provision}"> </textarea>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Số Điện Thoại</label>
+									<label style="color:red ;">(*)</label>
+									<input type="text" class="form-control" th:field="*{customer.phoneNumber}">
+								</div>
+								<div class="form-group">
+									<label>Mã Số Thuế Khách Hàng</label>
+									<label style="color:red ;">(*)</label>
+									<input type="text" class="form-control" th:field="*{customer.tax}">
 								</div>
 								<div class="form-group">
 									<label>Phương Thức Thanh Toán</label>
 									<label style="color:red ;">(*)</label>
-									<select class="form-control">
-										<option>Trực Tiếp</option>
-										<option>Chuyển Khoản</option>
+									<select class="form-control" th:field="*{payment}">
+										<th:block th:each="payment : ${paymentList}">
+											<option th:value="${payment.getPaymentId()}" th:text="${payment.getPaymentName()}"></option>
+										</th:block>
 									</select>
 								</div>
 								<div class="form-group">
-									<label>Giá Trị Hợp Đồng</label>
+									<label>Ngày Thanh Lý Hợp Đồng</label>
 									<label style="color:red ;">(*)</label>
-									<input name="ContractPrice" id="ContractPrice" type="text" class="form-control">
+									<input name="DeliveryDate" id="DeliveryDate" type="date" class="form-control" th:field="*{updated}">
 								</div>
 							</div>
-							<div class="col-md-6">
-								<div id="AddForm" >
-									<div id="ListIP" class="ListIP col-sm-12">
-										<div class="col-sm-6">
+							<div class="col-md-12 col-sm-6" style="padding: 0">
+								<div id="AddForm" class="form-group">
+									<div id="ListIP" class="ListIP col-sm-12" style="padding: 0;">
+										<div class="col-sm-6" >
 											<div class="form-group">
 												<label>Loại Sản Phẩm</label>
 												<label style="color:red ;">(*)</label>
-												<select class="form-control">
-													<option>Cơm Sườn</option>
-													<option>Bún Bò</option>
+												<select class="form-control" name="productDetailsId">
+													<th:block th:each="product : ${productList}">
+														<option th:value="${product.getProductId()}" th:text="${product.getProductName()}"></option>
+													</th:block>
 												</select>
 											</div>
 										</div>
-										<div class="col-sm-6" >
+										<div class="col-sm-6">
 											<div class="form-group">
 												<label>Số Lượng Sản Phẩm</label>
 												<label style="color:red ;">(*)</label>
-												<input type="number" class="form-control ">
+												<input type="number" class="form-control " name="productQuantity">
 											</div>
 										</div>
 									</div>
 								</div>
-								<button type="button" id="AddIP" class="btn btn-success" style="margin-left:30px ;">
-									<i class="fa fa-plus"></i>
-								</button>
 							</div>
-
+							<button type="button" id="AddIP" class="btn btn-success">
+								<i class="fa fa-plus"></i>
+							</button>
 						</div>
 						<div class="panel-footer">
 							<button type="submit" id="Submit" class="btn btn-lg btn-primary">Submit Button</button>
@@ -102,15 +118,48 @@
 						</div>
 					</form>
 				</div>
-			</div><!--/.col-->
-			<div class="col-sm-12">
-				<p class="back-link">Make by <a href="https://www.facebook.com/profile.php?id=100006077866205">ONETEAM</a></p>
-			</div>
-		</div><!--/.row-->
-	</div>	<!--/.main-->
-
-
+			</div><!-- /.panel-->
+		</div>
+		<!--/.col-->
+		<div class="col-sm-12">
+			<p class="back-link">Make by <a href="https://www.facebook.com/profile.php?id=100006077866205">ONETEAM</a>
+			</p>
+		</div>
+	</div>
 	<div th:replace="Fragment/fragment :: js"></div>
-	
+	<script>
+		$("#form").submit(function(e) {
+
+			e.preventDefault(); // avoid to execute the actual submit of the form.
+
+			var form = $(this);
+			$.ajax({
+				type: form.attr('method'),
+				url: form.attr('action'),
+				data: form.serialize(), // serializes the form's elements.
+				success: function(data)
+				{
+					if(data){
+						Swal.fire({
+							position: 'center',
+							icon: 'success',
+							title: 'Thêm hợp đồng thành công',
+							showConfirmButton: true
+						}).then((result) =>{
+							window.location.reload();
+						})
+					}else{
+						Swal.fire({
+							position: 'center',
+							icon: 'error',
+							title: 'Thiếu thông tin hợp đồng!',
+							showConfirmButton: true
+						})
+					}
+				}
+			});
+
+		});
+	</script>
 </body>
 </html>
