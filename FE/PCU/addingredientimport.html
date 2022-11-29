@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,32 +10,36 @@
 	<link href="assets/css/datepicker3.css" rel="stylesheet">
 	<link href="assets/css/styles.css" rel="stylesheet">
 	<!-- Favicon -->
-    <link rel="icon" href="assets/faviconOT.webp">
+	<link rel="icon" href="assets/faviconOT.webp">
 	<!--Custom Font-->
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i"
+		rel="stylesheet">
 	<!--[if lt IE 9]>
 	<script src="js/html5shiv.js"></script>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
 </head>
+
 <body>
 	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+					data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span></button>
 				<a class="navbar-brand" href="index.html"><span>One</span>Team</a>
 				<ul class="nav navbar-top-links navbar-right">
 					<li class="dropdown"><a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-						<em class="fa fa-bell"></em><span class="label label-info">1</span>
-					</a>
+							<em class="fa fa-bell"></em><span class="label label-info">1</span>
+						</a>
 						<ul class="dropdown-menu dropdown-alerts">
 							<li><a href="#">
-								<div><em class="fa fa-envelope"></em> 1 New Message
-									<span class="pull-right text-muted small">3 mins ago</span></div>
-							</a></li>
+									<div><em class="fa fa-envelope"></em> 1 New Message
+										<span class="pull-right text-muted small">3 mins ago</span>
+									</div>
+								</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -44,7 +49,8 @@
 	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
 		<div class="profile-sidebar">
 			<div class="profile-userpic">
-				<img src="https://scontent.fsgn2-5.fna.fbcdn.net/v/t39.30808-6/312565204_1171609460104442_305861500513095724_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=Sn7ffIbksTIAX-uXrXb&_nc_ht=scontent.fsgn2-5.fna&oh=00_AfAi8QwTwxCcW5M7NKWPdNwCtD7Osok0WEemOvz43Jm30Q&oe=6385755C" class="img-responsive" alt="">
+				<img src="https://scontent.fsgn2-5.fna.fbcdn.net/v/t39.30808-6/312565204_1171609460104442_305861500513095724_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=Sn7ffIbksTIAX-uXrXb&_nc_ht=scontent.fsgn2-5.fna&oh=00_AfAi8QwTwxCcW5M7NKWPdNwCtD7Osok0WEemOvz43Jm30Q&oe=6385755C"
+					class="img-responsive" alt="">
 			</div>
 			<div class="profile-usertitle">
 				<div class="profile-usertitle-name">Phòng cung ứng</div>
@@ -61,107 +67,98 @@
 		<ul class="nav menu">
 			<li><a href="index1.html"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
 			<li><a href="warehouse.html"><em class="fa fa-dropbox">&nbsp;</em> Warehouse</a></li>
-			<li  class="active"><a href="importingredient.html"><em class="fa fa-tree">&nbsp;</em> Import Ingredient </a></li>
+			<li class="active"><a href="importingredient.html"><em class="fa fa-tree">&nbsp;</em> Import Ingredient </a>
+			</li>
 			<li><a href="exportingredient.html"><em class="fa fa-envira">&nbsp;</em> Export Ingredient</a></li>
 			<li><a href="importproduct.html"><em class="fa fa-umbrella ">&nbsp;</em> Import Product</a></li>
 			<li><a href="exportproduct.html"><em class="fa fa-gift ">&nbsp;</em> Export Product</a></li>
 			<li><a href="login.html"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
 		</ul>
-	</div><!--/.sidebar-->
-		
+	</div>
+	<!--/.sidebar-->
+
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 		<div class="row">
 			<ol class="breadcrumb">
 				<li><a href="index.html">
-					<em class="fa fa-home"></em>
-				</a></li>
+						<em class="fa fa-home"></em>
+					</a></li>
 				<li class="active">Ingredient</li>
 				<li class="active">AddIngredientImport</li>
 			</ol>
-		</div><!--/.row-->
-		
+		</div>
+		<!--/.row-->
+
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">Add Ingredient Import</h1>
 			</div>
-		</div><!--/.row-->
+		</div>
+		<!--/.row-->
 
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
-					<div class="panel-heading" style="font-weight: bold;" > Thêm Phiếu Nhập Nguyên Liệu
+					<div class="panel-heading" style="font-weight: bold;"> Thêm Phiếu Nhập Nguyên Liệu
 						<a class="addbutton" href="importingredient.html">
 							<em class="fa fa-close color-red"> Đóng</em>
 						</a>
-						</div>
+					</div>
 					<form id="form" role="form" name="MyForm" action="">
-					<div class="panel-body">
-						<div class="col-md-6">
-								<div  class="form-group ">
-									<label >Mã Phiếu Nhập Nguyên Liệu</label>
-									<label style="color:red ;">(*)</label>
-									<input name="Mahd" id="Mahd"  class="form-control" >
-								</div>
-								<div class="form-group">
-									<label>Ngày Mua</label>
-									<label style="color:red ;">(*)</label>
-									<input name="IngredientName" id="IngredientName" type="date" class="form-control">
-								</div>
+						<div class="panel-body">
+							<div class="col-md-6">
 								<div class="form-group">
 									<label>VAT</label>
 									<label style="color:red ;">(*)</label>
 									<input name="PlaceOfDelivery" id="PlaceOfDelivery" type="text" class="form-control">
 								</div>
-								<div class="form-group">
-									<label>Trị Giá Phiếu</label>
-									<label style="color:red ;">(*)</label>
-									<input name="Rules" id="Rules" type="text" class="form-control" readonly>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div id="AddForm" >
-									<div id="ListIP" class="ListIP col-sm-12">
-									<div class="col-sm-6">
-										<div class="form-group">
-											<label>Nguyên Liệu</label>
-											<label style="color:red ;">(*)</label>
-											<select class="form-control">
-												<option>Gạo Lức</option>
-												<option>Bào Ngư</option>
-												<option>Trứng Gà</option>
-											</select>
+								<div id="AddForm">
+									<div id="ListIP" class="ListIP col-sm-12" style="padding-left: 0;">
+										<div class="col-sm-6" style="padding-left: 0;">
+											<div class="form-group">
+												<label>Nguyên Liệu</label>
+												<label style="color:red ;">(*)</label>
+												<select class="form-control">
+													<option>Gạo Lức</option>
+													<option>Bào Ngư</option>
+													<option>Trứng Gà</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label>Số Lượng Nguyên Liệu</label>
+												<label style="color:red ;">(*)</label>
+												<input type="number" class="form-control ">
+											</div>
 										</div>
 									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<label>Số Lượng Sản Phẩm</label>
-											<label style="color:red ;">(*)</label>
-											<input type="number" class="form-control ">
-										</div> 
-									</div>
-								</div>	
 								</div>
-								<button type="button" id="AddIP" class="btn btn-success" style="margin-left:30px ;">
-									<i class="fa fa-plus"></i>	
+								<button type="button" id="AddIP" class="btn btn-success">
+									<i class="fa fa-plus"></i>
 								</button>
 							</div>
-						</div> 
+						</div>
 						<div class="panel-footer">
 							<button type="submit" id="Submit" class="btn btn-lg btn-primary">Submit Button</button>
-							<button type="reset" class="btn btn-lg  btn-default">Reset Button</button> 	
+							<button type="reset" class="btn btn-lg  btn-default">Reset Button</button>
 						</div>
 					</form>
-					</div>
-				</div><!-- /.panel-->
-			</div><!--/.col-->
-			<div class="col-sm-12">
-				<p class="back-link">Make by <a href="https://www.facebook.com/profile.php?id=100006077866205">ONETEAM</a></p>
-			</div>
-		</div><!--/.row-->
-	</div>	<!--/.main-->
-	  
+				</div>
+			</div><!-- /.panel-->
+		</div>
+		<!--/.col-->
+		<div class="col-sm-12">
+			<p class="back-link">Make by <a href="https://www.facebook.com/profile.php?id=100006077866205">ONETEAM</a>
+			</p>
+		</div>
+	</div>
+	<!--/.row-->
+	</div>
+	<!--/.main-->
 
-<script src="assets/js/jquery-1.11.1.min.js"></script>
+
+	<script src="assets/js/jquery-1.11.1.min.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
 	<script src="assets/js/chart.min.js"></script>
 	<script src="assets/js/chart-data.js"></script>
@@ -169,7 +166,8 @@
 	<script src="assets/js/easypiechart-data.js"></script>
 	<script src="assets/js/bootstrap-datepicker.js"></script>
 	<script src="assets/js/custom.js"></script>
-	
-	
+
+
 </body>
+
 </html>
