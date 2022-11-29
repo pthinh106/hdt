@@ -92,7 +92,7 @@
     </form>
     <ul class="nav menu">
         <th:block th:if="${account.getRole().getRoleId() == 1}">
-            <li th:class="${dashboard != null ? 'active':''}"><a href="/"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
+            <li th:class="${dashboardSupply != null ? 'active':''}"><a href="/"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
             <li th:class="${warehouse != null ? 'active':''}"><a href="/supply/warehouse"><em class="fa fa-dropbox">&nbsp;</em> Warehouse</a></li>
             <li th:class="${ingredientImport != null ? 'active':''}"><a href="/supply/billimportmatertial"><em class="fa fa-tree">&nbsp;</em> Import Bill Ingredient </a></li>
             <li th:class="${ingredientExport != null ? 'active':''}"><a href="/supply/billexportmatertial"><em class="fa fa-envira">&nbsp;</em> Export Bill Ingredient</a></li>
@@ -101,7 +101,7 @@
             <li ><a href="/logout"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
         </th:block>
         <th:block th:if="${account.getRole().getRoleId() == 2}">
-            <li th:class="${dashboard != null ? 'active':''}"><a href="/"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
+            <li th:class="${dashboardSales != null ? 'active':''}"><a href="/"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
             <li th:class="${contract != null ? 'active':''}"><a href="/sales/contract"><em class="fa fa-sticky-note">&nbsp;</em> Contract</a></li>
             <li th:class="${liquidation != null ? 'active':''}"><a href="/sales/liquidation"><em class="fa fa-send-o">&nbsp;</em> Liquidation Contract</a></li>
             <li ><a href="/logout"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
