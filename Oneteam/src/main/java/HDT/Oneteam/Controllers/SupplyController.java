@@ -87,6 +87,15 @@ public class SupplyController {
         model.addAttribute("warehouse",true);
         return "Supply/addProduct";
     }
+    @GetMapping("/warehouse/product/{id}")
+    public String createProduct(@PathVariable("id") int id,Model model, Principal principal){
+        if(principal != null){
+            Account account = accountService.getAccountByName(principal.getName());
+            model.addAttribute("account",account);
+        }
+        model.addAttribute("warehouse",true);
+        return "Supply/productStruct";
+    }
     @GetMapping("/warehouse/material/create")
     public String createMaterial(Model model, Principal principal){
         if(principal != null){

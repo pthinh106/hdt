@@ -92,6 +92,7 @@
 										<td>
 											<button type="button" class="btn btn-md btn-info addbutton">Sửa</button>
 											<button type="button" class="btn btn-md btn-danger">Xóa</button>
+											<a th:href="@{warehouse/product/{id}(id=${product.getProductId()})}"><button type="button" class="btn btn-md btn-default">Xem</button></a>
 										</td>
 									</tr>
 								</th:block>
