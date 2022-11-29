@@ -68,7 +68,7 @@
                                     <td th:text="${#dates.format(employees.getCreated(), 'dd-MM-yyyy')}">06-03-2022</td>
                                     <td th:text="${employees.getAccount().status == 1 ? 'Còn làm việc tại công ty' : 'Đã nghỉ việc'}">06-03-2022</td>
                                     <td>
-                                        <a th:href="@{employee/{id}(id=${employees.getEmployeeId()})}"><button type="button" class="btn btn-md btn-default">Sửa</button></a>
+                                        <a th:href="@{employee/{id}(id=${employees.getEmployeeId()})}"><button type="button" class="btn btn-md btn-info addbutton">Sửa</button></a>
                                         <button type="button" class="btn btn-md btn-danger" th:onclick="deletedEmployee([[${employees.getEmployeeId()}]])">Xóa</button>
                                     </td>
                                 </tr>
