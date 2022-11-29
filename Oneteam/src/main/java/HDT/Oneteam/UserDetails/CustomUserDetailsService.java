@@ -1,4 +1,4 @@
-package HDT.Oneteam.Service;
+package HDT.Oneteam.UserDetails;
 
 import HDT.Oneteam.Model.Account;
 import HDT.Oneteam.Repository.AccountReps;
