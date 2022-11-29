@@ -76,16 +76,23 @@
 					<tbody id="Contract">
 					<th:block th:each="contracts : ${contractList}">
 						<tr>
-							<th scope="row" th:text="${'HĐ'+contracts.getContractId()}"></th>
+							<th scope="row" th:id="${contracts.getContractId()}" th:text="${'HĐ'+contracts.getContractId()}"></th>
 							<td th:text="${#dates.format(contracts.getCreated(), 'dd-MM-yyyy')}"></td>
 							<td th:text="${contracts.getDeliveryPlace()}"></td>
 							<td th:text="${contracts.getProvision()}"></td>
 							<td th:text="${contracts.getPayment().getPaymentName()}"></td>
 							<td th:text="${#numbers.formatDecimal(contracts.getTotal(), 0, 'COMMA', 0, 'POINT')+ ' VNĐ'}"></td>
-							<td class="text-center"><i class="fa fa-xl fa-check-square color-teal "></i></td>
+							<th:block th:if="${contracts.getLiquidationStatus() == 1}">
+								<td class="text-center"><i class="fa fa-xl fa-check-square color-teal "></i></td>
+							</th:block>
+							<th:block th:unless="${contracts.getLiquidationStatus() == 1}">
+								<td class="text-center"></td>
+							</th:block>
 							<td>
 								<a th:href="@{/supply/contract/{id}(id=${contracts.getContractId()})}"><button type="button" class="btn btn-md btn-default">Xem</button></a>
-								<button type="button" class="btn btn-md btn-warning">Thanh Lý</button>
+								<th:block th:if="${contracts.getLiquidationStatus() == 1}">
+									<button type="button" class="btn btn-md btn-warning" th:onclick="liquidationrequest([[${contracts.getContractId()}]])">Gửi Yêu Cầu Thanh Lý</button>
+								</th:block>
 							</td>
 							</td>
 						</tr>
@@ -222,6 +229,47 @@
 	</div>	<!--/.main-->
 
 	<div th:replace="Fragment/fragment :: js"></div>
+	<script>
+		function liquidationrequest(id) {
+			var contractId = document.getElementById(id).innerText;
+			Swal.fire({
+				title: 'Bạn chắc chắn muốn gửi yêu cầu thanh lí hợp đồng có id là '+contractId+"?",
+				showCancelButton: true,
+				confirmButtonText: 'Yes',
+				denyButtonText: `No`,
+			}).then((result) => {
+				/* Read more about isConfirmed, isDenied below */
+				if (result.isConfirmed) {
+					$.ajax({
+						type: "POST",
+						url: "http://localhost:8060/supply/api/liquidationrequest/"+id,
+						success: function(data)
+						{
+							if(data){
+								Swal.fire({
+									position: 'center',
+									icon: 'success',
+									title: 'Gửi yêu cầu thành công!',
+									showConfirmButton: true
+								}).then((result) =>{
+									window.location.reload();
+								})
+							}else{
+								Swal.fire({
+									icon: 'error',
+									title: 'Failed',
+									text: 'Không tìm thấy hợp đồng có id là '+ contractId,
+									footer: '<a>Vui lòng thử lại</a>'
+								})
+							}
+						}
+					});
+				}
+			})
+
+
+		}
+	</script>
 		
 </body>
 </html>

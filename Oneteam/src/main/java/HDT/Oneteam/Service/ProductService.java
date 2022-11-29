@@ -1,7 +1,7 @@
 package HDT.Oneteam.Service;
 
 import HDT.Oneteam.Model.Product;
-import HDT.Oneteam.Responsibility.ProductReps;
+import HDT.Oneteam.Repository.ProductReps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,4 +19,15 @@ public class ProductService {
     public List<Product> getAllProductOn(int status){
         return productReps.findAllByStatus(status);
     }
+    public Product getProductById(int productId){
+        return productReps.findById(productId).get();
+    }
+    public void saveAll(List<Product> productList){
+        productReps.saveAll(productList);
+    }
+
+    public void save(Product product){
+        productReps.save(product);
+    }
+
 }

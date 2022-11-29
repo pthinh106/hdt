@@ -7,80 +7,126 @@
 <div th:replace="Fragment/fragment :: slidebar"></div>
 
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-  <div class="row">
-    <ol class="breadcrumb">
-      <li><a href="index.html">
-        <em class="fa fa-home"></em>
-      </a></li>
-      <li class="active">Employee Manager</li>
-    </ol>
-  </div><!--/.row-->
+    <div class="row">
+        <ol class="breadcrumb">
+            <li><a href="index.html">
+                <em class="fa fa-home"></em>
+            </a></li>
+            <li class="active">Employee Manager</li>
+        </ol>
+    </div><!--/.row-->
 
-  <div class="row">
-    <div class="col-lg-12">
-      <h1 class="page-header">Employee Manager</h1>
-    </div>
-  </div><!--/.row-->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Employee Manager</h1>
+        </div>
+    </div><!--/.row-->
 
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="panel panel-default">
-        <div class="panel-heading" style="font-weight: bold;" >Danh Sách Nhân Viên
-          <a class="addbutton" href="employee/create">
-            <button type="button" class="btn btn-md btn-success">Thêm</button>
-          </a>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading " style="display: flex;flex-direction: row">
+                    <div>
+                        <span style="font-weight: bold; font-size: 20px" >Danh Sách Nhân Viên</span>
+                    </div>
+                    <div>
+                        <a class="addbutton" href="employee/create">
+                            <em class="btn btn-md btn-success"> Thêm</em>
+                        </a>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="col-lg-12">
+                        <input style="margin-bottom: 10px;" class="form-control" id="myInput" type="text" placeholder="Search">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th scope="col">STT</th>
+                                <th scope="col">ID</th>
+                                <th scope="col">Họ và Tên</th>
+                                <th scope="col">Chức Vụ</th>
+                                <th scope="col">Địa Chỉ</th>
+                                <th scope="col">Số Điện Thoại</th>
+                                <th scope="col">Ngày Vào Công Ty</th>
+                                <th scope="col">Trạng Thái</th>
+                            </tr>
+                            </thead>
+                            <tbody id="ImportProduct">
+                            <th:block th:each="employees,count : ${employeeList}">
+                                <tr>
+                                    <th scope="row" th:text="${count.index + 1}"></th>
+                                    <th:block th:if="${employees.getAccount().getRole().getRoleId() == 3}">
+                                        <th th:id="${employees.employeeId}" scope="row" th:text="${'QL'+ employees.getEmployeeId()}">PNSP01</th>
+                                    </th:block>
+                                    <th:block th:unless="${employees.getAccount().getRole().getRoleId() == 3}">
+                                        <th th:id="${employees.employeeId}" scope="row" th:text="${'NV'+ employees.getEmployeeId()}">PNSP01</th>
+                                    </th:block>
+                                    <td th:text="${employees.getEmployeeName()}">PNSP01</td>
+                                    <td th:text="${employees.getPosition().getPositionName()}">PNSP01</td>
+                                    <td th:text="${employees.getAddress()}">PNSP01</td>
+                                    <td th:text="${employees.getPhoneNumber()}">PNSP01</td>
+                                    <td th:text="${#dates.format(employees.getCreated(), 'dd-MM-yyyy')}">06-03-2022</td>
+                                    <td th:text="${employees.getAccount().status == 1 ? 'Còn làm việc tại công ty' : 'Đã nghỉ việc'}">06-03-2022</td>
+                                    <td>
+                                        <a th:href="@{employee/{id}(id=${employees.getEmployeeId()})}"><button type="button" class="btn btn-md btn-default">Sửa</button></a>
+                                        <button type="button" class="btn btn-md btn-danger" th:onclick="deletedEmployee([[${employees.getEmployeeId()}]])">Xóa</button>
+                                    </td>
+                                </tr>
+                            </th:block>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div><!-- /.panel-->
+        </div><!--/.col-->
+        <div class="col-sm-12">
+            <p class="back-link">Make by <a href="https://www.facebook.com/profile.php?id=100006077866205">ONETEAM</a></p>
         </div>
-        <div class="panel-body">
-          <div class="col-lg-12">
-            <input style="margin-bottom: 10px;" class="form-control" id="myInput" type="text" placeholder="Search">
-            <table class="table table-bordered">
-              <thead>
-              <tr>
-                <th scope="col">STT</th>
-                <th scope="col">ID</th>
-                <th scope="col">Họ và Tên</th>
-                <th scope="col">Chức Vụ</th>
-                <th scope="col">Địa Chỉ</th>
-                <th scope="col">Số Điện Thoại</th>
-                <th scope="col">Ngày Vào Công Ty</th>
-                <th scope="col">Trạng Thái</th>
-              </tr>
-              </thead>
-              <tbody id="ImportProduct">
-              <th:block th:each="employee,count : ${employeeList}">
-                <tr>
-                  <th scope="row" th:text="${count.index + 1}"></th>
-                  <th:block th:if="${employee.getAccount().getRole().getRoleId() == 3}">
-                    <th scope="row" th:text="${'QL'+ employee.getEmployeeId()}">PNSP01</th>
-                  </th:block>
-                  <th:block th:unless="${employee.getAccount().getRole().getRoleId() == 3}">
-                    <th scope="row" th:text="${'NV'+ employee.getEmployeeId()}">PNSP01</th>
-                  </th:block>
-                  <td th:text="${employee.getEmployeeName()}">PNSP01</td>
-                  <td th:text="${employee.getPosition().getPositionName()}">PNSP01</td>
-                  <td th:text="${employee.getAddress()}">PNSP01</td>
-                  <td th:text="${employee.getPhoneNumber()}">PNSP01</td>
-                  <td th:text="${#dates.format(employee.getCreated(), 'dd-MM-yyyy')}">06-03-2022</td>
-                  <td th:text="${employee.getAccount().status == 1 ? 'Còn làm việc tại công ty' : 'Đã nghỉ việc'}">06-03-2022</td>
-                  <td>
-                    <a th:href="@{employee/{id}(id=${employee.getEmployeeId()})}"><button type="button" class="btn btn-md btn-default">Sửa</button></a>
-                    <button type="button" class="btn btn-md btn-danger">Xóa</button>
-                  </td>
-                </tr>
-              </th:block>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div><!-- /.panel-->
-    </div><!--/.col-->
-    <div class="col-sm-12">
-      <p class="back-link">Make by <a href="https://www.facebook.com/profile.php?id=100006077866205">ONETEAM</a></p>
-    </div>
-  </div><!--/.row-->
+    </div><!--/.row-->
 </div>	<!--/.main-->
 
 <div th:replace="Fragment/fragment :: js"></div>
+<script>
+    function deletedEmployee(id) {
+        var employmentId = document.getElementById(id).innerText;
+        Swal.fire({
+            title: 'Bạn chắc chắn muốn xóa nhân viên có id là '+employmentId+"?",
+            showCancelButton: true,
+            confirmButtonText: 'Yes',
+            denyButtonText: `No`,
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost:8060/manager/api/employee/delete/"+id,
+                    success: function(data)
+                    {
+                        if(data){
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Xóa nhân viên thành công',
+                                showConfirmButton: true
+                            }).then((result) =>{
+                                window.location.reload();
+                            })
+                        }else{
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Failed',
+                                text: 'Tài Khoản đã tồn tại! hoặc thiếu thông tin nhân viên',
+                                footer: '<a>Vui lòng thử lại</a>'
+                            })
+                        }
+                    }
+                });
+            }
+        })
+
+
+    }
+</script>
 
 </body>
 </html>

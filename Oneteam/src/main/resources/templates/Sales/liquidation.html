@@ -50,12 +50,9 @@
 											<td th:text="${contracts.getPayment().getPaymentName()}"></td>
 											<td th:text="${#numbers.formatDecimal(contracts.getTotal(), 0, 'COMMA', 0, 'POINT')+ ' VNĐ'}"></td>
 											<td>
-												<button type="button" class="btn btn-md btn-info addbutton">Sửa</button>
-												<button type="button" class="btn btn-md btn-danger">Xóa</button>
 												<a th:href="@{liquidation/{id}(id=${contracts.getContractId()})}"><button type="button" class="btn btn-md btn-default">Xem</button></a>
-												<button type="button" class="btn btn-md btn-warning">Gửi</button>
 											</td>
-											<td><label><input type="checkbox" name='checkbox0' id='check_all' value=""></label></td>
+											<td><label><input type="checkbox" name='checkbox0' id='check_all' th:value="${contracts.getContractId()}"></label></td>
 										</tr>
 									</th:block>
 								</tbody>
@@ -66,8 +63,9 @@
 					<div class="panel-footer">
 						<input type="button" id="btn1" class="btn btn-info"  value="Chọn hết"/>
        					<input type="button" id="btn2" class="btn btn-default"  value="Bỏ chọn"/>
-						<button type="submit" class="btn btn-warning" >Thanh Lý</button>
-					</div> 
+						<button type="submit" class="btn btn-warning" onclick="liquidation()">Thanh Lý</button>
+						<button type="submit" class="btn btn-warning" onclick="liquidationDontAccept()">Chưa Được Thanh Lý</button>
+					</div>
 				</div><!-- /.panel-->
 			</div><!--/.col-->
 			<div class="col-sm-12">
@@ -79,6 +77,116 @@
 
 
 	<div th:replace="Fragment/fragment :: js"></div>
+	<script>
+		function liquidation(){
+			var listLiquidation = document.getElementsByName("checkbox0");
+			var listId = [];
+			listLiquidation.forEach((element) => {
+				if(element.checked){
+					listId.push(element.value);
+				}
+			});
+			var id = Number(listLiquidation[0].value);
+			if(listId.length >= 1){
+				$.ajax({
+					type: "POST",
+					url: "/sales/api/liquidation",
+					data:{
+						listIdContract: listId.toString()
+					},
+					success: function(data)
+					{
+						if(data){
+							Swal.fire({
+								position: 'center',
+								icon: 'success',
+								title: 'Thanh lí thành công!',
+								showConfirmButton: true
+							}).then((result) =>{
+								window.location.reload();
+							})
+						}else{
+							Swal.fire({
+								icon: 'error',
+								title: 'Failed',
+								text: 'Bạn Chưa chọn hợp đồng',
+								footer: '<a>Vui lòng thử lại</a>'
+							})
+						}
+					},
+					error: function (){
+						Swal.fire({
+							icon: 'error',
+							title: 'Failed',
+							text: 'Lỗi Sever',
+							footer: '<a>Vui lòng thử lại</a>'
+						})
+					}
+				});
+			}else{
+				Swal.fire({
+					icon: 'error',
+					title: 'Failed',
+					text: 'Bạn Chưa chọn hợp đồng',
+					footer: '<a>Vui lòng thử lại</a>'
+				})
+			}
+		}
+		function liquidationDontAccept(){
+			var listLiquidation = document.getElementsByName("checkbox0");
+			var listId = [];
+			listLiquidation.forEach((element) => {
+				if(element.checked){
+					listId.push(element.value);
+				}
+			});
+			var id = Number(listLiquidation[0].value);
+			if(listId.length >= 1){
+				$.ajax({
+					type: "POST",
+					url: "/sales/api/liquidationdontaccept",
+					data:{
+						listIdContract: listId.toString()
+					},
+					success: function(data)
+					{
+						if(data){
+							Swal.fire({
+								position: 'center',
+								icon: 'success',
+								title: 'Đã phản hồi chưa được thanh lý!',
+								showConfirmButton: true
+							}).then((result) =>{
+								window.location.reload();
+							})
+						}else{
+							Swal.fire({
+								icon: 'error',
+								title: 'Failed',
+								text: 'Bạn Chưa chọn hợp đồng',
+								footer: '<a>Vui lòng thử lại</a>'
+							})
+						}
+					},
+					error: function (){
+						Swal.fire({
+							icon: 'error',
+							title: 'Failed',
+							text: 'Lỗi Sever',
+							footer: '<a>Vui lòng thử lại</a>'
+						})
+					}
+				});
+			}else{
+				Swal.fire({
+					icon: 'error',
+					title: 'Failed',
+					text: 'Bạn Chưa chọn hợp đồng',
+					footer: '<a>Vui lòng thử lại</a>'
+				})
+			}
+		}
+	</script>
 
 	
 </body>

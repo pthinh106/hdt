@@ -4,10 +4,10 @@ import HDT.Oneteam.Model.BillExportMaterial;
 import HDT.Oneteam.Model.BillExportMaterialDetails;
 import HDT.Oneteam.Model.BillImportMaterial;
 import HDT.Oneteam.Model.BillImportMaterialDetails;
-import HDT.Oneteam.Responsibility.BEMaterialDetailsReps;
-import HDT.Oneteam.Responsibility.BExportMaterialReps;
-import HDT.Oneteam.Responsibility.BIMaterialDetailsReps;
-import HDT.Oneteam.Responsibility.BImportMaterialReps;
+import HDT.Oneteam.Repository.BEMaterialDetailsReps;
+import HDT.Oneteam.Repository.BExportMaterialReps;
+import HDT.Oneteam.Repository.BIMaterialDetailsReps;
+import HDT.Oneteam.Repository.BImportMaterialReps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -6,13 +6,11 @@ import HDT.Oneteam.Model.ContractDetails;
 import HDT.Oneteam.Service.AccountService;
 import HDT.Oneteam.Service.ContractService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
 import java.util.List;
@@ -77,7 +75,7 @@ public class SalesController {
             Account account = accountService.getAccountByName(principal.getName());
             model.addAttribute("account",account);
         }
-        List<Contract> contractList = contractService.getContractByStatus(0);
+        List<Contract> contractList = contractService.getContractByStatusAndLiquidationStatus(0,2);
         model.addAttribute("contractList",contractList);
         model.addAttribute("liquidation",true);
         return "Sales/liquidation";

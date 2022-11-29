@@ -1,7 +1,7 @@
 package HDT.Oneteam.Service;
 
 import HDT.Oneteam.Model.Account;
-import HDT.Oneteam.Responsibility.AccountReps;
+import HDT.Oneteam.Repository.AccountReps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,5 +11,14 @@ public class AccountService {
     AccountReps accountReps;
     public Account getAccountByName(String userName){
         return accountReps.findByUserName(userName);
+    }
+    public Account getAccountById(int accountId){
+        return accountReps.findById(accountId).get();
+    }
+    public boolean existsAccountByUsername(String username){
+        return accountReps.existsByUserName(username);
+    }
+    public Account saveNewAccount(Account account){
+        return accountReps.save(account);
     }
 }

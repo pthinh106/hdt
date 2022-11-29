@@ -1,7 +1,7 @@
 package HDT.Oneteam.Service;
 
 import HDT.Oneteam.Model.Position;
-import HDT.Oneteam.Responsibility.PositionReps;
+import HDT.Oneteam.Repository.PositionReps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

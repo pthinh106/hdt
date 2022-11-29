@@ -1,7 +1,7 @@
 package HDT.Oneteam.Service;
 
 import HDT.Oneteam.Model.Role;
-import HDT.Oneteam.Responsibility.RoleReps;
+import HDT.Oneteam.Repository.RoleReps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

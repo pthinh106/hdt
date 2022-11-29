@@ -1,7 +1,5 @@
-package HDT.Oneteam.Responsibility;
+package HDT.Oneteam.Repository;
 
-import HDT.Oneteam.Model.BillImportMaterial;
-import HDT.Oneteam.Model.BillImportMaterialDetails;
 import HDT.Oneteam.Model.BillImportProduct;
 import HDT.Oneteam.Model.BillImportProductDetails;
 import org.springframework.data.jpa.repository.JpaRepository;
