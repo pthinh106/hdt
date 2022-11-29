@@ -2,15 +2,19 @@ package HDT.Oneteam.Service;
 
 import HDT.Oneteam.Model.Product;
 import HDT.Oneteam.Repository.ProductReps;
+import HDT.Oneteam.Repository.ProductStructReps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
     @Autowired
     private ProductReps productReps;
+    @Autowired
+    private ProductStructReps productStructReps;
 
     ///module
     public List<Product> getAllProduct(){
@@ -28,6 +32,16 @@ public class ProductService {
 
     public void save(Product product){
         productReps.save(product);
+    }
+
+    public boolean deleteProduct(int id) {
+        Optional<Product> product = productReps.findById(id);
+        if(product.isPresent()){
+            product.get().setStatus(0);
+            productReps.save(product.get());
+            return true;
+        }
+        return false;
     }
 
 }

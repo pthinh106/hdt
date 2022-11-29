@@ -35,19 +35,21 @@
 							<table class="table table-bordered">
 								<thead>
 								<tr>
+									<th scope="row">STT</th>
 									<th scope="col">Mã Phiếu Xuất Nguyên Liệu</th>
 									<th scope="col">Phân Xưởng</th>
 									<th scope="col">Ngày Xuất</th>
 								</tr>
 								</thead>
 								<tbody id="Export">
-								<th:block th:each="billExportMaterial : ${billExportMaterialList}">
+								<th:block th:each="billExportMaterial,count : ${billExportMaterialList}">
 									<tr>
-										<th scope="row" th:text="${'PXNL'+ billExportMaterial.getBillExportId()}">PXNL01</th>
+										<th	scope="row" th:text="${count.index + 1}"></th>
+										<th scope="row" th:text="${billExportMaterial.getBillExportId()}" th:text="${'PXNL'+ billExportMaterial.getBillExportId()}">PXNL01</th>
 										<th scope="row" th:text="${billExportMaterial.getWorkshop().getWorkshopName()}">PXNL01</th>
 										<td th:text="${#dates.format(billExportMaterial.getCreated(), 'dd-MM-yyyy')}">06-03-2022</td>
 										<td>
-											<button type="button" class="btn btn-md btn-danger">Xóa</button>
+											<button type="button" class="btn btn-md btn-danger" th:onclick="deleteBill([[${billExportMaterial.getBillExportId()}]])">Xóa</button>
 											<a th:href="@{billexportmatertial/{id}(id=${billExportMaterial.getBillExportId()})}"><button type="button" class="btn btn-md btn-default">Xem</button></a>
 										</td>
 									</tr>
@@ -66,6 +68,47 @@
 
 
 	<div th:replace="Fragment/fragment :: js"></div>
+	<script>
+		function deleteBill(id) {
+			var bill = document.getElementById(id).innerText;
+			Swal.fire({
+				title: 'Bạn chắc chắn muốn xóa bill có id là '+bill+"?",
+				showCancelButton: true,
+				confirmButtonText: 'Yes',
+				denyButtonText: `No`,
+			}).then((result) => {
+				/* Read more about isConfirmed, isDenied below */
+				if (result.isConfirmed) {
+					$.ajax({
+						type: "POST",
+						url: "http://localhost:8060/sales/api/materialexport/delete/"+id,
+						success: function(data)
+						{
+							if(data){
+								Swal.fire({
+									position: 'center',
+									icon: 'success',
+									title: 'Xóa thành công',
+									showConfirmButton: true
+								}).then((result) =>{
+									window.location.reload();
+								})
+							}else{
+								Swal.fire({
+									icon: 'error',
+									title: 'Failed',
+									text: 'Vui lòng thử lại',
+									footer: '<a>Vui lòng thử lại</a>'
+								})
+							}
+						}
+					});
+				}
+			})
+
+
+		}
+	</script>
 	
 </body>
 </html>
