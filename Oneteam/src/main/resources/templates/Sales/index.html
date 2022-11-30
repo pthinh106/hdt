@@ -23,76 +23,72 @@
 		</div><!--/.row-->
 		
 		<div class="panel panel-container">
-			<div class="row">
-				<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+			<div class="row" style="display: flex;flex-direction: row">
+				<div class="col-xs-6 col-md-3 col-lg-3 no-padding" style="margin: auto">
 					<div class="panel panel-teal panel-widget border-right">
 						<div class="row no-padding"><em class="fa fa-xl fa-shopping-cart color-blue"></em>
-							<div class="large">10</div>
+							<div class="large" th:text="${allContract.size()}">10</div>
 							<div class="text-muted">Tổng hợp đồng</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
-					<div class="panel panel-blue panel-widget border-right">
-						<div class="row no-padding"><em class="fa fa-xl fa-hourglass-half color-orange"></em>
-							<div class="large">5</div>
-							<div class="text-muted">Hợp đồng đang xử lý</div>
+				<div class="col-xs-6 col-md-9 col-lg-9 no-padding">
+					<div class="row">
+						<div class="col-md-4 col-lg-4 no-padding">
+							<div class="panel panel-blue panel-widget border-right">
+								<div class="row no-padding"><em class="fa fa-xl fa-hourglass-half color-orange"></em>
+									<div class="large" th:text="${processing.size()}">5</div>
+									<div class="text-muted">Hợp đồng đang xử lý</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4 col-lg-4 no-padding">
+							<div class="panel panel-orange panel-widget border-right">
+								<div class="row no-padding"><em class="fa fa-xl fa-check-circle color-teal"></em>
+									<div class="large" th:text="${liquidated.size() }">3</div>
+									<div class="text-muted">Hợp đồng đã xử lý</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4 col-lg-4 no-padding">
+							<div class="panel panel-red panel-widget ">
+								<div class="row no-padding"><em class="fa fa-xl fa-close color-red"></em>
+									<div class="large" th:text="${cancel.size()}">2</div>
+									<div class="text-muted">Hợp đồng hủy</div>
+								</div>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
-					<div class="panel panel-orange panel-widget border-right">
-						<div class="row no-padding"><em class="fa fa-xl fa-check-circle color-teal"></em>
-							<div class="large">3</div>
-							<div class="text-muted">Hợp đồng đã xử lý</div>
+					<div class="row">
+						<div class="col-md-4 col-lg-4 no-padding">
+							<div class="panel panel-default">
+								<div class="panel-body easypiechart-panel">
+									<h4>Hợp đồng đang xử lý</h4>
+									<div class="easypiechart" id="easypiechart-orange" th:data-percent="${allContract.isEmpty() ? 0 : processing.size()*100/allContract.size()}" ><span class="percent" th:text="${allContract.isEmpty() ? 0 : processing.size()*100/allContract.size()} + '%'"></span></div>
+								</div>
+							</div>
 						</div>
-					</div>
-				</div>
-				<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
-					<div class="panel panel-red panel-widget ">
-						<div class="row no-padding"><em class="fa fa-xl fa-close color-red"></em>
-							<div class="large">2</div>
-							<div class="text-muted">Hợp đồng hủy</div>
+						<div class="col-md-4 col-lg-4 no-padding">
+							<div class="panel panel-default">
+								<div class="panel-body easypiechart-panel">
+									<h4>Hợp đồng đã xử lý</h4>
+									<div class="easypiechart" id="easypiechart-teal" th:data-percent="${allContract.isEmpty() ? 0 : liquidated.size()*100/allContract.size()}" ><span class="percent" th:text="${allContract.isEmpty() ? 0 : liquidated.size()*100/allContract.size()} + '%'">56%</span></div>
+								</div>
+							</div>
 						</div>
-					</div>
+						<div class="col-md-4 col-lg-4 no-padding">
+							<div class="panel panel-default">
+								<div class="panel-body easypiechart-panel">
+									<h4>Hợp đồng hủy</h4>
+									<div class="easypiechart" id="easypiechart-red" data-percent="27" th:data-percent="${allContract.isEmpty() ? 0 : cancel.size()*100/allContract.size()}"><span class="percent" th:text="${allContract.isEmpty() ? 0 : cancel.size()*100/allContract.size()} + '%'">27%</span></div>
+								</div>
+							</div>
+						</div>
+					</div><!--/.row-->
 				</div>
 			</div><!--/.row-->
 		</div>
-		
-		<div class="row">
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>Tổng hợp đồng</h4>
-						<div class="easypiechart" id="easypiechart-blue" data-percent="92" ><span class="percent">92%</span></div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>Hợp đồng đang xử lý</h4>
-						<div class="easypiechart" id="easypiechart-orange" data-percent="65" ><span class="percent">65%</span></div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>Hợp đồng đã xử lý</h4>
-						<div class="easypiechart" id="easypiechart-teal" data-percent="56" ><span class="percent">56%</span></div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>Hợp đồng hủy</h4>
-						<div class="easypiechart" id="easypiechart-red" data-percent="27" ><span class="percent">27%</span></div>
-					</div>
-				</div>
-			</div>
-		</div><!--/.row-->
+
 
 		<div class="row">
 			<div class="col-lg-12">
@@ -101,7 +97,7 @@
 						Danh Sách Hợp Đồng Đã Thanh Toán
 					</div>
 					<div class="panel-body">
-						<input style="margin-bottom: 10px;" class="form-control" id="myInput" type="text"
+						<input style="margin-bottom: 10px;" class="form-control"  type="text"
 							   placeholder="Search">
 						<table class="table table-bordered">
 							<thead>
@@ -125,6 +121,46 @@
 									<td th:text="${#numbers.formatDecimal(contracts.getTotal(), 0, 'COMMA', 0, 'POINT')+ ' VNĐ'}"></td>
 									<td>
 										<a th:href="@{/sales/contractsuccess/{id}(id=${contracts.getContractId()})}"><button type="button" class="btn btn-md btn-default">Xem</button></a>
+									</td>
+								</tr>
+							</th:block>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Danh Sách Hợp Đồng Đã Hủy
+					</div>
+					<div class="panel-body">
+						<input style="margin-bottom: 10px;" class="form-control" id="myInput" type="text"
+							   placeholder="Search">
+						<table class="table table-bordered">
+							<thead>
+							<tr>
+								<th scope="col">Mã Hợp Đồng</th>
+								<th scope="col">Ngày Kí Hợp Đồng</th>
+								<th scope="col">Nơi Giao</th>
+								<th scope="col">Điều Khoản</th>
+								<th scope="col">Phương Thức Thanh Toán</th>
+								<th scope="col">Giá Trị Hợp Đồng</th>
+							</tr>
+							</thead>
+							<tbody >
+							<th:block th:each="contracts : ${cancel}">
+								<tr>
+									<th scope="row" th:text="${'HĐ'+contracts.getContractId()}"></th>
+									<td th:text="${#dates.format(contracts.getCreated(), 'dd-MM-yyyy')}"></td>
+									<td th:text="${contracts.getDeliveryPlace()}"></td>
+									<td th:text="${contracts.getProvision()}"></td>
+									<td th:text="${contracts.getPayment().getPaymentName()}"></td>
+									<td th:text="${#numbers.formatDecimal(contracts.getTotal(), 0, 'COMMA', 0, 'POINT')+ ' VNĐ'}"></td>
+									<td>
+										<a th:href="@{/sales/contractdelete/{id}(id=${contracts.getContractId()})}"><button type="button" class="btn btn-md btn-default">Xem</button></a>
 									</td>
 								</tr>
 							</th:block>

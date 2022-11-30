@@ -38,7 +38,7 @@
 								<div>Số Điện Thoại: <span th:text="${contracts.getCustomer().getPhoneNumber()}"></span></div>
 								<div>Địa Chỉ: <span th:text="${contracts.getCustomer().getAddress()}"></span></div>
 								<div>Mã Số Thuế: <span th:text="${contracts.getCustomer().getTax()}"></span></div>
-								<div>Ngày Giao Hàng: <span th:text="${#dates.format(contracts.getCreated(), 'dd-MM-yyyy')}"></span></div>
+								<div>Ngày Giao Hàng: <span th:text="${#dates.format(contracts.getUpdated(), 'dd-MM-yyyy')}"></span></div>
 
 							</div>
 							<table class="table table-bordered">

@@ -48,6 +48,10 @@ public class SupplyController {
         List<Contract> contractList = contractService.getContractByStatusAndLiquidationStatusIn(0,liquidation);
         model.addAttribute("contractList",contractList);
         model.addAttribute("dashboardSupply",true);
+        model.addAttribute("importProduct",billProductService.getAllBIProductOnStatus(1));
+        model.addAttribute("exportProduct",billProductService.getAllBEProductOnStatus(1));
+        model.addAttribute("importMaterial",billMaterialService.getAllBIMaterialOnStatus(1));
+        model.addAttribute("exportMaterial",billMaterialService.getAllBEMaterialOnStatus(1));
         return "Supply/index";
     }
     @GetMapping("/contract/{id}")

@@ -33,6 +33,9 @@ public class ContractService {
 
 
     ///module
+    public List<Contract> getAll(){
+        return contractReps.findAll();
+    }
     public List<Contract> getContractByStatus(int status){
         return contractReps.findAllByStatus(status);
     }

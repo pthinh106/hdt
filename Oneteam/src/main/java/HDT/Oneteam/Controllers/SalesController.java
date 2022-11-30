@@ -38,6 +38,12 @@ public class SalesController {
         List<Contract> contractList = contractService.getContractByStatus(1);
         model.addAttribute("contractList",contractList);
         model.addAttribute("dashboardSales",true);
+        model.addAttribute("allContract",contractService.getAll());
+        model.addAttribute("processing",contractService.getContractByStatus(0));
+        model.addAttribute("liquidated",contractService.getContractByStatus(1));
+        model.addAttribute("cancel",contractService.getContractByStatus(3));
+
+
         return "Sales/index";
     }
     @GetMapping("/contract")
@@ -71,6 +77,24 @@ public class SalesController {
     }
     @GetMapping("/contractsuccess/{id}")
     public String getContractDetailsSuccess(@PathVariable("id") int contractId, Model model, Principal principal){
+        if(principal != null){
+            Account account = accountService.getAccountByName(principal.getName());
+            model.addAttribute("account",account);
+        }
+        double total = 0 ;
+        Contract contracts = contractService.getContractById(contractId);
+        List<ContractDetails> contractDetailsList = contractService.getListContractDetailsByContract(contracts);
+        for(ContractDetails contractDetails : contractDetailsList){
+            total = total + contractDetails.getProduct().getPrice()*contractDetails.getQuantity();
+        }
+        model.addAttribute("total",total);
+        model.addAttribute("contracts",contracts);
+        model.addAttribute("contractDetailsList",contractDetailsList);
+        model.addAttribute("dashboardSales",true);
+        return "Sales/contractDetails";
+    }
+    @GetMapping("/contractdelete/{id}")
+    public String getContractDetailsDelete(@PathVariable("id") int contractId, Model model, Principal principal){
         if(principal != null){
             Account account = accountService.getAccountByName(principal.getName());
             model.addAttribute("account",account);
