@@ -2,6 +2,7 @@ package HDT.Oneteam.Model;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 @Table(name = "sanpham")
@@ -24,9 +25,23 @@ public class Product {
     private Timestamp created;
     @Column(name = "NGAYCAPNHAT")
     private Timestamp updated;
+    @OneToMany(mappedBy = "material",fetch = FetchType.LAZY)
+    private List<ProductStructure> productStructureList;
     public Product(){}
 
-    public Product(int productId, String productName,String unit, double price, int inventory, int status) {
+    public Product(int productId, String productName, String unit, double price, int inventory, int status, Timestamp created, Timestamp updated, List<ProductStructure> productStructureList) {
+        this.productId = productId;
+        this.productName = productName;
+        this.unit = unit;
+        this.price = price;
+        this.inventory = inventory;
+        this.status = status;
+        this.created = created;
+        this.updated = updated;
+        this.productStructureList = productStructureList;
+    }
+
+    public Product(int productId, String productName, String unit, double price, int inventory, int status) {
         this.productId = productId;
         this.productName = productName;
         this.unit = unit;
@@ -98,4 +113,27 @@ public class Product {
     public void setStatus(int status) {
         this.status = status;
     }
+
+    public List<ProductStructure> getProductStructureList() {
+        return productStructureList;
+    }
+
+    public void setProductStructureList(List<ProductStructure> productStructureList) {
+        this.productStructureList = productStructureList;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productId=" + productId +
+                ", productName='" + productName + '\'' +
+                ", unit='" + unit + '\'' +
+                ", price=" + price +
+                ", inventory=" + inventory +
+                ", status=" + status +
+                ", created=" + created +
+                ", updated=" + updated +
+                '}';
+    }
 }
+

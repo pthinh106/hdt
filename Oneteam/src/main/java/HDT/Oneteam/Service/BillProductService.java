@@ -5,6 +5,7 @@ import HDT.Oneteam.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +23,8 @@ public class BillProductService {
     private BImportProductReps bImportProductReps;
     @Autowired
     private ContractService contractService;
+    @Autowired
+    private ProductService productService;
 
 
 
@@ -66,5 +69,28 @@ public class BillProductService {
             return true;
         }
         return false;
+    }
+
+    public boolean createBillImportProduct(BillImportProduct billImportProduct, int[] productId, int[] quantity) {
+        if(quantity.length < 1){
+            return false;
+        }
+        billImportProduct.setStatus(1);
+        bImportProductReps.save(billImportProduct);
+        List<Product> productList = new ArrayList<>();
+        for(int i = 0 ; i < quantity.length;i++){
+            Product product = new Product();
+            product = productService.getProductById(productId[i]);
+            product.setInventory(product.getInventory()+quantity[i]);
+            productList.add(product);
+            BillImportProductDetails billImportProductDetails = new BillImportProductDetails();
+            billImportProductDetails.setProduct(product);
+            billImportProductDetails.setBillImportProduct(billImportProduct);
+            billImportProductDetails.setQuantity(quantity[i]);
+            billImportProductDetails.setTotal(product.getPrice()*quantity[i]);
+            biProductDetailsReps.save(billImportProductDetails);
+        }
+        productService.saveAll(productList);
+        return true;
     }
 }

@@ -55,7 +55,7 @@
 										<td th:text="${'SP'+billDetails.getProduct().getProductId()}">SP01</td>
 										<td th:text="${billDetails.getProduct().getProductName()}">Cơm Cháy</td>
 										<td th:text="${billDetails.getProduct().getUnit()}">Bịch</td>
-										<td class="text-right" th:text="${billDetails.getProduct().getPrice()}">2000</td>
+										<td class="text-right" th:text="${#numbers.formatDecimal(billDetails.getProduct().getPrice(), 0, 'COMMA', 0, 'POINT')+ ' VNĐ'}">2000</td>
 										<td class="text-right" th:text="${billDetails.getQuantity()}">10</td>
 										<td class="text-right" th:text="${#numbers.formatDecimal(billDetails.getProduct().getPrice()*billDetails.getQuantity(), 0, 'COMMA', 0, 'POINT')+ ' VNĐ'}">20000</td>
 									</tr>
