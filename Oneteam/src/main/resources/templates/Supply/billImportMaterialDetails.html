@@ -68,12 +68,12 @@
 									<td class="text-right" th:text="${#numbers.formatDecimal(total, 0, 'COMMA', 0, 'POINT')+ ' VNĐ'}"></td>
 								</tr>
 								<tr>
-									<td colspan="6" class="text-right" >Tiền Thuế GTGT (10%)</td>
-									<td class="text-right" th:text="${#numbers.formatDecimal(total*0.1,0,'COMMA', 0, 'POINT')+ ' VNĐ'}">2121</td>
+									<td colspan="6" class="text-right" >Tiền Thuế GTGT <span th:text="${#numbers.formatDecimal(billImportMaterial.getVat(), 0, 'COMMA', 0, 'POINT')+ '%'}"></span></td>
+									<td class="text-right" th:text="${#numbers.formatDecimal(total*billImportMaterial.getVat(),0,'COMMA', 0, 'POINT')+ ' VNĐ'}">2121</td>
 								</tr>
 								<tr>
 									<td colspan="6" class="text-right">Tổng Số Tiền Thanh Toán</td>
-									<td class="text-right" th:text="${#numbers.formatDecimal(total*0.1 + total,0,'COMMA', 0, 'POINT')+ ' VNĐ'}"></td>
+									<td class="text-right" th:text="${#numbers.formatDecimal(total*billImportMaterial.getVat() + total,0,'COMMA', 0, 'POINT')+ ' VNĐ'}"></td>
 								</tr>
 								</tbody>
 							</table>

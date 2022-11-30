@@ -77,4 +77,16 @@ public class BillImportMaterial {
     public void setStatus(int status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "BillImportMaterial{" +
+                "billImportId=" + billImportId +
+                ", contract=" + contract +
+                ", created=" + created +
+                ", vat=" + vat +
+                ", total=" + total +
+                ", status=" + status +
+                '}';
+    }
 }

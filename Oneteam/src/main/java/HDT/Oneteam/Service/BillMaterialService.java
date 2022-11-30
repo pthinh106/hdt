@@ -1,9 +1,6 @@
 package HDT.Oneteam.Service;
 
-import HDT.Oneteam.Model.BillExportMaterial;
-import HDT.Oneteam.Model.BillExportMaterialDetails;
-import HDT.Oneteam.Model.BillImportMaterial;
-import HDT.Oneteam.Model.BillImportMaterialDetails;
+import HDT.Oneteam.Model.*;
 import HDT.Oneteam.Repository.BEMaterialDetailsReps;
 import HDT.Oneteam.Repository.BExportMaterialReps;
 import HDT.Oneteam.Repository.BIMaterialDetailsReps;
@@ -11,6 +8,7 @@ import HDT.Oneteam.Repository.BImportMaterialReps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +24,8 @@ public class BillMaterialService {
     private BImportMaterialReps bImportMaterialReps;
     @Autowired
     private BIMaterialDetailsReps biMaterialDetailsReps;
+    @Autowired
+    private MaterialService materialService;
 
 
 
@@ -71,5 +71,57 @@ public class BillMaterialService {
             return true;
         }
         return false;
+    }
+
+    public boolean createBillImportMaterial(BillImportMaterial billImportMaterial, int[] materialId, int[] quantity) {
+        if(quantity.length < 1){
+            return false;
+        }
+        billImportMaterial.setStatus(1);
+        bImportMaterialReps.save(billImportMaterial);
+        double total = 0;
+        for(int i = 0; i<quantity.length;i++){
+            Material material = new Material();
+            material = materialService.getMaterialById(materialId[i]);
+            material.setInventory(material.getInventory()+quantity[i]);
+            materialService.Save(material);
+            BillImportMaterialDetails billImportMaterialDetails = new BillImportMaterialDetails();
+            billImportMaterialDetails.setBillImportMaterial(billImportMaterial);
+            billImportMaterialDetails.setMaterial(material);
+            billImportMaterialDetails.setQuantity(quantity[i]);
+            billImportMaterialDetails.setTotal(material.getPrice()*quantity[i]);
+            total += material.getPrice()*quantity[i];
+            try {
+                biMaterialDetailsReps.save(billImportMaterialDetails);
+            }catch (Exception e){
+                return false;
+            }
+        }
+        billImportMaterial.setTotal(total);
+        bImportMaterialReps.save(billImportMaterial);
+        return true;
+    }
+
+    public boolean createBillExportMaterial(BillExportMaterial billExportMaterial, int[] materialId, int[] quantity) {
+        billExportMaterial.setStatus(1);
+        bExportMaterialReps.save(billExportMaterial);
+        List<Material> materialList = new ArrayList<>();
+        for(int i = 0 ; i < quantity.length;i++){
+            Material material = new Material();
+            material = materialService.getMaterialById(materialId[i]);
+            if(material.getInventory() >= quantity[i]){
+                material.setInventory(material.getInventory() - quantity[i]);
+            }else{
+                return false;
+            }
+            materialList.add(material);
+            BillExportMaterialDetails billExportMaterialDetails = new BillExportMaterialDetails();
+            billExportMaterialDetails.setBillExportMaterial(billExportMaterial);
+            billExportMaterialDetails.setMaterial(material);
+            billExportMaterialDetails.setQuantity(quantity[i]);
+            bEMaterialDetailsReps.save(billExportMaterialDetails);
+        }
+        materialService.saveAll(materialList);
+        return true;
     }
 }

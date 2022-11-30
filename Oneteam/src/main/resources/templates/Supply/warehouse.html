@@ -51,7 +51,7 @@
 											<td th:text="${#numbers.formatDecimal(material.getPrice(), 0, 'COMMA', 0, 'POINT')+ ' VNĐ'}"></td>
 											<td th:text="${material.getInventory()}"></td>
 											<td>
-												<button type="button" class="btn btn-md btn-info addbutton">Sửa</button>
+												<a th:href="@{warehouse/material/update/{id}(id=${material.getMaterialId()})}"><button type="button" class="btn btn-md btn-info addbutton">Sửa</button></a>
 												<button type="button" class="btn btn-md btn-danger" th:onclick="deleteMiterial([[${material.getMaterialId()}]])">Xóa</button>
 											</td>
 										</tr>
@@ -112,7 +112,6 @@
 	<div th:replace="Fragment/fragment :: js"></div>
 	<script>
 		function deleteProduct(id) {
-			var employmentId = document.getElementById(id).innerText;
 			Swal.fire({
 				title: 'Bạn chắc chắn muốn xóa sản phẩm này?',
 				showCancelButton: true,
@@ -123,7 +122,7 @@
 				if (result.isConfirmed) {
 					$.ajax({
 						type: "POST",
-						url: "http://localhost:8060/sales/api/product/delete/"+id,
+						url: "http://localhost:8060/supply/api/product/delete/"+id,
 						success: function(data)
 						{
 							if(data){
@@ -153,7 +152,6 @@
 	</script>
 	<script>
 		function deleteMiterial(id) {
-			var employmentId = document.getElementById(id).innerText;
 			Swal.fire({
 				title: 'Bạn chắc chắn muốn xóa nguyên liệu này? ',
 				showCancelButton: true,
@@ -164,7 +162,7 @@
 				if (result.isConfirmed) {
 					$.ajax({
 						type: "POST",
-						url: "http://localhost:8060/sales/api/material/delete/"+id,
+						url: "http://localhost:8060/supply/api/material/delete/"+id,
 						success: function(data)
 						{
 							if(data){

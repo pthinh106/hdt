@@ -1,6 +1,8 @@
 package HDT.Oneteam.Service;
 
+import HDT.Oneteam.Model.Material;
 import HDT.Oneteam.Model.Product;
+import HDT.Oneteam.Model.ProductStructure;
 import HDT.Oneteam.Repository.ProductReps;
 import HDT.Oneteam.Repository.ProductStructReps;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,8 @@ public class ProductService {
     private ProductReps productReps;
     @Autowired
     private ProductStructReps productStructReps;
+    @Autowired
+    private MaterialService materialService;
 
     ///module
     public List<Product> getAllProduct(){
@@ -44,4 +48,20 @@ public class ProductService {
         return false;
     }
 
+    public boolean createProduct(Product product, int[] materialId, int[] quantity) {
+        if(quantity.length < 1){
+            return false;
+        }
+        product.setStatus(1);
+        productReps.save(product);
+        for(int i = 0; i<quantity.length;i++){
+            Material material = materialService.getMaterialById(materialId[i]);
+            ProductStructure productStructure = new ProductStructure();
+            productStructure.setProduct(product);
+            productStructure.setMaterial(material);
+            productStructure.setQuantity(quantity[i]);
+            productStructReps.save(productStructure);
+        }
+        return true;
+    }
 }

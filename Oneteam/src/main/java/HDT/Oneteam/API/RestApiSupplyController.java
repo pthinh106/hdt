@@ -1,12 +1,10 @@
 package HDT.Oneteam.API;
 
+import HDT.Oneteam.Model.*;
 import HDT.Oneteam.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/supply/api")
@@ -66,6 +64,50 @@ public class RestApiSupplyController {
     @PostMapping("/productexport/delete/{id}")
     public ResponseEntity<Boolean> deleteProductExport(@PathVariable("id") int id){
         if(billProductService.deleteProductExport(id)){
+            return ResponseEntity.ok().body(true);
+        }
+        return ResponseEntity.ok().body(false);
+    }
+    @PostMapping("/material/create")
+    public ResponseEntity<Boolean> createMaterial(@ModelAttribute("material")Material material){
+        System.out.println(material.getMaterialId());
+        if(materialService.createMaterial(material)){
+            return ResponseEntity.ok().body(true);
+        }
+        return ResponseEntity.ok().body(false);
+    }
+    @PostMapping("/material/bill/import")
+    public ResponseEntity<Boolean> createBillImportMaterial(@ModelAttribute("billImportMaterial") BillImportMaterial billImportMaterial,
+                                                            @RequestParam("materialId") int[] materialId,@RequestParam("quantity") int[] quantity){
+        System.out.println(billImportMaterial.toString());
+        if(billMaterialService.createBillImportMaterial(billImportMaterial,materialId,quantity)){
+            return ResponseEntity.ok().body(true);
+        }
+        return ResponseEntity.ok().body(false);
+    }
+    @PostMapping("/material/bill/export")
+    public ResponseEntity<Boolean> createBillExportMaterial(@ModelAttribute("billExportMaterial") BillExportMaterial billExportMaterial,
+                                                            @RequestParam("materialId") int[] materialId,@RequestParam("quantity") int[] quantity){
+        System.out.println(billExportMaterial.toString());
+        if(billMaterialService.createBillExportMaterial(billExportMaterial,materialId,quantity)){
+            return ResponseEntity.ok().body(true);
+        }
+        return ResponseEntity.ok().body(false);
+    }
+    @PostMapping("/product/bill/import")
+    public ResponseEntity<Boolean> createBillImportProduct(@ModelAttribute("billImportProduct") BillImportProduct billImportProduct,
+                                                            @RequestParam("productId") int[] productId,@RequestParam("quantity") int[] quantity){
+        System.out.println(billImportProduct.toString());
+        if(billProductService.createBillImportProduct(billImportProduct,productId,quantity)){
+            return ResponseEntity.ok().body(true);
+        }
+        return ResponseEntity.ok().body(false);
+    }
+    @PostMapping("/product/create")
+    public ResponseEntity<Boolean> createProduct(@ModelAttribute("product") Product product,
+                                                           @RequestParam("materialId") int[] materialId,@RequestParam("quantity") int[] quantity){
+        System.out.println(product.toString());
+        if(productService.createProduct(product,materialId,quantity)){
             return ResponseEntity.ok().body(true);
         }
         return ResponseEntity.ok().body(false);

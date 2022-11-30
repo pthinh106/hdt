@@ -30,36 +30,43 @@
 							<em class="fa fa-close color-red"> Đóng</em>
 						</a>
 					</div>
-					<form id="form" role="form" name="MyForm" action="">
+					<form id="form" role="form" name="MyForm" action="/supply/api/product/create" th:object="${product}" method="post">
+						<input type="hidden" th:field="*{productId}">
 						<div class="panel-body">
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>Tên Sản Phẩm</label>
 									<label style="color:red ;">(*)</label>
-									<input name="IngredientName" id="IngredientName" type="text" class="form-control">
+									<input  type="text" class="form-control" th:field="*{productName}">
 								</div>
 								<div class="form-group">
 									<label>Đơn Vị Tính</label>
 									<label style="color:red ;">(*)</label>
-									<input name="PlaceOfDelivery" id="PlaceOfDelivery" type="text" class="form-control">
+									<input  id="PlaceOfDelivery" type="text" class="form-control" th:field="*{unit}">
 								</div>
 								<div class="form-group">
 									<label>Giá Sản Xuất</label>
 									<label style="color:red ;">(*)</label>
-									<input name="Rules" id="Rules" type="text" class="form-control">
+									<input type="text" class="form-control" th:field="*{price}">
+								</div>
+								<div class="form-group">
+									<label>Số Lượng Trong Kho</label>
+									<label style="color:red ;">(*)</label>
+									<input type="number" class="form-control" th:field="*{inventory}">
 								</div>
 							</div>
 							<div class="col-md-6">
+
 								<div id="AddForm">
-									<div id="ListIP" class="ListIP col-sm-12" style="padding-left: 0;">
+									<div id="ListIP" class="ListIP col-sm-12" style="padding: 0;">
 										<div class="col-sm-6" style="padding-left: 0;">
 											<div class="form-group">
 												<label>Nguyên Liệu</label>
 												<label style="color:red ;">(*)</label>
-												<select class="form-control">
-													<option>Gạo Lức</option>
-													<option>Bào Ngư</option>
-													<option>Trứng Gà</option>
+												<select class="form-control" name="materialId">
+													<th:block th:each="material : ${materialList1}">
+														<option th:value="${material.materialId}" th:text="${material.getMaterialName()}"></option>
+													</th:block>
 												</select>
 											</div>
 										</div>
@@ -67,7 +74,7 @@
 											<div class="form-group">
 												<label>Số Lượng Nguyên Liệu</label>
 												<label style="color:red ;">(*)</label>
-												<input type="number" class="form-control ">
+												<input type="number" class="form-control " name="quantity">
 											</div>
 										</div>
 									</div>
@@ -92,6 +99,40 @@
 
 
 	<div th:replace="Fragment/fragment :: js"></div>
+	<script>
+		$("#form").submit(function(e) {
+
+			e.preventDefault(); // avoid to execute the actual submit of the form.
+
+			var form = $(this);
+			$.ajax({
+				type: form.attr('method'),
+				url: form.attr('action'),
+				data: form.serialize(), // serializes the form's elements.
+				success: function(data)
+				{
+					if(data){
+						Swal.fire({
+							position: 'center',
+							icon: 'success',
+							title: 'Thêm sản phẩm thành công',
+							showConfirmButton: true
+						}).then((result) =>{
+							window.location.reload();
+						})
+					}else{
+						Swal.fire({
+							position: 'center',
+							icon: 'error',
+							title: 'Thiếu thông tin!',
+							showConfirmButton: true
+						})
+					}
+				}
+			});
+
+		});
+	</script>
 	
 </body>
 </html>

@@ -20,6 +20,15 @@ public class MaterialService {
     public List<Material> getAllMaterialOn(int status){
         return materialReps.findAllByStatus(status);
     }
+    public Material getMaterialById(int materialId){
+        return materialReps.findById(materialId).get();
+    }
+    public void Save(Material material){
+        materialReps.save(material);
+    }
+    public void saveAll(List<Material> materialList){
+        materialReps.saveAll(materialList);
+    }
 
     public boolean deleteMaterial(int id) {
         Optional<Material> material = materialReps.findById(id);
@@ -29,5 +38,21 @@ public class MaterialService {
             return true;
         }
         return false;
+    }
+
+    public boolean createMaterial(Material materialDetails) {
+        Optional<Material> material = materialReps.findById(materialDetails.getMaterialId());
+        if(material.isPresent()){
+            material.get().setInventory(materialDetails.getInventory());
+            material.get().setMaterialName(materialDetails.getMaterialName());
+            material.get().setUnit(materialDetails.getUnit());
+            material.get().setPrice(materialDetails.getPrice());
+            materialReps.save(material.get());
+            return true;
+        }else{
+            materialDetails.setStatus(1);
+            materialReps.save(materialDetails);
+            return true;
+        }
     }
 }

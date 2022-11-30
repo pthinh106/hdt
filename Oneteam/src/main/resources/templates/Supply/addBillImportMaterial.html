@@ -25,61 +25,59 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
-					<div class="panel-heading" style="font-weight: bold;" > Thêm Phiếu Nhập Nguyên Liệu
+					<div class="panel-heading" style="font-weight: bold;"> Thêm Phiếu Nhập Nguyên Liệu
 						<a class="addbutton" href="/supply/billimportmatertial">
 							<em class="fa fa-close color-red"> Đóng</em>
 						</a>
 					</div>
-					<form id="form" role="form" name="MyForm" action="">
+					<form id="form" role="form" name="MyForm" action="/supply/api/material/bill/import" th:object="${billImportMaterial}" method="post">
 						<div class="panel-body">
-							<div class="col-md-6">
-								<div  class="form-group ">
-									<label >Mã Phiếu Nhập Nguyên Liệu</label>
-									<label style="color:red ;">(*)</label>
-									<input name="Mahd" id="Mahd"  class="form-control" >
+							<div class="col-md-12">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>VAT</label>
+										<label style="color:red ;">(*)</label>
+										<input type="text" class="form-control" th:field="*{vat}">
+									</div>
+									<div class="form-group">
+										<label>Mã Hợp đồng</label>
+										<label style="color:red ;">(*)</label>
+										<select class="form-control" th:field="*{contract}">
+											<th:block th:each="contract : ${contractList}">
+												<option th:value="${contract.getContractId()}" th:text="${'HĐ'+contract.getContractId()}"></option>
+											</th:block>
+										</select>
+
+									</div>
 								</div>
-								<div class="form-group">
-									<label>Ngày Mua</label>
-									<label style="color:red ;">(*)</label>
-									<input name="IngredientName" id="IngredientName" type="date" class="form-control">
-								</div>
-								<div class="form-group">
-									<label>VAT</label>
-									<label style="color:red ;">(*)</label>
-									<input name="PlaceOfDelivery" id="PlaceOfDelivery" type="text" class="form-control">
-								</div>
-								<div class="form-group">
-									<label>Trị Giá Phiếu</label>
-									<label style="color:red ;">(*)</label>
-									<input name="Rules" id="Rules" type="text" class="form-control" readonly>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div id="AddForm" >
-									<div id="ListIP" class="ListIP col-sm-12">
-										<div class="col-sm-6">
-											<div class="form-group">
-												<label>Nguyên Liệu</label>
-												<label style="color:red ;">(*)</label>
-												<select class="form-control">
-													<option>Gạo Lức</option>
-													<option>Bào Ngư</option>
-													<option>Trứng Gà</option>
-												</select>
+								<div class="col-md-6">
+									<div id="AddForm">
+										<div id="ListIP" class="ListIP col-sm-12" style="padding: 0;">
+											<div class="col-sm-6" style="padding-left: 0;">
+												<div class="form-group">
+													<label>Nguyên Liệu</label>
+													<label style="color:red ;">(*)</label>
+													<select class="form-control" name="materialId">
+														<th:block th:each="material : ${materialList}">
+															<option th:value="${material.getMaterialId()}" th:text="${material.getMaterialName()}"></option>
+														</th:block>
+													</select>
+												</div>
 											</div>
-										</div>
-										<div class="col-sm-6">
-											<div class="form-group">
-												<label>Số Lượng Sản Phẩm</label>
-												<label style="color:red ;">(*)</label>
-												<input type="number" class="form-control ">
+											<div class="col-sm-6">
+												<div class="form-group">
+													<label>Số Lượng Nguyên Liệu</label>
+													<label style="color:red ;">(*)</label>
+													<input type="number" class="form-control " name="quantity">
+												</div>
 											</div>
 										</div>
 									</div>
+									<button type="button" id="AddIP" class="btn btn-success">
+										<i class="fa fa-plus"></i>
+									</button>
 								</div>
-								<button type="button" id="AddIP" class="btn btn-success" style="margin-left:30px ;">
-									<i class="fa fa-plus"></i>
-								</button>
+
 							</div>
 						</div>
 						<div class="panel-footer">
@@ -88,14 +86,46 @@
 						</div>
 					</form>
 				</div>
-			</div><!--/.col-->
-			<div class="col-sm-12">
-			<p class="back-link">Make by <a href="https://www.facebook.com/profile.php?id=100006077866205">ONETEAM</a></p>
+			</div><!-- /.panel-->
 		</div>
-		</div><!--/.row-->
 	</div>	<!--/.main-->
 
 	<div th:replace="Fragment/fragment :: js"></div>
+
+	<script>
+		$("#form").submit(function(e) {
+
+			e.preventDefault(); // avoid to execute the actual submit of the form.
+
+			var form = $(this);
+			$.ajax({
+				type: form.attr('method'),
+				url: form.attr('action'),
+				data: form.serialize(), // serializes the form's elements.
+				success: function(data)
+				{
+					if(data){
+						Swal.fire({
+							position: 'center',
+							icon: 'success',
+							title: 'Thêm bill thành công',
+							showConfirmButton: true
+						}).then((result) =>{
+							window.location.reload();
+						})
+					}else{
+						Swal.fire({
+							position: 'center',
+							icon: 'error',
+							title: 'Thiếu thông tin!',
+							showConfirmButton: true
+						})
+					}
+				}
+			});
+
+		});
+	</script>
 	
 </body>
 </html>

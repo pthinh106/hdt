@@ -3,7 +3,6 @@ package HDT.Oneteam.Controllers;
 import HDT.Oneteam.Model.*;
 import HDT.Oneteam.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.relational.core.sql.In;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +29,8 @@ public class SupplyController {
     private BillMaterialService billMaterialService;
     @Autowired
     private BillProductService billProductService;
+    @Autowired
+    private WorkshopService workshopService;
 
 
     @GetMapping("")
@@ -84,6 +85,12 @@ public class SupplyController {
             Account account = accountService.getAccountByName(principal.getName());
             model.addAttribute("account",account);
         }
+        List<ProductStructure> productStructureList = new ArrayList<>();
+        productStructureList.add(new ProductStructure());
+        Product product = new Product();
+        product.setProductStructureList(productStructureList);
+        model.addAttribute("product",product);
+        model.addAttribute("materialList1",materialService.getAllMaterialOn(1));
         model.addAttribute("warehouse",true);
         return "Supply/addProduct";
     }
@@ -102,6 +109,17 @@ public class SupplyController {
             Account account = accountService.getAccountByName(principal.getName());
             model.addAttribute("account",account);
         }
+        model.addAttribute("material",new Material());
+        model.addAttribute("warehouse",true);
+        return "Supply/addMaterial";
+    }
+    @GetMapping("/warehouse/material/update/{id}")
+    public String UpdateMaterial(@PathVariable("id") int id,Model model, Principal principal){
+        if(principal != null){
+            Account account = accountService.getAccountByName(principal.getName());
+            model.addAttribute("account",account);
+        }
+        model.addAttribute("material",materialService.getMaterialById(id));
         model.addAttribute("warehouse",true);
         return "Supply/addMaterial";
     }
@@ -144,6 +162,9 @@ public class SupplyController {
             Account account = accountService.getAccountByName(principal.getName());
             model.addAttribute("account",account);
         }
+        model.addAttribute("billImportMaterial",new BillImportMaterial());
+        model.addAttribute("contractList",contractService.getContractByStatus(0));
+        model.addAttribute("materialList",materialService.getAllMaterialOn(1));
         model.addAttribute("ingredientImport",true);
         return "Supply/addBillImportMaterial";
     }
@@ -177,7 +198,10 @@ public class SupplyController {
             Account account = accountService.getAccountByName(principal.getName());
             model.addAttribute("account",account);
         }
-        model.addAttribute("ingredientImport",true);
+        model.addAttribute("billExportMaterial",new BillExportMaterial());
+        model.addAttribute("workshopList",workshopService.getAllWorkshop());
+        model.addAttribute("materialList",materialService.getAllMaterialOn(1));
+        model.addAttribute("ingredientExport",true);
         return "Supply/addBillExportMaterial";
     }
 
@@ -213,6 +237,9 @@ public class SupplyController {
             Account account = accountService.getAccountByName(principal.getName());
             model.addAttribute("account",account);
         }
+        model.addAttribute("billImportProduct",new BillImportProduct());
+        model.addAttribute("workshopList",workshopService.getAllWorkshop());
+        model.addAttribute("productList",productService.getAllProductOn(1));
         model.addAttribute("productImport",true);
         return "Supply/addBillImportProduct";
     }

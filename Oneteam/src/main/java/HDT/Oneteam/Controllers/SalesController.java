@@ -93,7 +93,7 @@ public class SalesController {
             Account account = accountService.getAccountByName(principal.getName());
             model.addAttribute("account",account);
         }
-        model.addAttribute("productList",productService.getAllProduct());
+        model.addAttribute("productList",productService.getAllProductOn(1));
         model.addAttribute("paymentList",paymentService.getAllPayment());
         model.addAttribute("contracts",new Contract());
         model.addAttribute("contract",true);
