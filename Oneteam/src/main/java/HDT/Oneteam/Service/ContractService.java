@@ -9,10 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.swing.text.html.Option;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 @Service
 public class ContractService {
@@ -109,7 +110,6 @@ public class ContractService {
                 }catch (Exception e){
                     return false;
                 }
-
                 List<ContractDetails> contractDetailsList = getListContractDetailsByContract(contract);
                 for(ContractDetails contractDetails : contractDetailsList){
                     BillExportProductDetails billExportProductDetails = new BillExportProductDetails();
@@ -122,7 +122,6 @@ public class ContractService {
                     }catch (Exception e){
                         return false;
                     }
-
                 }
                 contract.setStatus(1);
             }
@@ -131,7 +130,6 @@ public class ContractService {
             }catch (Exception e){
                 return false;
             }
-
             return true;
         }
         return false;
@@ -156,6 +154,12 @@ public class ContractService {
         if(contract.getCustomer().getCustomerName().isEmpty() || contract.getCustomer().getAddress().isEmpty() ||
                 contract.getCustomer().getTax().isEmpty() || contract.getCustomer().getPhoneNumber().isEmpty() ||
                 contract.getDeliveryPlace().isEmpty() ){
+            return false;
+        }
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        Date date = Date.valueOf(dtf.format(LocalDate.now()));
+        if(contract.getUpdated().before(date)){
             return false;
         }
         Customer customer = contract.getCustomer();
@@ -193,7 +197,6 @@ public class ContractService {
                 }catch (Exception e){
                     return false;
                 }
-
             }
             contract.get().setStatus(3);
             contract.get().setLiquidationStatus(0);

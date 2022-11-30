@@ -39,7 +39,8 @@ public class SecurityConfig {
                 .antMatchers("/sales/**").hasAnyRole("SALES","MANAGER")
                 .antMatchers("/manager/**").hasAnyRole("MANAGER")
                 .antMatchers("/**").permitAll()
-                .and().formLogin().loginPage("/login").defaultSuccessUrl("/redirect").failureUrl("/login?error=true").permitAll()
+                .and().formLogin().loginPage("/login").defaultSuccessUrl("/redirect")
+                .failureUrl("/login?error=true").permitAll()
                 .and().logout(logout -> logout
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/login")
