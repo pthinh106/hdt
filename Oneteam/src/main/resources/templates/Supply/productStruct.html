@@ -34,9 +34,9 @@
                     <div class="panel-body">
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <div>Tên Sản Phẩm: Cơm Cháy</div>
-                                <div>Đơn Vị Tính: Bịch</div>
-                                <div>Giá Sản Xuất: ????$</div>
+                                <div><strong>Tên Sản Phẩm: <span th:text="${product.getProductName()}"></span></strong></div>
+                                <div><strong>Đơn Vị Tính: <span th:text="${product.getUnit()}"></span></strong></div>
+                                <div><strong>Giá Sản Xuất: <span th:text="${#numbers.formatDecimal(product.getPrice(), 0, 'COMMA', 0, 'POINT')+ ' VNĐ'}"></span></strong></div>
                             </div>
                             <table class="table table-bordered">
                                 <caption style="text-align: center; color: #444444; padding-top: 0;"><h3 style="font-weight: bold; margin: 0px;">Bảng Nguyên Liệu</h3></caption>
@@ -50,20 +50,15 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <th class="text-center" scope="row">1</th>
-                                    <td>NL01</td>
-                                    <td>Gạo Lức</td>
-                                    <td>Kg</td>
-                                    <td class="text-right">2</td>
-                                </tr>
-                                <tr>
-                                    <th class="text-center" scope="row">2</th>
-                                    <td>NL02</td>
-                                    <td>Bào Ngư</td>
-                                    <td>Kg</td>
-                                    <td class="text-right">5</td>
-                                </tr>
+                                <th:block th:each="struct,cout : ${productStructList}">
+                                    <tr>
+                                        <th class="text-center" scope="row" th:text="${cout.index + 1}">1</th>
+                                        <td th:text="${'NL'+struct.getMaterial().getMaterialId()}">NL01</td>
+                                        <td th:text="${struct.getMaterial().getMaterialName()}">Gạo Lức</td>
+                                        <td th:text="${struct.material.getUnit()}">Kg</td>
+                                        <td class="text-right" th:text="${struct.getQuantity()}">2</td>
+                                    </tr>
+                                </th:block>
                                 </tbody>
                             </table>
                         </div>

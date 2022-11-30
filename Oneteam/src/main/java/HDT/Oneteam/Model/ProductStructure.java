@@ -16,11 +16,11 @@ public class ProductStructure {
     @JoinColumn(name = "MANL")
     private Material material;
     @Column(name = "SOLUONG")
-    private int quantity;
+    private double quantity;
 
     public ProductStructure(){}
 
-    public ProductStructure(int productStructureId, Product product, Material material, int quantity) {
+    public ProductStructure(int productStructureId, Product product, Material material, double quantity) {
         this.productStructureId = productStructureId;
         this.product = product;
         this.material = material;
@@ -51,11 +51,20 @@ public class ProductStructure {
         this.material = material;
     }
 
-    public int getQuantity() {
+    public double getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(double quantity) {
         this.quantity = quantity;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductStructure{" +
+                "productStructureId=" + productStructureId +
+                ", material=" + material +
+                ", quantity=" + quantity +
+                '}';
     }
 }

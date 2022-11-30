@@ -78,13 +78,23 @@ public class BillMaterialService {
             return false;
         }
         billImportMaterial.setStatus(1);
-        bImportMaterialReps.save(billImportMaterial);
+        try {
+            bImportMaterialReps.save(billImportMaterial);
+        }catch (Exception e){
+            return false;
+        }
+
         double total = 0;
         for(int i = 0; i<quantity.length;i++){
             Material material = new Material();
             material = materialService.getMaterialById(materialId[i]);
             material.setInventory(material.getInventory()+quantity[i]);
-            materialService.Save(material);
+            try {
+                materialService.Save(material);
+            }catch (Exception e){
+                return false;
+            }
+
             BillImportMaterialDetails billImportMaterialDetails = new BillImportMaterialDetails();
             billImportMaterialDetails.setBillImportMaterial(billImportMaterial);
             billImportMaterialDetails.setMaterial(material);
@@ -98,13 +108,23 @@ public class BillMaterialService {
             }
         }
         billImportMaterial.setTotal(total);
-        bImportMaterialReps.save(billImportMaterial);
+        try {
+            bImportMaterialReps.save(billImportMaterial);
+        }catch (Exception e){
+            return false;
+        }
+
         return true;
     }
 
     public boolean createBillExportMaterial(BillExportMaterial billExportMaterial, int[] materialId, int[] quantity) {
         billExportMaterial.setStatus(1);
-        bExportMaterialReps.save(billExportMaterial);
+        try {
+            bExportMaterialReps.save(billExportMaterial);
+        }catch (Exception e){
+            return false;
+        }
+
         List<Material> materialList = new ArrayList<>();
         for(int i = 0 ; i < quantity.length;i++){
             Material material = new Material();
@@ -119,9 +139,19 @@ public class BillMaterialService {
             billExportMaterialDetails.setBillExportMaterial(billExportMaterial);
             billExportMaterialDetails.setMaterial(material);
             billExportMaterialDetails.setQuantity(quantity[i]);
-            bEMaterialDetailsReps.save(billExportMaterialDetails);
+            try {
+                bEMaterialDetailsReps.save(billExportMaterialDetails);
+            }catch (Exception e){
+                return false;
+            }
+
         }
-        materialService.saveAll(materialList);
+        try {
+            materialService.saveAll(materialList);
+        }catch (Exception e){
+            return false;
+        }
+
         return true;
     }
 }

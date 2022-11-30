@@ -52,7 +52,7 @@
 												<label style="color:red ;">(*)</label>
 												<select class="form-control" name="materialId">
 													<th:block th:each="material : ${materialList}">
-														<option th:value="${material.materialId}" th:text="${material.getMaterialName()}"></option>
+														<option th:value="${material.materialId}" th:text="${material.getMaterialName()+ ' ('+material.getUnit()+')'}"></option>
 													</th:block>
 												</select>
 											</div>
@@ -61,7 +61,7 @@
 											<div class="form-group">
 												<label>Số Lượng Nguyên Liệu</label>
 												<label style="color:red ;">(*)</label>
-												<input type="number" class="form-control " name="quantity">
+												<input type="number" class="form-control " name="quantity" value="0">
 											</div>
 										</div>
 									</div>

@@ -25,19 +25,19 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
-					<div class="panel-heading" style="font-weight: bold;" > Thêm Sản Phẩm
+					<div class="panel-heading" style="font-weight: bold;" > Sửa Sản Phẩm
 						<a class="addbutton" href="/supply/warehouse">
 							<em class="fa fa-close color-red"> Đóng</em>
 						</a>
 					</div>
-					<form id="form" role="form" name="MyForm" action="/supply/api/product/create" th:object="${product}" method="post">
+					<form id="form" role="form" name="MyForm" action="/supply/api/product/update" th:object="${product}" method="post">
 						<input type="hidden" th:field="*{productId}">
 						<div class="panel-body">
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>Tên Sản Phẩm</label>
 									<label style="color:red ;">(*)</label>
-									<input  type="text" class="form-control" th:field="*{productName}">
+									<input  type="text" class="form-control" th:field="*{productName}" readonly>
 								</div>
 								<div class="form-group">
 									<label>Đơn Vị Tính</label>
@@ -47,7 +47,7 @@
 								<div class="form-group">
 									<label>Giá Sản Xuất</label>
 									<label style="color:red ;">(*)</label>
-									<input type="text" class="form-control" th:field="*{price}">
+									<input type="number" step="0.01" class="form-control" th:field="*{price}">
 								</div>
 								<div class="form-group">
 									<label>Số Lượng Trong Kho</label>
@@ -56,9 +56,36 @@
 								</div>
 							</div>
 							<div class="col-md-6">
+								<div class="col-md-12" style="padding: 0">
+									<th:block th:each="struct : ${productStructList}">
+										<div class="col-sm-6" style="padding-left: 0;">
+											<div class="form-group">
+												<label>Nguyên Liệu</label>
+												<label style="color:red ;">(*)</label>
+												<select class="form-control" name="materialId" th:name="materialId">
+													<th:block th:each="material : ${materialList1}">
+														<th:block th:if="${material.getMaterialId() == struct.getMaterial().getMaterialId()}">
+															<option th:value="${material.materialId}" th:text="${material.getMaterialName() + ' ('+material.getUnit()+')'}" selected></option>
+														</th:block>
+														<th:block th:unless="${material.getMaterialId() == struct.getMaterial().getMaterialId()}">
+															<option th:value="${material.materialId}" th:text="${material.getMaterialName() + ' ('+material.getUnit()+')'}"></option>
+														</th:block>
 
+													</th:block>
+												</select>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label>Số Lượng Nguyên Liệu</label>
+												<label style="color:red ;">(*)</label>
+												<input type="number" step="0.01" class="form-control " name="quantity" th:value="${struct.getQuantity()}">
+											</div>
+										</div>
+									</th:block>
+								</div>
 								<div id="AddForm">
-									<div id="ListIP" class="ListIP col-sm-12" style="padding: 0;">
+									<div id="ListIP" class="ListIP col-sm-12" style="padding: 0;display: none">
 										<div class="col-sm-6" style="padding-left: 0;">
 											<div class="form-group">
 												<label>Nguyên Liệu</label>
