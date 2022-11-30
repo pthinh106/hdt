@@ -76,9 +76,17 @@ public class BillProductService {
             return false;
         }
         billImportProduct.setStatus(1);
-        bImportProductReps.save(billImportProduct);
+        try {
+            bImportProductReps.save(billImportProduct);
+        }catch (Exception e){
+            return false;
+        }
+
         List<Product> productList = new ArrayList<>();
         for(int i = 0 ; i < quantity.length;i++){
+            if(quantity[i] == 0){
+                continue;
+            }
             Product product = new Product();
             product = productService.getProductById(productId[i]);
             product.setInventory(product.getInventory()+quantity[i]);
@@ -88,9 +96,19 @@ public class BillProductService {
             billImportProductDetails.setBillImportProduct(billImportProduct);
             billImportProductDetails.setQuantity(quantity[i]);
             billImportProductDetails.setTotal(product.getPrice()*quantity[i]);
-            biProductDetailsReps.save(billImportProductDetails);
+            try {
+                biProductDetailsReps.save(billImportProductDetails);
+            }catch (Exception e){
+                return false;
+            }
+
         }
-        productService.saveAll(productList);
+        try {
+            productService.saveAll(productList);
+        }catch (Exception e){
+            return false;
+        }
+
         return true;
     }
 }

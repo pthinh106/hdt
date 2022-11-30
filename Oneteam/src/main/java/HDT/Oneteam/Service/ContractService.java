@@ -101,7 +101,12 @@ public class ContractService {
                 BillExportProduct billExportProduct = new BillExportProduct();
                 billExportProduct.setContract(contract);
                 billExportProduct.setStatus(1);
-                bExportProductReps.save(billExportProduct);
+                try {
+                    bExportProductReps.save(billExportProduct);
+                }catch (Exception e){
+                    return false;
+                }
+
                 List<ContractDetails> contractDetailsList = getListContractDetailsByContract(contract);
                 for(ContractDetails contractDetails : contractDetailsList){
                     BillExportProductDetails billExportProductDetails = new BillExportProductDetails();
@@ -109,11 +114,21 @@ public class ContractService {
                     billExportProductDetails.setProduct(contractDetails.getProduct());
                     billExportProductDetails.setQuantity(contractDetails.getQuantity());
                     billExportProductDetails.setTotal(contractDetails.getTotal());
-                    bEProductDetailsReps.save(billExportProductDetails);
+                    try {
+                        bEProductDetailsReps.save(billExportProductDetails);
+                    }catch (Exception e){
+                        return false;
+                    }
+
                 }
                 contract.setStatus(1);
             }
-            contractReps.saveAll(contractList);
+            try {
+                contractReps.saveAll(contractList);
+            }catch (Exception e){
+                return false;
+            }
+
             return true;
         }
         return false;
@@ -147,6 +162,9 @@ public class ContractService {
         contractReps.save(contract);
         double total = 0;
         for(int i = 0; i <productQuantity.length;i++){
+            if(productQuantity[i] == 0){
+                continue;
+            }
             ContractDetails contractDetails = new ContractDetails();
             contractDetails.setContract(contract);
             contractDetails.setProduct(productService.getProductById(productDetailsId[i]));

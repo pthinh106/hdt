@@ -42,26 +42,86 @@ public class ProductService {
         Optional<Product> product = productReps.findById(id);
         if(product.isPresent()){
             product.get().setStatus(0);
-            productReps.save(product.get());
+            try {
+                productReps.save(product.get());
+            }catch (Exception e){
+                return false;
+            }
+
             return true;
         }
         return false;
     }
 
-    public boolean createProduct(Product product, int[] materialId, int[] quantity) {
+    public boolean createProduct(Product product, int[] materialId, double[] quantity) {
         if(quantity.length < 1){
             return false;
         }
         product.setStatus(1);
         productReps.save(product);
         for(int i = 0; i<quantity.length;i++){
+            if(quantity[i] == 0){
+                continue;
+            }
             Material material = materialService.getMaterialById(materialId[i]);
             ProductStructure productStructure = new ProductStructure();
             productStructure.setProduct(product);
             productStructure.setMaterial(material);
             productStructure.setQuantity(quantity[i]);
-            productStructReps.save(productStructure);
+            try {
+                productStructReps.save(productStructure);
+            }catch (Exception e){
+                return false;
+            }
+
         }
         return true;
+    }
+
+    public boolean updateProduct(Product product, int[] materialId, double[] quantity) {
+        if(quantity.length < 1){
+            return false;
+        }
+        Optional<Product> product1 = productReps.findById(product.getProductId());
+        if(product1.isPresent()){
+            product1.get().setProductName(product.getProductName());
+            product1.get().setInventory(product.getInventory());
+            product1.get().setUnit(product.getUnit());
+            product1.get().setPrice(product.getPrice());
+            try {
+                productReps.save(product1.get());
+            }catch (Exception e){
+                return false;
+            }
+
+            try {
+                for(ProductStructure productStructure : product1.get().getProductStructureList()){
+                    productStructReps.deleteById(productStructure.getProductStructureId());
+                }
+            }catch (Exception e){
+                System.out.println("error");
+            }
+
+            for(int i = 0; i<quantity.length;i++){
+                if(quantity[i] == 0){
+                    continue;
+                }
+                Material material = materialService.getMaterialById(materialId[i]);
+                ProductStructure productStructure = new ProductStructure();
+                productStructure.setProduct(product1.get());
+                productStructure.setMaterial(material);
+                productStructure.setQuantity(quantity[i]);
+                try {
+                    productStructReps.save(productStructure);
+                }catch (Exception e){
+                    System.out.println("fail");
+                    return false;
+                }
+            }
+            return true;
+        }else{
+            return false;
+        }
+
     }
 }

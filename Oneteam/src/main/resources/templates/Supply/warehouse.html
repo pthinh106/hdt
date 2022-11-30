@@ -90,7 +90,7 @@
 										<td th:text="${#numbers.formatDecimal(product.getPrice(), 0, 'COMMA', 0, 'POINT')+ ' VNĐ'}"></td>
 										<td th:text="${product.getInventory()}"></td>
 										<td>
-											<button type="button" class="btn btn-md btn-info addbutton">Sửa</button>
+											<a th:href="@{warehouse/product/update/{id}(id=${product.getProductId()})}"><button type="button" class="btn btn-md btn-info addbutton">Sửa</button></a>
 											<button type="button" class="btn btn-md btn-danger" th:onclick="deleteProduct([[${product.getProductId()}]])">Xóa</button>
 											<a th:href="@{warehouse/product/{id}(id=${product.getProductId()})}"><button type="button" class="btn btn-md btn-default">Xem</button></a>
 										</td>

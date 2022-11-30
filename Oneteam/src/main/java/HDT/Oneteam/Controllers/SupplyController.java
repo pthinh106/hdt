@@ -1,6 +1,7 @@
 package HDT.Oneteam.Controllers;
 
 import HDT.Oneteam.Model.*;
+import HDT.Oneteam.Repository.ProductStructReps;
 import HDT.Oneteam.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,6 +32,8 @@ public class SupplyController {
     private BillProductService billProductService;
     @Autowired
     private WorkshopService workshopService;
+    @Autowired
+    private ProductStructService productStructService;
 
 
     @GetMapping("")
@@ -100,8 +103,24 @@ public class SupplyController {
             Account account = accountService.getAccountByName(principal.getName());
             model.addAttribute("account",account);
         }
+        Product product = productService.getProductById(id);
+        model.addAttribute("product",product);
+        model.addAttribute("productStructList",productStructService.getStructProduct(product));
         model.addAttribute("warehouse",true);
         return "Supply/productStruct";
+    }
+    @GetMapping("/warehouse/product/update/{id}")
+    public String updateProduct(@PathVariable("id") int id,Model model, Principal principal){
+        if(principal != null){
+            Account account = accountService.getAccountByName(principal.getName());
+            model.addAttribute("account",account);
+        }
+        Product product = productService.getProductById(id);
+        System.out.println(product.toString());
+        model.addAttribute("product",product);
+        model.addAttribute("productStructList",productStructService.getStructProduct(product));
+        model.addAttribute("materialList1",materialService.getAllMaterialOn(1));
+        return "Supply/updateProduct";
     }
     @GetMapping("/warehouse/material/create")
     public String createMaterial(Model model, Principal principal){
@@ -124,7 +143,7 @@ public class SupplyController {
         return "Supply/addMaterial";
     }
 
-    ///Material
+    /// Bill Material
     @GetMapping("/billimportmatertial")
     public String billImportMaterial(Model model, Principal principal){
         if(principal != null){
@@ -206,7 +225,7 @@ public class SupplyController {
     }
 
 
-    ///Product
+    /// Bill Product
     @GetMapping("/billimportproduct")
     public String billimportProduct(Model model, Principal principal){
         if(principal != null){

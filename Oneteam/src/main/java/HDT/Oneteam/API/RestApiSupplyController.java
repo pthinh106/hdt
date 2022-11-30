@@ -70,7 +70,6 @@ public class RestApiSupplyController {
     }
     @PostMapping("/material/create")
     public ResponseEntity<Boolean> createMaterial(@ModelAttribute("material")Material material){
-        System.out.println(material.getMaterialId());
         if(materialService.createMaterial(material)){
             return ResponseEntity.ok().body(true);
         }
@@ -79,7 +78,6 @@ public class RestApiSupplyController {
     @PostMapping("/material/bill/import")
     public ResponseEntity<Boolean> createBillImportMaterial(@ModelAttribute("billImportMaterial") BillImportMaterial billImportMaterial,
                                                             @RequestParam("materialId") int[] materialId,@RequestParam("quantity") int[] quantity){
-        System.out.println(billImportMaterial.toString());
         if(billMaterialService.createBillImportMaterial(billImportMaterial,materialId,quantity)){
             return ResponseEntity.ok().body(true);
         }
@@ -88,7 +86,6 @@ public class RestApiSupplyController {
     @PostMapping("/material/bill/export")
     public ResponseEntity<Boolean> createBillExportMaterial(@ModelAttribute("billExportMaterial") BillExportMaterial billExportMaterial,
                                                             @RequestParam("materialId") int[] materialId,@RequestParam("quantity") int[] quantity){
-        System.out.println(billExportMaterial.toString());
         if(billMaterialService.createBillExportMaterial(billExportMaterial,materialId,quantity)){
             return ResponseEntity.ok().body(true);
         }
@@ -97,7 +94,6 @@ public class RestApiSupplyController {
     @PostMapping("/product/bill/import")
     public ResponseEntity<Boolean> createBillImportProduct(@ModelAttribute("billImportProduct") BillImportProduct billImportProduct,
                                                             @RequestParam("productId") int[] productId,@RequestParam("quantity") int[] quantity){
-        System.out.println(billImportProduct.toString());
         if(billProductService.createBillImportProduct(billImportProduct,productId,quantity)){
             return ResponseEntity.ok().body(true);
         }
@@ -105,9 +101,16 @@ public class RestApiSupplyController {
     }
     @PostMapping("/product/create")
     public ResponseEntity<Boolean> createProduct(@ModelAttribute("product") Product product,
-                                                           @RequestParam("materialId") int[] materialId,@RequestParam("quantity") int[] quantity){
-        System.out.println(product.toString());
+                                                           @RequestParam("materialId") int[] materialId,@RequestParam("quantity") double[] quantity){
         if(productService.createProduct(product,materialId,quantity)){
+            return ResponseEntity.ok().body(true);
+        }
+        return ResponseEntity.ok().body(false);
+    }
+    @PostMapping("/product/update")
+    public ResponseEntity<Boolean> updateProduct(@ModelAttribute("product") Product product,
+                                                 @RequestParam("materialId") int[] materialId,@RequestParam("quantity") double[] quantity){
+        if(productService.updateProduct(product,materialId,quantity)){
             return ResponseEntity.ok().body(true);
         }
         return ResponseEntity.ok().body(false);

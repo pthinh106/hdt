@@ -25,7 +25,7 @@ public class Product {
     private Timestamp created;
     @Column(name = "NGAYCAPNHAT")
     private Timestamp updated;
-    @OneToMany(mappedBy = "material",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "product",fetch = FetchType.LAZY)
     private List<ProductStructure> productStructureList;
     public Product(){}
 
@@ -133,6 +133,7 @@ public class Product {
                 ", status=" + status +
                 ", created=" + created +
                 ", updated=" + updated +
+                ", productStructureList=" + productStructureList +
                 '}';
     }
 }

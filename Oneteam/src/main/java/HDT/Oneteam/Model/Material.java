@@ -99,4 +99,18 @@ public class Material {
     public void setStatus(int status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "Material{" +
+                "materialId=" + materialId +
+                ", materialName='" + materialName + '\'' +
+                ", unit='" + unit + '\'' +
+                ", price=" + price +
+                ", inventory=" + inventory +
+                ", status=" + status +
+                ", create=" + create +
+                ", updated=" + updated +
+                '}';
+    }
 }

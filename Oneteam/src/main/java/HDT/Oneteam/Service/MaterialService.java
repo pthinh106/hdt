@@ -47,11 +47,21 @@ public class MaterialService {
             material.get().setMaterialName(materialDetails.getMaterialName());
             material.get().setUnit(materialDetails.getUnit());
             material.get().setPrice(materialDetails.getPrice());
-            materialReps.save(material.get());
+            try {
+                materialReps.save(material.get());
+            }catch (Exception e){
+                return false;
+            }
+
             return true;
         }else{
             materialDetails.setStatus(1);
-            materialReps.save(materialDetails);
+            try {
+                materialReps.save(materialDetails);
+            }catch (Exception e){
+                return false;
+            }
+
             return true;
         }
     }
