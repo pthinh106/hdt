@@ -180,7 +180,20 @@ public class ContractService {
     public Boolean deletecontract(int contractId){
         Optional<Contract> contract = contractReps.findById(contractId);
         if(contract.isPresent()){
+            List<ContractDetails>  contractDetailsList = getListContractDetailsByContract(contract.get());
+            for(ContractDetails contractDetails : contractDetailsList){
+                Product product = new Product();
+                product = productService.getProductById(contractDetails.getProduct().getProductId());
+                product.setInventory(product.getInventory()+contractDetails.getQuantity());
+                try {
+                    productService.save(product);
+                }catch (Exception e){
+                    return false;
+                }
+
+            }
             contract.get().setStatus(3);
+            contract.get().setLiquidationStatus(0);
             contractReps.save(contract.get());
             return true;
         }else{
