@@ -20,5 +20,4 @@ public class RestApiSupplyController {
         }
         return ResponseEntity.ok().body(false);
     }
-    @PostMapping("/material")
 }
