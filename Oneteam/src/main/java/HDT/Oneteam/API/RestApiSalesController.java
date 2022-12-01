@@ -43,6 +43,15 @@ public class RestApiSalesController {
         }
         return ResponseEntity.ok().body(false);
     }
+    @PostMapping("/contract/update")
+    public ResponseEntity<Boolean> updateContract(@ModelAttribute("contracts") Contract contract,
+                                                  @Param("productDetailsId") int[] productDetailsId, @Param("productQuantity") int[] productQuantity, @Param("accountId") int accountId){
+
+        if(contractService.updateContract(contract,productDetailsId,productQuantity,accountId)){
+            return ResponseEntity.ok().body(true);
+        }
+        return ResponseEntity.ok().body(false);
+    }
     @PostMapping("/contract/delete/{id}")
     public ResponseEntity<Boolean> deleteContract(@PathVariable("id") int contractId){
 

@@ -58,6 +58,7 @@ public class ProductService {
             return false;
         }
         product.setStatus(1);
+        product.setInventoryV1(product.getInventory());
         productReps.save(product);
         for(int i = 0; i<quantity.length;i++){
             if(quantity[i] == 0){
@@ -86,6 +87,8 @@ public class ProductService {
         if(product1.isPresent()){
             product1.get().setProductName(product.getProductName());
             product1.get().setInventory(product.getInventory());
+            product1.get().setInventoryV1(product.getInventory());
+            product1.get().setInventoryV2(product.getInventory());
             product1.get().setUnit(product.getUnit());
             product1.get().setPrice(product.getPrice());
             try {

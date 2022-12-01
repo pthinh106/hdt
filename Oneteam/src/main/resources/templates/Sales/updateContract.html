@@ -33,7 +33,8 @@
 							<em class="fa fa-close color-red"> Đóng</em>
 						</a>
 					</div>
-					<form id="form" role="form" name="MyForm" action="/sales/api/contract/create" method="post" th:object="${contracts}">
+					<form id="form" role="form" name="MyForm" action="/sales/api/contract/update" method="post" th:object="${contracts}">
+						<input type="hidden" th:field="*{contractId}">
 						<input type="hidden" name="accountId" th:value="${account.getAccountId()}">
 						<div class="panel-body">
 							<div class="col-md-6">
@@ -85,8 +86,36 @@
 								</div>
 							</div>
 							<div class="col-md-12 col-sm-6" style="padding: 0">
-								<div id="AddForm" class="form-group">
-									<div id="ListIP" class="ListIP col-sm-12" style="padding: 0;">
+								<div class="col-md-12">
+									<th:block th:each="productDetails : ${contractDetails}">
+										<div class="col-sm-6" style="padding: 0;">
+											<div class="form-group">
+												<label>Loại Sản Phẩm</label>
+												<label style="color:red ;">(*)</label>
+												<select class="form-control" name="productDetailsId">
+													<th:block th:each="product : ${productList}">
+														<th:block th:if="${productDetails.getProduct().getProductId() == product.getProductId()}">
+															<option th:value="${product.getProductId()}" th:text="${product.getProductName()}" selected></option>
+														</th:block>
+														<th:block th:unless="${productDetails.getProduct().getProductId() == product.getProductId()}">
+															<option th:value="${product.getProductId()}" th:text="${product.getProductName()}"></option>
+														</th:block>
+													</th:block>
+												</select>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label>Số Lượng Sản Phẩm</label>
+												<label style="color:red ;">(*)</label>
+												<input type="number" class="form-control " name="productQuantity" th:value="${productDetails.getQuantity()}">
+											</div>
+										</div>
+									</th:block>
+								</div>
+
+								<div id="AddForm" class="form-group" >
+									<div id="ListIP" class="ListIP col-sm-12" style="padding: 0; display: none;">
 										<div class="col-sm-6" >
 											<div class="form-group">
 												<label>Loại Sản Phẩm</label>
@@ -102,7 +131,7 @@
 											<div class="form-group">
 												<label>Số Lượng Sản Phẩm</label>
 												<label style="color:red ;">(*)</label>
-												<input type="number" class="form-control " name="productQuantity">
+												<input type="number" class="form-control " name="productQuantity" value="0">
 											</div>
 										</div>
 									</div>
@@ -143,7 +172,7 @@
 						Swal.fire({
 							position: 'center',
 							icon: 'success',
-							title: 'Thêm hợp đồng thành công',
+							title: 'Sửa đồng thành công',
 							showConfirmButton: true
 						}).then((result) =>{
 							window.location.reload();

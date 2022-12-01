@@ -19,6 +19,10 @@ public class Product {
     private double price;
     @Column(name = "SOLUONGTONKHO")
     private int inventory;
+    @Column(name = "SOLUONGTONKHO1")
+    private int inventoryV1;
+    @Column(name = "SOLUONGTONKHO2")
+    private int inventoryV2;
     @Column(name = "TRANGTHAI")
     private int status;
     @Column(name = "NGAYNHAP")
@@ -29,12 +33,14 @@ public class Product {
     private List<ProductStructure> productStructureList;
     public Product(){}
 
-    public Product(int productId, String productName, String unit, double price, int inventory, int status, Timestamp created, Timestamp updated, List<ProductStructure> productStructureList) {
+    public Product(int productId, String productName, String unit, double price, int inventory, int inventoryV1, int inventoryV2, int status, Timestamp created, Timestamp updated, List<ProductStructure> productStructureList) {
         this.productId = productId;
         this.productName = productName;
         this.unit = unit;
         this.price = price;
         this.inventory = inventory;
+        this.inventoryV1 = inventoryV1;
+        this.inventoryV2 = inventoryV2;
         this.status = status;
         this.created = created;
         this.updated = updated;
@@ -121,6 +127,21 @@ public class Product {
     public void setProductStructureList(List<ProductStructure> productStructureList) {
         this.productStructureList = productStructureList;
     }
+    public int getInventoryV1() {
+        return inventoryV1;
+    }
+
+    public void setInventoryV1(int inventoryV1) {
+        this.inventoryV1 = inventoryV1;
+    }
+
+    public int getInventoryV2() {
+        return inventoryV2;
+    }
+
+    public void setInventoryV2(int inventoryV2) {
+        this.inventoryV2 = inventoryV2;
+    }
 
     @Override
     public String toString() {
@@ -136,5 +157,7 @@ public class Product {
                 ", productStructureList=" + productStructureList +
                 '}';
     }
+
+
 }
 
