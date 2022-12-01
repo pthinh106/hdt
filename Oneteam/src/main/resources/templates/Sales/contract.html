@@ -54,7 +54,7 @@
 											<td th:text="${contracts.getPayment().getPaymentName()}"></td>
 											<td th:text="${#numbers.formatDecimal(contracts.getTotal(), 0, 'COMMA', 0, 'POINT')+ ' VNĐ'}"></td>
 											<td>
-												<button type="button" class="btn btn-md btn-info addbutton">Sửa</button>
+												<a th:href="@{contract/update/{id}(id=${contracts.getContractId()})}"><button type="button" class="btn btn-md btn-info addbutton">Sửa</button></a>
 												<button type="button" class="btn btn-md btn-danger" th:onclick="deleteContract([[${contracts.getContractId()}]])">Xóa</button>
 												<a th:href="@{contract/{id}(id=${contracts.getContractId()})}"><button type="button" class="btn btn-md btn-default">Xem</button></a>
 											</td>

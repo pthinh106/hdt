@@ -206,4 +206,63 @@ public class ContractService {
             return false;
         }
     }
+
+    public boolean updateContract(Contract contract, int[] productDetailsId, int[] productQuantity, int accountId) {
+        if(productQuantity.length < 1){
+            return false;
+        }
+        Optional<Contract> contract1 = contractReps.findById(contract.getContractId());
+        if(contract1.isPresent()){
+            if(contract.getCustomer().getCustomerName().isEmpty() || contract.getCustomer().getAddress().isEmpty() ||
+                    contract.getCustomer().getTax().isEmpty() || contract.getCustomer().getPhoneNumber().isEmpty() ||
+                    contract.getDeliveryPlace().isEmpty() ){
+                return false;
+            }
+
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            Date date = Date.valueOf(dtf.format(LocalDate.now()));
+            if(contract.getUpdated().before(date)){
+                return false;
+            }
+            Customer customer = contract.getCustomer();
+            customerService.save(customer);
+            contract1.get().setCustomer(customer);
+            contract1.get().setEmployee(employeeService.getEmployeeByAccountId(accountId));
+            contract1.get().setUpdated(contract.getUpdated());
+            contract1.get().setPayment(contract.getPayment());
+            contract1.get().setDeliveryPlace(contract.getDeliveryPlace());
+            contract1.get().setProvision(contract.getProvision());
+            try {
+                contractReps.save(contract1.get());
+            }catch (Exception e){
+                return false;
+            }
+            for (ContractDetails contractDetails : contractDetailsReps.findAllByContract(contract1.get())){
+                try {
+                    contractDetailsReps.delete(contractDetails);
+                    System.out.println("success");
+                }catch (Exception e){
+                    System.out.println("fail");
+                }
+            }
+            double total = 0;
+            for(int i = 0; i <productQuantity.length;i++){
+                if(productQuantity[i] == 0){
+                    continue;
+                }
+                ContractDetails contractDetails = new ContractDetails();
+                contractDetails.setContract(contract1.get());
+                contractDetails.setProduct(productService.getProductById(productDetailsId[i]));
+                contractDetails.setQuantity(productQuantity[i]);
+                contractDetails.setTotal(productService.getProductById(productDetailsId[i]).getPrice()*productQuantity[i]);
+                total += contractDetails.getTotal();
+                contractDetailsReps.save(contractDetails);
+            }
+            contract1.get().setTotal(total*1.1);
+            contractReps.save(contract1.get());
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

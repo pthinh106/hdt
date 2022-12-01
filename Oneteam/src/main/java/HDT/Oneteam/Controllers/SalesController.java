@@ -123,6 +123,20 @@ public class SalesController {
         model.addAttribute("contract",true);
         return "Sales/addContract";
     }
+    @GetMapping("/contract/update/{id}")
+    public String updateContract(@PathVariable("id") int id,Model model, Principal principal){
+        if(principal != null){
+            Account account = accountService.getAccountByName(principal.getName());
+            model.addAttribute("account",account);
+        }
+        Contract contract = contractService.getContractById(id);
+        model.addAttribute("productList",productService.getAllProductOn(1));
+        model.addAttribute("paymentList",paymentService.getAllPayment());
+        model.addAttribute("contractDetails",contractService.getListContractDetailsByContract(contract));
+        model.addAttribute("contracts",contract);
+        model.addAttribute("contract",true);
+        return "Sales/updateContract";
+    }
     @GetMapping("/liquidation")
     public String liquidationContact(Model model, Principal principal){
         if(principal != null){
