@@ -43,12 +43,12 @@ public class ContractService {
     public List<Contract> getContractByStatusAndLiquidationStatusIn(int status, Collection<Integer> liquidationStatus){
         List<Contract> contractList = contractReps.findAllByStatusOrderByUpdatedAsc(0);
         for(Contract contract : contractList){
-            if(contract.getLiquidationStatus() == 1 || contract.getLiquidationStatus() == 2){
+            if(contract.getLiquidationStatus() == 2){
                 continue;
             }else{
                 List<ContractDetails> contractDetailsList = contractDetailsReps.findAllByContract(contract);
                 for(ContractDetails contractDetails : contractDetailsList){
-                    if(contractDetails.getQuantity() > contractDetails.getProduct().getInventory()){
+                    if(contractDetails.getQuantity() > contractDetails.getProduct().getInventoryV1()){
                         contract.setLiquidationStatus(0);
                         break;
                     }else{
@@ -57,14 +57,26 @@ public class ContractService {
                 }
                 if(contract.getLiquidationStatus() == 1){
                     for(ContractDetails contractDetails : contractDetailsList){
-                        Product product = productService.getProductById(contractDetails.getProduct().getProductId());
-                        product.setInventory(product.getInventory() - contractDetails.getQuantity());
+                        Product product = new Product();
+                        product = productService.getProductById(contractDetails.getProduct().getProductId());
+                        product.setInventoryV1(product.getInventoryV1() - contractDetails.getQuantity());
                         productService.save(product);
                     }
                 }else{
                     if(contract.getLiquidationStatus() == 0){
                         break;
                     }
+                }
+            }
+        }
+        for(Contract contract : contractList){
+            if(contract.getLiquidationStatus() != 2){
+                List<ContractDetails> contractDetailsList = contractDetailsReps.findAllByContract(contract);
+                for(ContractDetails contractDetails : contractDetailsList){
+                    Product product = new Product();
+                    product = productService.getProductById(contractDetails.getProduct().getProductId());
+                    product.setInventoryV1(product.getInventoryV2());
+                    productService.save(product);
                 }
             }
         }
@@ -87,6 +99,13 @@ public class ContractService {
         Optional<Contract> contract = contractReps.findById(contractId);
         if(contract.isPresent()){
             contract.get().setLiquidationStatus(2);
+            for(ContractDetails contractDetails : contract.get().getContractDetailsList()){
+                Product product = new Product();
+                product = productService.getProductById(contractDetails.getProduct().getProductId());
+                product.setInventoryV1(product.getInventoryV1() - contractDetails.getQuantity());
+                product.setInventoryV2(product.getInventoryV1());
+                productService.save(product);
+            }
             contractReps.save(contract.get());
             return true;
         }else{
@@ -100,6 +119,7 @@ public class ContractService {
             listContractIdCol.add(Integer.parseInt(listId[i]));
         }
         List<Contract> contractList = contractReps.findAllByContractIdIn(listContractIdCol);
+
         if(!contractList.isEmpty()){
             for(Contract contract : contractList){
                 BillExportProduct billExportProduct = new BillExportProduct();
@@ -122,6 +142,13 @@ public class ContractService {
                     }catch (Exception e){
                         return false;
                     }
+                    Product product = new Product();
+                    product = productService.getProductById(contractDetails.getProduct().getProductId());
+                    product.setInventory(product.getInventory() - contractDetails.getQuantity());
+                    product.setInventoryV1(product.getInventory());
+                    product.setInventoryV2(product.getInventory());
+                    productService.save(product);
+
                 }
                 contract.setStatus(1);
             }
@@ -144,6 +171,13 @@ public class ContractService {
         if(!contractList.isEmpty()){
             for(Contract contract : contractList){
                 contract.setLiquidationStatus(1);
+                for (ContractDetails contractDetails : contract.getContractDetailsList()){
+                    Product product = new Product();
+                    product = productService.getProductById(contractDetails.getProduct().getProductId());
+                    product.setInventoryV1(product.getInventory());
+                    product.setInventoryV2(product.getInventory());
+                    productService.save(product);
+                }
             }
             contractReps.saveAll(contractList);
             return true;
@@ -191,7 +225,7 @@ public class ContractService {
             for(ContractDetails contractDetails : contractDetailsList){
                 Product product = new Product();
                 product = productService.getProductById(contractDetails.getProduct().getProductId());
-                product.setInventory(product.getInventory()+contractDetails.getQuantity());
+                product.setInventoryV1(product.getInventoryV1()+contractDetails.getQuantity());
                 try {
                     productService.save(product);
                 }catch (Exception e){

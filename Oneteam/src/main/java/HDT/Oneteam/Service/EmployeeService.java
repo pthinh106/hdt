@@ -55,6 +55,7 @@ public class EmployeeService {
                 Account account = accountService.saveNewAccount(employeeDetails.getAccount());
                 employeeDetails.setAccount(account);
                 employeeDetails.getAccount().setPassWord(passwordEncoder.encode(employeeDetails.getAccount().getPassWord()));
+                employeeDetails.setStatus(1);
                 try {
                     employeeReps.save(employeeDetails);
                     return true;
